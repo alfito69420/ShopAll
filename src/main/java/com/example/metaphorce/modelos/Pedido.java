@@ -1,5 +1,4 @@
 package com.example.metaphorce.modelos;
-
 public class Pedido {
 
     private Long usuarioId;
@@ -46,3 +45,4 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
     }
 } //close class
+
