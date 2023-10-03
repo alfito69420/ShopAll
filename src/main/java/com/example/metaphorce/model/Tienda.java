@@ -11,6 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+
 public class Tienda {
     private String nombre;
     private String descripcion;
