@@ -17,6 +17,8 @@ public class MetaphorceApplication {
 		*Test para la base de datos
 		*Es solo para comprobar la conexion a la base de datos
 		 */
+		
+		/*
 		ConnectionDB connectionDB = new ConnectionDB();
 		try {
 			//Para comprobar que esta cnectado
@@ -26,6 +28,8 @@ public class MetaphorceApplication {
 		} catch (Exception e) {
 			System.err.println("Error al conectar a la base de datos: " + e.getMessage());
 		}
+		*/
+
 	}
 
 }
