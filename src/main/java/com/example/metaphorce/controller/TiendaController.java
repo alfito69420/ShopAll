@@ -17,26 +17,18 @@ public class TiendaController {
 
     //Inyectar dependencia de Rerpository
     private final TiendaServices tiendaServices;
-    private TiendaRepository tiendaRepository;
-
     @Autowired
     public TiendaController(TiendaServices tiendaServices){
         this.tiendaServices = tiendaServices;
     }
 
-    @GetMapping("all")
+    @GetMapping("/ejemplo")
+    public List<Tienda>getEjemplo(){
+        return tiendaServices.getEjemplo();
+    }
+
+    @GetMapping("/all")
     public List<Tienda>getTienda(){
         return tiendaServices.getTienda();
     }
-    /*
-    @GetMapping("/all")
-    private @ResponseBody List<Tienda> getAllTienda(){
-        return 0;
-    }
-
-     */
-
-
-
-
 }
