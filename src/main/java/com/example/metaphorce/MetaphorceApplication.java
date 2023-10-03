@@ -3,16 +3,20 @@ package com.example.metaphorce;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.example.metaphorce.repository.ConnectionDB;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Connection;
 
 @SpringBootApplication
+@RestController
 public class MetaphorceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MetaphorceApplication.class, args);
-
-
-
+		}
+	@GetMapping(path="/hola")
+	public String hello_word(){
+		return "helloWord";
 		/*
 		*Test para la base de datos
 		*Es solo para comprobar la conexion a la base de datos
