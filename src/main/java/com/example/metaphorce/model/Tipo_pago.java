@@ -1,4 +1,4 @@
-package com.example.metaphorce.modelos;
+package com.example.metaphorce.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Tipo_producto {
-    private  String nombre;
+public class Tipo_pago {
+    private String nombre;
+    private String descripcion;
 }

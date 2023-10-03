@@ -1,4 +1,4 @@
-package com.example.metaphorce.modelos;
+package com.example.metaphorce.model;
 public class Pedido {
 
     private Long usuarioId;
