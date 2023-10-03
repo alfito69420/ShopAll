@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.example.metaphorce.repository;
 
-import com.example.demo.model.Tienda;
+import com.example.metaphorce.model.Tienda;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;

@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.metaphorce.controller;
 
-import com.example.demo.model.Tienda;
-import com.example.demo.repository.TiendaRepository;
-import com.example.demo.service.TiendaServices;
+import com.example.metaphorce.model.Tienda;
+import com.example.metaphorce.repository.TiendaRepository;
+import com.example.metaphorce.service.TiendaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

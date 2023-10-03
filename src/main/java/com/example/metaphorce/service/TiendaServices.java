@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.example.metaphorce.service;
 
-import com.example.demo.model.Tienda;
+import com.example.metaphorce.model.Tienda;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
