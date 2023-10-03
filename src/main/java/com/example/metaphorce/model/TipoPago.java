@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Tipo_pago {
+public class TipoPago {
     private String nombre;
     private String descripcion;
 }
