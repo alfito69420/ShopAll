@@ -16,7 +16,7 @@ public class MetaphorceApplication {
 		}
 	@GetMapping(path="/hola")
 	public String hello_word(){
-		return "helloWord";
+		return "helloWord desde maven";
 		/*
 		*Test para la base de datos
 		*Es solo para comprobar la conexion a la base de datos
