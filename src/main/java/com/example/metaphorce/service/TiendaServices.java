@@ -12,7 +12,7 @@ public class TiendaServices {
     public List<Tienda> getTienda(){
         return List.of(
                 new Tienda(
-                        "Soriana","Tienda de mexico"
+                        1,"Soriana","Tienda de mexico"
                 )
         );
     }
