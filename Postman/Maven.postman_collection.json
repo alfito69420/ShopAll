@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "067b9a88-058c-455c-905d-74d3ab7ea20b",
+		"_postman_id": "484fca07-4630-4a2b-88d9-dbd5e239605d",
 		"name": "Maven",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26596077"
+		"_exporter_id": "23724476"
 	},
 	"item": [
 		{
@@ -131,6 +131,45 @@
 								"all"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VentaDetalle",
+			"item": [
+				{
+					"name": "Listar VentaDetalle",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "Listar Pedido",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EstadoPedido",
+			"item": [
+				{
+					"name": "Listar EstadoPedido",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
