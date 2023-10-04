@@ -1,5 +1,6 @@
 package com.example.metaphorce.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -7,7 +8,11 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@Entity
+@Table
 public class EstadoPedido {
-    private Long estadoPedidoId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long estado_pedido_id;
     private String nombre;
 } //close class
