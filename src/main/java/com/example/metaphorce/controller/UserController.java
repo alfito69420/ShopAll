@@ -3,6 +3,7 @@ package com.example.metaphorce.controller;
 import com.example.metaphorce.model.Tienda;
 import com.example.metaphorce.model.User;
 import com.example.metaphorce.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,12 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public void registrarUser(@RequestBody User user){
-        this.userService.newUser(user);
+    public ResponseEntity<Object> registrarUser(@RequestBody User user){
+        return this.userService.newUser(user);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Object> actualizarUser(@RequestBody User user){
+        return this.userService.newUser(user);
     }
 }
