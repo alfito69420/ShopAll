@@ -1,11 +1,11 @@
 package com.example.metaphorce.controller;
 
+import com.example.metaphorce.model.TipoPago;
 import com.example.metaphorce.model.TipoProducto;
 import com.example.metaphorce.service.TipoProductoServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +22,15 @@ public class TipoProductoController {
     @GetMapping("/all")
     public List<TipoProducto> getTipoProducto(){
         return tipoProductoServices.getTipoProducto();
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<Object> registrar(@RequestBody TipoProducto tipoProducto){
+        return this.tipoProductoServices.newTipoProducto(tipoProducto);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Object> actualizar(@RequestBody TipoProducto tipoProducto){
+        return this.tipoProductoServices.newTipoProducto(tipoProducto);
     }
 }

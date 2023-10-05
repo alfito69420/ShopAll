@@ -22,5 +22,7 @@ public class PedidoController {
     @GetMapping("/all")
     public List<Pedido> getPedido() {
         return pedidoService.getPedido();
-    } //close class
+    }
+
+
 } //close class

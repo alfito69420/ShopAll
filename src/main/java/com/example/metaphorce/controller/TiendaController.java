@@ -1,11 +1,11 @@
 package com.example.metaphorce.controller;
 
+
 import com.example.metaphorce.model.Tienda;
 import com.example.metaphorce.service.TiendaServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +29,23 @@ public class TiendaController {
     public List<Tienda>getTienda(){
         return tiendaServices.getTienda();
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<Object> registrarTienda(@RequestBody Tienda tienda){
+        return this.tiendaServices.newTienda(tienda);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Object> actualizarTienda(@RequestBody Tienda tienda){
+        return this.tiendaServices.newTienda(tienda);
+    }
+
+    /*
+    @DeleteMapping("/delete/{id}")
+    public String eliminarUsuario(@PathVariable Long id) {
+        this.tiendaServices.eliminar(id);
+        return "Usuario eliminado exitosamente";
+    }
+    
+     */
 }

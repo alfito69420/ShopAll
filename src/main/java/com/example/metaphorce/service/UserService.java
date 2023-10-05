@@ -1,8 +1,8 @@
 package com.example.metaphorce.service;
 
 import com.example.metaphorce.model.Tienda;
-import com.example.metaphorce.model.TipoPago;
-import com.example.metaphorce.repository.TipoPagoRepository;
+import com.example.metaphorce.model.User;
+import com.example.metaphorce.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,25 +11,25 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class TipoPagoServices {
-    private final TipoPagoRepository tipoPagoRepository;
+public class UserService {
+    private  final UserRepository userRepository;
     HashMap<String,Object> datos = new HashMap<>();
 
-    public  TipoPagoServices(TipoPagoRepository tipoPagoRepository){
-        this.tipoPagoRepository = tipoPagoRepository;
+    public UserService(UserRepository userRepository){
+        this.userRepository = userRepository;
     }
 
-    public List<TipoPago> getTipoPago(){
-        return tipoPagoRepository.findAll();
+    public List<User> getUser(){
+        return userRepository.findAll();
     }
 
-    public ResponseEntity<Object> newTipoPago(TipoPago tipoPago) {
-        this.tipoPagoRepository.save(tipoPago);
-        datos.put("Data", tipoPago);
+    public ResponseEntity<Object>  newUser(User user) {
+        this.userRepository.save(user);
+        datos.put("Data", user);
         datos.put("Message","Se pudo crear");
         datos.put("Status",201);
         datos.put("Flag","true");
-        if(tipoPago.getTipo_pago_id() > 0){
+        if(user.getUsuario_id() > 0){
             datos.put("Message","Se pudo actualizar");
         }
         return new ResponseEntity<>(datos, HttpStatus.CREATED);
