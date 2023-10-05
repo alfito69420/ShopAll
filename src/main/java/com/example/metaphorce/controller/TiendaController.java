@@ -1,11 +1,10 @@
 package com.example.metaphorce.controller;
 
+
 import com.example.metaphorce.model.Tienda;
 import com.example.metaphorce.service.TiendaServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +27,10 @@ public class TiendaController {
     @GetMapping("/all")
     public List<Tienda>getTienda(){
         return tiendaServices.getTienda();
+    }
+
+    @PostMapping("/create")
+    public void registrarTienda(@RequestBody Tienda tienda){
+        this.tiendaServices.newTienda(tienda);
     }
 }

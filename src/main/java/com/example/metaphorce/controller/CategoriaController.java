@@ -1,11 +1,11 @@
 package com.example.metaphorce.controller;
 
+
 import com.example.metaphorce.model.Categoria;
 import com.example.metaphorce.service.CategoriaServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("api/v1/categoria")
 public class CategoriaController {
     private final CategoriaServices categoriaServices;
+
 
     @Autowired
     public CategoriaController(CategoriaServices categoriaServices){
@@ -22,5 +23,11 @@ public class CategoriaController {
     @GetMapping("/all")
     public List<Categoria> getCategoria(){
         return categoriaServices.getCategoria();
+    }
+
+    @PostMapping("/create")
+    public void registrarCategory(@RequestBody  Categoria categoria){
+        this.categoriaServices.newCategoria(categoria);
+
     }
 }

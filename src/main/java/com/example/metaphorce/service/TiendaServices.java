@@ -1,5 +1,7 @@
 package com.example.metaphorce.service;
 
+import com.example.metaphorce.domain.GenericResponse;
+import com.example.metaphorce.model.Categoria;
 import com.example.metaphorce.model.Tienda;
 import com.example.metaphorce.repository.TiendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +34,8 @@ public class TiendaServices {
     public List<Tienda> getTienda(){
         return tiendaRepository.findAll();
     }
+
+    public void newTienda(Tienda tienda) {
+        this.tiendaRepository.save(tienda);
+    };
 }
