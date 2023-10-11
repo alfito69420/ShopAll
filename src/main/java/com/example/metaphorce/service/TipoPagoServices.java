@@ -2,7 +2,6 @@ package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.TipoPagoResponse;
 import com.example.metaphorce.model.TipoPago;
-import com.example.metaphorce.model.TipoPago;
 import com.example.metaphorce.repository.TipoPagoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +54,7 @@ public class TipoPagoServices {
         //Verificar si esta vacio
         if(!this.tipoPagoRepository.findById(id).isEmpty()){
             this.tipoPagoRepository.deleteById(id);
-            response = new TipoPagoResponse("Si se pudo eliminar el ID:",200,true );
+            response = new TipoPagoResponse("Si se pudo eliminar el ID :"+id,200,true );
             return new ResponseEntity<>(response.response(),HttpStatus.OK);
         }else{
             response = new TipoPagoResponse("No existe el ID: "+id,400,false );
