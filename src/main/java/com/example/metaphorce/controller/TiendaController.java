@@ -29,9 +29,9 @@ public class TiendaController {
     public ResponseEntity<Object> registrarTienda(@RequestBody Tienda tienda){
         return this.tiendaServices.newTienda(tienda);
     }
-    @PutMapping("/update")
-    public ResponseEntity<Object> actualizarTienda(@RequestBody Tienda tienda){
-        return this.tiendaServices.newTienda(tienda);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> actualizarTienda(@PathVariable Integer id,@RequestBody Tienda tienda){
+        return this.tiendaServices.updateTienda(id,tienda);
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> eliminarUsuario(@PathVariable Integer id) {

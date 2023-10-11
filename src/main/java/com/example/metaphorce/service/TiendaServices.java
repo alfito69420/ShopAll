@@ -30,16 +30,25 @@ public class TiendaServices {
         }
     }
     public  ResponseEntity<Object> newTienda(Tienda tienda) {
-        if(tienda.getTienda_id() > 0){
-            this.tiendaRepository.save(tienda);
-            response = new TiendaResponse(tienda, "Se pudo actualizar",201,true );
-            return new ResponseEntity<>(response.response(), HttpStatus.CREATED);
-        }else{
-            this.tiendaRepository.save(tienda);
-            response = new TiendaResponse(tienda, "Se pudo crear la tienda",200,true );
+        this.tiendaRepository.save(tienda);
+        response = new TiendaResponse(tienda, "Se pudo crear la tienda",200,true );
+        return new ResponseEntity<>(response.response(), HttpStatus.OK);
+
+
+    };
+
+    public  ResponseEntity<Object> updateTienda(Integer id, Tienda tienda) {
+        if (tiendaRepository.findById(id).isPresent()) {
+            Tienda existingTienda = tiendaRepository.findById(id).get();
+            existingTienda.setNombre(tienda.getNombre());
+            existingTienda.setDescripcion(tienda.getDescripcion());
+            tiendaRepository.save(existingTienda);
+            response = new TiendaResponse(existingTienda, "Se pudo actualizar", 200, true);
+            return new ResponseEntity<>(response.response(), HttpStatus.OK);
+        } else {
+            response = new TiendaResponse("No existe el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
-
     };
 
     public ResponseEntity<Object>  eliminar(Integer id){
