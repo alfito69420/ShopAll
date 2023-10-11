@@ -28,8 +28,8 @@ CREATE TABLE Rol_usuario (
     rol_usuario INT AUTO_INCREMENT PRIMARY KEY,
     rol_id INT NOT NULL,
     usuario_id INT NOT NULL,
-    CONSTRAINT FK1_rol_usuario FOREIGN KEY (rol_id) REFERENCES Rol(rol_id),
-    CONSTRAINT FK2_rol_usuario FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id)
+    CONSTRAINT FK1_rol_usuario FOREIGN KEY (rol_id) REFERENCES Rol(rol_id) ON DELETE CASCADE,
+    CONSTRAINT FK2_rol_usuario FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id) ON DELETE CASCADE
 );
 
 -- Tienda
@@ -62,9 +62,9 @@ CREATE TABLE Producto (
     categoria_id INT NOT NULL,
     tipo_id INT NOT NULL,
     tienda_id INT NOT NULL,
-    CONSTRAINT FK1_producto FOREIGN KEY (categoria_id) REFERENCES Categoria(categoria_id),
-    CONSTRAINT FK2_producto FOREIGN KEY (tipo_id) REFERENCES Tipo_Producto(tipo_id),
-    CONSTRAINT FK3_producto FOREIGN KEY (tienda_id) REFERENCES Tienda(tienda_id)
+    CONSTRAINT FK1_producto FOREIGN KEY (categoria_id) REFERENCES Categoria(categoria_id) ON DELETE CASCADE,
+    CONSTRAINT FK2_producto FOREIGN KEY (tipo_id) REFERENCES Tipo_Producto(tipo_id) ON DELETE CASCADE,
+    CONSTRAINT FK3_producto FOREIGN KEY (tienda_id) REFERENCES Tienda(tienda_id) ON DELETE CASCADE
 );
 
 -- Resena
@@ -74,8 +74,8 @@ CREATE TABLE Resena (
     calificacion INT NOT NULL,
     producto_id INT NOT NULL,
     usuario_id INT NOT NULL,
-    CONSTRAINT FK1_resena FOREIGN KEY (producto_id) REFERENCES Producto(producto_id),
-    CONSTRAINT FK2_resena FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id)
+    CONSTRAINT FK1_resena FOREIGN KEY (producto_id) REFERENCES Producto(producto_id) ON DELETE CASCADE,
+    CONSTRAINT FK2_resena FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id) ON DELETE CASCADE
 );
 -- Forma de pago
 CREATE TABLE Tipo_Pago (
@@ -88,8 +88,8 @@ CREATE TABLE Venta (
     venta_id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
     tipo_pago_id INT NOT NULL,
-    CONSTRAINT FK1_venta FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id),
-    CONSTRAINT FK2_venta FOREIGN KEY (tipo_pago_id) REFERENCES Tipo_Pago(tipo_pago_id)
+    CONSTRAINT FK1_venta FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id) ON DELETE CASCADE,
+    CONSTRAINT FK2_venta FOREIGN KEY (tipo_pago_id) REFERENCES Tipo_Pago(tipo_pago_id) ON DELETE CASCADE
 );
 
 
@@ -103,8 +103,8 @@ CREATE TABLE Venta_detalle (
     cantidad INT NOT NULL,
     precio DECIMAL(8,2),
     sub_total DECIMAL(8,2),
-    CONSTRAINT FK1_Venta_detalle FOREIGN KEY (producto_id) REFERENCES Producto(producto_id),
-    CONSTRAINT FK2_Venta_detalle FOREIGN KEY (venta_id) REFERENCES Venta(venta_id)
+    CONSTRAINT FK1_Venta_detalle FOREIGN KEY (producto_id) REFERENCES Producto(producto_id) ON DELETE CASCADE,
+    CONSTRAINT FK2_Venta_detalle FOREIGN KEY (venta_id) REFERENCES Venta(venta_id) ON DELETE CASCADE
 );
 
 
@@ -116,9 +116,9 @@ CREATE TABLE Pedido (
     tienda_id INT NOT NULL,
     fecha_pedido DATETIME,
     venta_id INT NOT NULL,
-    CONSTRAINT FK1_pedido FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id),
-    CONSTRAINT FK2_pedido FOREIGN KEY (tienda_id) REFERENCES Tienda(tienda_id),
-    CONSTRAINT FK3_pedido FOREIGN KEY(venta_id) REFERENCES Venta(venta_id)
+    CONSTRAINT FK1_pedido FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id) ON DELETE CASCADE,
+    CONSTRAINT FK2_pedido FOREIGN KEY (tienda_id) REFERENCES Tienda(tienda_id) ON DELETE CASCADE,
+    CONSTRAINT FK3_pedido FOREIGN KEY(venta_id) REFERENCES Venta(venta_id) ON DELETE CASCADE
 );
 
 -- Estado_Pedido
@@ -135,9 +135,9 @@ CREATE TABLE Notificacion_Pedido (
     pedido_id INT NOT NULL,
     estado_pedido_id INT NOT NULL,
     usuario_id INT NOT NULL,
-    CONSTRAINT FK1_notificacion_pedido FOREIGN KEY (pedido_id) REFERENCES Pedido(pedido_id),
-    CONSTRAINT FK2_notificacion_pedido FOREIGN KEY (estado_pedido_id) REFERENCES Estado_Pedido(estado_pedido_id),
-    CONSTRAINT FK3_notificacion_pedido FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id)
+    CONSTRAINT FK1_notificacion_pedido FOREIGN KEY (pedido_id) REFERENCES Pedido(pedido_id) ON DELETE CASCADE,
+    CONSTRAINT FK2_notificacion_pedido FOREIGN KEY (estado_pedido_id) REFERENCES Estado_Pedido(estado_pedido_id) ON DELETE CASCADE,
+    CONSTRAINT FK3_notificacion_pedido FOREIGN KEY (usuario_id) REFERENCES Usuario(usuario_id) ON DELETE CASCADE
 );
 
 
@@ -258,38 +258,3 @@ INSERT INTO Notificacion_Pedido (mensaje, fecha_hora_creacion, pedido_id, estado
 ('Pendiente de pago', NOW(), 5, 5, 5);
 
 
-
-
--- -----TRANZACCION
-START TRANSACTION;
-
-INSERT INTO pedido (pedido_id,fecha_pedido)
-VALUES (6, NOW());
-
-INSERT INTO venta_detalle (venta_id, producto_id, cantidad)
-VALUES (LAST_INSERT_ID(), 1, 2);
-
-UPDATE producto
-SET cantidad = cantidad - 2
-WHERE producto_id = 1;
-
-COMMIT;
-
-
--- -------procedimiento almacenado
-DELIMITER //
-CREATE PROCEDURE CrearProducto(
-    IN p_nombre VARCHAR(150),IN p_descripcion TEXT,IN p_precio DECIMAL(8,2),IN p_cantidad INT,IN p_photo TEXT,IN p_tienda_id INT)
-BEGIN
-    DECLARE p_categoria_id INT;
-    DECLARE p_tipo_id INT;
-    -- En este ejemplo, simplemente se asignan valores aleatorios entre 1 y 5 
-    -- porque solo ingrese 5 datos de 5 tipos de categoria
-    SET p_categoria_id = FLOOR(1 + RAND() * 5);
-    SET p_tipo_id = FLOOR(1 + RAND() * 5);
-
-    INSERT INTO Producto (nombre,descripcion,precio,cantidad,photo,categoria_id,tipo_id,tienda_id)
-    VALUES (p_nombre,p_descripcion,p_precio,p_cantidad,p_photo,p_categoria_id,p_tipo_id,p_tienda_id
-    );
-END//
-DELIMITER ;
