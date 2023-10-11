@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TiendaRepository extends JpaRepository<Tienda,Integer> {
-    //void deleteTiendaBy(Long id);
-    //void deleteByTiendaId(Long tienda_id);
 
 }
