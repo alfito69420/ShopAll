@@ -3,7 +3,6 @@ package com.example.metaphorce.service;
 import com.example.metaphorce.domain.GenericResponse;
 import com.example.metaphorce.model.Categoria;
 import com.example.metaphorce.model.Tienda;
-import com.example.metaphorce.repository.PedidoRepository;
 import com.example.metaphorce.repository.TiendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,13 +17,11 @@ import java.util.List;
 @Service
 public class TiendaServices {
     private final TiendaRepository tiendaRepository;
-    private final PedidoRepository pedidoRepository;
     HashMap<String,Object> datos = new HashMap<>();
     GenericResponse response;
     @Autowired
-    public TiendaServices(TiendaRepository tiendaRepository, PedidoRepository pedidoRepository){
+    public TiendaServices(TiendaRepository tiendaRepository){
         this.tiendaRepository = tiendaRepository;
-        this.pedidoRepository = pedidoRepository;
     }
 
     public List<Tienda> getTienda(){
@@ -48,8 +45,7 @@ public class TiendaServices {
     public ResponseEntity<Object>  eliminar(Integer id){
         //Verificar si esta vacio
         if(!this.tiendaRepository.findById(id).isEmpty()){
-            if(!this.pedidoRepository.findBy())
-            this.tiendaRepository.deleteAll();
+            this.tiendaRepository.deleteById(id);
             datos.put("Data", " ");
             datos.put("Message","Si se pudo eliminar el ID: "+id);
             datos.put("Status",201);
