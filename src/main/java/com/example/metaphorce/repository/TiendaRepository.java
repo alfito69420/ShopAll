@@ -3,8 +3,11 @@ package com.example.metaphorce.repository;
 
 import com.example.metaphorce.model.Tienda;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-
-public interface TiendaRepository extends JpaRepository<Tienda,Long> {
+@Repository
+public interface TiendaRepository extends JpaRepository<Tienda,Integer> {
     //void deleteTiendaBy(Long id);
+    //void deleteByTiendaId(Long tienda_id);
+
 }

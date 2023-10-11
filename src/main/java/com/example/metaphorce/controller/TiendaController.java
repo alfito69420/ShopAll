@@ -40,12 +40,12 @@ public class TiendaController {
         return this.tiendaServices.newTienda(tienda);
     }
 
-    /*
+
     @DeleteMapping("/delete/{id}")
-    public String eliminarUsuario(@PathVariable Long id) {
-        this.tiendaServices.eliminar(id);
-        return "Usuario eliminado exitosamente";
+    public ResponseEntity<Object> eliminarUsuario(@PathVariable Integer id) {
+        return this.tiendaServices.eliminar(id);
+
     }
     
-     */
+
 }

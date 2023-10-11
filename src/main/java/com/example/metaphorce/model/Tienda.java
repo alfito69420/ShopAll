@@ -17,7 +17,7 @@ import lombok.ToString;
 public class Tienda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long tienda_id;
+    private int tienda_id;
     private String nombre;
     private String descripcion;
 }
