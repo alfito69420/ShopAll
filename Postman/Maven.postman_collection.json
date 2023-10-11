@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f93b0632-402c-4c8c-b548-e647b5ae6399",
+		"_postman_id": "b7d2589e-8ecd-41b1-bf70-089b7b9d914e",
 		"name": "Maven",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26596078"
+		"_exporter_id": "26596077"
 	},
 	"item": [
 		{
@@ -391,6 +391,29 @@
 					"response": []
 				},
 				{
+					"name": "Listar un Tipo Pago",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tipoPago/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tipoPago",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create TipoPago",
 					"request": {
 						"method": "POST",
@@ -428,7 +451,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipo_pago_id\": 8,\r\n    \"nombre\": \"Con juegos 18\",\r\n    \"descripcion\": \"Pandome Juegos\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Con juegos 18\",\r\n    \"descripcion\": \"Pandome Juegos\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -436,7 +459,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tipoPago/update",
+							"raw": "http://localhost:8080/api/v1/tipoPago/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -446,7 +469,8 @@
 								"api",
 								"v1",
 								"tipoPago",
-								"update"
+								"update",
+								"6"
 							]
 						}
 					},
@@ -458,7 +482,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tipoPago/delete",
+							"raw": "http://localhost:8080/api/v1/tipoPago/delete/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -468,7 +492,8 @@
 								"api",
 								"v1",
 								"tipoPago",
-								"delete"
+								"delete",
+								"6"
 							]
 						}
 					},
@@ -502,13 +527,36 @@
 					"response": []
 				},
 				{
+					"name": "Listar una Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/categoria/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"categoria",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Crear Cetgeorias",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Ropa extrema 99\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Bussness\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -539,7 +587,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"categoria_id\": 15,\r\n    \"nombre\": \"Navidad\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Navidad\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -547,7 +595,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/categoria/update",
+							"raw": "http://localhost:8080/api/v1/categoria/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -557,19 +605,20 @@
 								"api",
 								"v1",
 								"categoria",
-								"update"
+								"update",
+								"6"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Eliminar Categoria",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/categoria/delete",
+							"raw": "http://localhost:8080/api/v1/categoria/delete/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -579,7 +628,8 @@
 								"api",
 								"v1",
 								"categoria",
-								"delete"
+								"delete",
+								"5"
 							]
 						}
 					},
@@ -607,6 +657,29 @@
 								"v1",
 								"tipoProducto",
 								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un TipoProducto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tipoProducto/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tipoProducto",
+								"getOne",
+								"6"
 							]
 						}
 					},
@@ -650,7 +723,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipo_id\": 7,\r\n    \"nombre\": \"Viedeojuegos halo\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Viedeojuegos halo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -658,7 +731,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tipoProducto/update",
+							"raw": "http://localhost:8080/api/v1/tipoProducto/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -668,7 +741,8 @@
 								"api",
 								"v1",
 								"tipoProducto",
-								"update"
+								"update",
+								"6"
 							]
 						}
 					},
@@ -680,7 +754,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tipoProducto/delete",
+							"raw": "http://localhost:8080/api/v1/tipoProducto/delete/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -690,7 +764,8 @@
 								"api",
 								"v1",
 								"tipoProducto",
-								"delete"
+								"delete",
+								"6"
 							]
 						}
 					},

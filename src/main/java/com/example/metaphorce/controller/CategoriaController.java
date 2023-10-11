@@ -2,7 +2,6 @@ package com.example.metaphorce.controller;
 
 
 import com.example.metaphorce.model.Categoria;
-import com.example.metaphorce.model.TipoPago;
 import com.example.metaphorce.service.CategoriaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,17 +22,25 @@ public class CategoriaController {
     }
 
     @GetMapping("/all")
-    public List<Categoria> getCategoria(){
+    public ResponseEntity<Object>getCategoria(){
         return categoriaServices.getCategoria();
+    }
+    @GetMapping("/getOne/{id}")
+    public ResponseEntity<Object> getCategoria(@PathVariable Long id){
+        return this.categoriaServices.getOne(id);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object>  registrarCategory(@RequestBody  Categoria categoria){
+    public ResponseEntity<Object> registrarCategoria(@RequestBody Categoria categoria){
         return this.categoriaServices.newCategoria(categoria);
-
     }
-    @PutMapping("/update")
-    public ResponseEntity<Object> actualizar(@RequestBody Categoria categoria){
-        return this.categoriaServices.newCategoria(categoria);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> actualizarCategoria(@PathVariable Long id,@RequestBody Categoria categoria){
+        return this.categoriaServices.updateCategoria(id,categoria);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Object> eliminarUsuario(@PathVariable Long id) {
+        return this.categoriaServices.eliminar(id);
+
     }
 }

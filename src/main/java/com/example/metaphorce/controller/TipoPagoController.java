@@ -1,6 +1,6 @@
 package com.example.metaphorce.controller;
 
-import com.example.metaphorce.model.Tienda;
+import com.example.metaphorce.model.TipoPago;
 import com.example.metaphorce.model.TipoPago;
 import com.example.metaphorce.service.TipoPagoServices;
 import org.springframework.http.ResponseEntity;
@@ -19,17 +19,25 @@ public class TipoPagoController {
     }
 
     @GetMapping("/all")
-    public List<TipoPago> getTipoPago(){
+    public ResponseEntity<Object>getTipoPago(){
         return tipoPagoServices.getTipoPago();
+    }
+    @GetMapping("/getOne/{id}")
+    public ResponseEntity<Object> getTipoPago(@PathVariable Long id){
+        return this.tipoPagoServices.getOne(id);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> registrar(@RequestBody TipoPago tipoPago){
+    public ResponseEntity<Object> registrarTipoPago(@RequestBody TipoPago tipoPago){
         return this.tipoPagoServices.newTipoPago(tipoPago);
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> actualizarTipoPago(@PathVariable Long id,@RequestBody TipoPago tipoPago){
+        return this.tipoPagoServices.updateTipoPago(id,tipoPago);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Object> eliminarUsuario(@PathVariable Long id) {
+        return this.tipoPagoServices.eliminar(id);
 
-    @PutMapping("/update")
-    public ResponseEntity<Object> actualizar(@RequestBody TipoPago tipoPago){
-        return this.tipoPagoServices.newTipoPago(tipoPago);
     }
 }
