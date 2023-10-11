@@ -12,11 +12,11 @@ import java.util.List;
 @Setter
 @ToString
 public class TipoPagoResponse extends GenericResponse{
-    private TipoPagoResponse tipoPago;
+    private TipoPago tipoPago;
     private List<TipoPago> listTipoPago;
     HashMap<String,Object> datos = new HashMap<>();
     //GET ONE POST PATCH
-    public TipoPagoResponse(TipoPagoResponse tipoPago, String message, int status, boolean flag){
+    public TipoPagoResponse(TipoPago tipoPago, String message, int status, boolean flag){
         super(flag, message, status);
         this.tipoPago=tipoPago;
 
