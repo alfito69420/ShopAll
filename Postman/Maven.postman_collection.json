@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e94a9748-6d63-4c10-8976-c6cf57856778",
+		"_postman_id": "c63d9223-f67a-4a02-8f58-11f58fa123a8",
 		"name": "Maven",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23724476"
+		"_exporter_id": "26596078"
 	},
 	"item": [
 		{
@@ -302,13 +302,36 @@
 					"response": []
 				},
 				{
+					"name": "Listar un Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Crear Users",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"John Doe\",\r\n    \"email\": \"johndoe200@example.com\",\r\n    \"emailVerificado\": 0,\r\n    \"contrasena\": \"contrasena_segura\",\r\n    \"direccion\": \"123 Calle Principal\",\r\n    \"telefono\": \"1234567890\",\r\n    \"token\": \"token_de_autenticacion\",\r\n    \"ciudad\": \"Ciudad Ejemplo\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"gerataker\",\r\n    \"email\": \"gerataker@example.com\",\r\n    \"emailVerificado\": 0,\r\n    \"contrasena\": \"contrasena_segura\",\r\n    \"direccion\": \"123 Calle Principal\",\r\n    \"telefono\": \"1234567890\",\r\n    \"token\": \"token_de_autenticacion\",\r\n    \"ciudad\": \"Ciudad Ejemplo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -339,7 +362,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n     \"usuario_id\": 9,\r\n        \"nombre\": \"John Doe 40\",\r\n        \"email\": \"johndoe200@example.com\",\r\n        \"email_verificado\": false,\r\n        \"contrasena\": \"contrasena_segura\",\r\n        \"direccion\": \"123 Calle Principal\",\r\n        \"telefono\": \"1234567890\",\r\n        \"token\": \"token_de_autenticacion\",\r\n        \"ciudad\": \"Ciudad Ejemplo\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"John Doe 40\",\r\n    \"email\": \"johndoe200@example.com\",\r\n    \"email_verificado\": false,\r\n    \"contrasena\": \"contrasena_segura\",\r\n    \"direccion\": \"123 Calle Principal\",\r\n    \"telefono\": \"1234567890\",\r\n    \"token\": \"token_de_autenticacion\",\r\n    \"ciudad\": \"Ciudad Ejemplo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -347,7 +370,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user/update",
+							"raw": "http://localhost:8080/api/v1/user/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -357,7 +380,31 @@
 								"api",
 								"v1",
 								"user",
-								"update"
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"delete",
+								"6"
 							]
 						}
 					},
