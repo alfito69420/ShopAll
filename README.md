@@ -29,11 +29,79 @@ spring.datasource.password=Sandra22Mane10Alfre99Gera22Braulio10
 ``` 
 
 ### Formato de Respuestas de las APIS
+Las respuestas de las APIS TODAS tienen la misma estructura y esto ayduaria para que aquellas personas que las consuman obtengan más información para poder trabajar ***(Ya sean Good Request o Bad Request)***
+El formato JSON que envian son con los siguientes encabezados:
+**Status**: Envia el codigo HTTP de la respuesta
+**Message**: Mensaje acerca de la respuesta de la peticón
+**Flag**: Es true oh false es para indicar si fue buena o mala peticion
+**Data**: Obtiene los datos segun la petición
+
+***Ejemplo (Obtiene todas las tiendas)***
+``` 
+{
+    "Status": 200,
+    "Message": "Obtención de todas las tiendas",
+    "Data": [
+        {
+            "tienda_id": 2,
+            "nombre": "Tienda B",
+            "descripcion": "Descripción de la Tienda B"
+        },
+        {
+            "tienda_id": 3,
+            "nombre": "Tienda C",
+            "descripcion": "Descripción de la Tienda C"
+        },
+        {
+            "tienda_id": 4,
+            "nombre": "Tienda D",
+            "descripcion": "Descripción de la Tienda D"
+        },
+        {
+            "tienda_id": 9,
+            "nombre": "Xbox",
+            "descripcion": "Gears of war es la mejor saga del videojuegos"
+        },
+        
+    ],
+    "Flag": true
+}
+``` 
+
 
 ## Apis para consumir 
-this
+## Tienda
+### List All tienda
+*Ruta:* 
+``` 
+http://localhost:8080/api/v1/tienda/all
+``` 
+*Nombre de la Ruta:*  Listar Tienda
+
+***Información:*** Obtiene todas las tiendas
+
+*Requerimientos:*   
+- En la ruta: 
+> Ninguno
+- En el body: 
+> Ninguno
+
 ## Vesiones de Dependencias de maven
-this
+
+|  Dependencias           | Version       |
+| ----------------------- |:------------- |
+| `spring-boot-starter`   |               |
+| `spring-boot-starter-data-rest`|       |
+| `spring-boot-starter-data-jpa` |      |
+| `mysql-connector-j` |      |
+| `lombok` |      |
+| `spring-boot-starter-test` |      |
+| `spring-boot-devtools` |  3.1.4     |
+| `spring-web` |  6.0.12     |
+| `spring-ws` |  4.0.6     |
+| `thymeleaf` |  3.1.2.RELEASE     |
+| `spring-boot-starter-web` |     |
+
 ## Colaboradores 
 - Sandra Paola Gutiérrez Marcial
 - Alfredo Alejandro Aramburo Carreño
