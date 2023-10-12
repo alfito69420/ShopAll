@@ -1,5 +1,6 @@
 package com.example.metaphorce.model;
 
+import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +12,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-
+@Entity
+@Table
 public class Producto {
-    private Long producto_id, category_id, tipo_id, tienda_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int producto_id;
+    private Long category_id, tipo_id, tienda_id;
     private String nombre, descripcion, photo;
     private Float precio;
     private Integer cantidad;
