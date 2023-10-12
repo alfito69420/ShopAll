@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 public class Rol {
+    //XDXDXDXDDX
     private int rol_id;
     private String rol;
 } //close class
