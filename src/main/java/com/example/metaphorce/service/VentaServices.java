@@ -1,8 +1,5 @@
 package com.example.metaphorce.service;
-import com.example.metaphorce.domain.TiendaResponse;
 import com.example.metaphorce.domain.VentaResponse;
-import com.example.metaphorce.domain.VentaResponse;
-import com.example.metaphorce.model.Venta;
 import com.example.metaphorce.model.Venta;
 import com.example.metaphorce.repository.VentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,15 +47,15 @@ public class VentaServices {
 
     };
 
-    /*
+    
 
-    public  ResponseEntity<Object> updateTienda(Integer id, Venta tienda) {
-        if (tiendaRepository.findById(id).isPresent()) {
-            Venta existingTienda = tiendaRepository.findById(id).get();
-            existingTienda.setNombre(tienda.getNombre());
-            existingTienda.setDescripcion(tienda.getDescripcion());
-            tiendaRepository.save(existingTienda);
-            response = new VentaResponse(existingTienda, "Se pudo actualizar", 200, true);
+    public  ResponseEntity<Object> updateVenta(Long id, Venta venta) {
+        if (ventaRepository.findById(id).isPresent()) {
+            Venta existingVenta = ventaRepository.findById(id).get();
+            existingVenta.setTipo_pago_id(venta.getTipo_pago_id());
+            existingVenta.setUsuario_id(venta.getUsuario_id());
+            ventaRepository.save(existingVenta);
+            response = new VentaResponse(existingVenta, "Se pudo actualizar", 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
             response = new VentaResponse("No existe el ID: " + id, 400, false);
@@ -66,19 +63,19 @@ public class VentaServices {
         }
     };
 
-    public ResponseEntity<Object>  eliminar(Integer id){
+    public ResponseEntity<Object>  eliminar(Long id){
         //Verificar si esta vacio
         if(!this.ventaRepository.findById(id).isEmpty()){
             this.ventaRepository.deleteById(id);
-            response = new TiendaResponse("Si se pudo eliminar el ID:",200,true );
+            response = new VentaResponse("Si se pudo eliminar el ID:"+id,200,true );
             return new ResponseEntity<>(response.response(),HttpStatus.OK);
         }else{
-            response = new TiendaResponse("No existe el ID: "+id,400,false );
+            response = new VentaResponse("No existe el ID: "+id,400,false );
             return new ResponseEntity<>(response.response(),HttpStatus.OK);
 
         }
     };
 
     
-     */
+    
 }
