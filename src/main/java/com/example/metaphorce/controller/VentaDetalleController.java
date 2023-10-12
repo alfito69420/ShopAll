@@ -32,10 +32,10 @@ public class VentaDetalleController {
         return this.ventaDetalleService.insertVentaDetalle(ventaDetalle);
     } //close method
 
-    /*@PutMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Object> updateVentaDetalle(@PathVariable final Long id, @RequestBody final VentaDetalle ventaDetalle) {
         return this.ventaDetalleService.updateVentaDetalle(id, ventaDetalle);
-    }*/
+    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteVentaDetalle(@PathVariable final Long id) {
