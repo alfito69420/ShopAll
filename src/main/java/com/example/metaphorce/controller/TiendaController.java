@@ -1,13 +1,10 @@
 package com.example.metaphorce.controller;
 
-
 import com.example.metaphorce.model.Tienda;
 import com.example.metaphorce.service.TiendaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/tienda")
@@ -20,14 +17,14 @@ public class TiendaController {
         this.tiendaServices = tiendaServices;
     }
 
-    @GetMapping("/ejemplo")
-    public List<Tienda>getEjemplo(){
-        return tiendaServices.getEjemplo();
+    @GetMapping("/all")
+    public ResponseEntity<Object>getTienda(){
+        return tiendaServices.getTienda();
     }
 
-    @GetMapping("/all")
-    public List<Tienda>getTienda(){
-        return tiendaServices.getTienda();
+    @GetMapping("/getOne/{id}")
+    public ResponseEntity<Object> getTienda(@PathVariable Integer id){
+        return this.tiendaServices.getOne(id);
     }
 
     @PostMapping("/create")
@@ -35,17 +32,14 @@ public class TiendaController {
         return this.tiendaServices.newTienda(tienda);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Object> actualizarTienda(@RequestBody Tienda tienda){
-        return this.tiendaServices.newTienda(tienda);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> actualizarTienda(@PathVariable Integer id,@RequestBody Tienda tienda){
+        return this.tiendaServices.updateTienda(id,tienda);
     }
 
-    /*
     @DeleteMapping("/delete/{id}")
-    public String eliminarUsuario(@PathVariable Long id) {
-        this.tiendaServices.eliminar(id);
-        return "Usuario eliminado exitosamente";
+    public ResponseEntity<Object> eliminarUsuario(@PathVariable Integer id) {
+        return this.tiendaServices.eliminar(id);
+
     }
-    
-     */
 }

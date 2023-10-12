@@ -1,36 +1,14 @@
 {
 	"info": {
-		"_postman_id": "f93b0632-402c-4c8c-b548-e647b5ae6399",
+		"_postman_id": "b78873aa-21aa-4c6e-83e3-7b364a103ea8",
 		"name": "Maven",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26596078"
+		"_exporter_id": "27314880"
 	},
 	"item": [
 		{
 			"name": "Tienda",
 			"item": [
-				{
-					"name": "Listar Ejemplo",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/tienda/ejemplo",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"tienda",
-								"ejemplo"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Listar Tienda",
 					"request": {
@@ -54,13 +32,36 @@
 					"response": []
 				},
 				{
+					"name": "Listar una Tienda",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tienda/getOne/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tienda",
+								"getOne",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Crear tiendas",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Soriana\",\r\n    \"descripcion\": \"La mas fuerte\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Xbox\",\r\n    \"descripcion\": \"Gears of war es la mejor saga del videojuegos\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -91,7 +92,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tienda_id\": 10,\r\n    \"nombre\": \"Soriana 666\",\r\n    \"descripcion\": \"La mas fuerte\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Soriana 666\",\r\n    \"descripcion\": \"La mas fuerte\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -99,7 +100,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tienda/update",
+							"raw": "http://localhost:8080/api/v1/tienda/update/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -109,7 +110,8 @@
 								"api",
 								"v1",
 								"tienda",
-								"update"
+								"update",
+								"12"
 							]
 						}
 					},
@@ -119,7 +121,22 @@
 					"name": "Eliminar Tienda",
 					"request": {
 						"method": "DELETE",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tienda/delete/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tienda",
+								"delete",
+								"8"
+							]
+						}
 					},
 					"response": []
 				}
@@ -145,6 +162,29 @@
 								"v1",
 								"venta",
 								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar una Venta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/venta/getOne/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"venta",
+								"getOne",
+								"4"
 							]
 						}
 					},
@@ -262,13 +302,36 @@
 					"response": []
 				},
 				{
+					"name": "Listar un Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Crear Users",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"John Doe\",\r\n    \"email\": \"johndoe200@example.com\",\r\n    \"emailVerificado\": 0,\r\n    \"contrasena\": \"contrasena_segura\",\r\n    \"direccion\": \"123 Calle Principal\",\r\n    \"telefono\": \"1234567890\",\r\n    \"token\": \"token_de_autenticacion\",\r\n    \"ciudad\": \"Ciudad Ejemplo\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"gerataker\",\r\n    \"email\": \"gerataker@example.com\",\r\n    \"emailVerificado\": 0,\r\n    \"contrasena\": \"contrasena_segura\",\r\n    \"direccion\": \"123 Calle Principal\",\r\n    \"telefono\": \"1234567890\",\r\n    \"token\": \"token_de_autenticacion\",\r\n    \"ciudad\": \"Ciudad Ejemplo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -299,7 +362,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n     \"usuario_id\": 9,\r\n        \"nombre\": \"John Doe 40\",\r\n        \"email\": \"johndoe200@example.com\",\r\n        \"email_verificado\": false,\r\n        \"contrasena\": \"contrasena_segura\",\r\n        \"direccion\": \"123 Calle Principal\",\r\n        \"telefono\": \"1234567890\",\r\n        \"token\": \"token_de_autenticacion\",\r\n        \"ciudad\": \"Ciudad Ejemplo\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"John Doe 40\",\r\n    \"email\": \"johndoe200@example.com\",\r\n    \"email_verificado\": false,\r\n    \"contrasena\": \"contrasena_segura\",\r\n    \"direccion\": \"123 Calle Principal\",\r\n    \"telefono\": \"1234567890\",\r\n    \"token\": \"token_de_autenticacion\",\r\n    \"ciudad\": \"Ciudad Ejemplo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -307,7 +370,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user/update",
+							"raw": "http://localhost:8080/api/v1/user/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -317,7 +380,31 @@
 								"api",
 								"v1",
 								"user",
-								"update"
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"delete",
+								"6"
 							]
 						}
 					},
@@ -345,6 +432,29 @@
 								"v1",
 								"tipoPago",
 								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un Tipo Pago",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tipoPago/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tipoPago",
+								"getOne",
+								"6"
 							]
 						}
 					},
@@ -388,7 +498,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipo_pago_id\": 8,\r\n    \"nombre\": \"Con juegos 18\",\r\n    \"descripcion\": \"Pandome Juegos\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Con juegos 18\",\r\n    \"descripcion\": \"Pandome Juegos\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -396,7 +506,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tipoPago/update",
+							"raw": "http://localhost:8080/api/v1/tipoPago/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -406,7 +516,8 @@
 								"api",
 								"v1",
 								"tipoPago",
-								"update"
+								"update",
+								"6"
 							]
 						}
 					},
@@ -418,7 +529,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tipoPago/delete",
+							"raw": "http://localhost:8080/api/v1/tipoPago/delete/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -428,7 +539,8 @@
 								"api",
 								"v1",
 								"tipoPago",
-								"delete"
+								"delete",
+								"6"
 							]
 						}
 					},
@@ -462,13 +574,36 @@
 					"response": []
 				},
 				{
+					"name": "Listar una Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/categoria/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"categoria",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Crear Cetgeorias",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Ropa extrema 99\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Bussness\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -499,7 +634,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"categoria_id\": 15,\r\n    \"nombre\": \"Navidad\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Navidad\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -507,7 +642,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/categoria/update",
+							"raw": "http://localhost:8080/api/v1/categoria/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -517,19 +652,20 @@
 								"api",
 								"v1",
 								"categoria",
-								"update"
+								"update",
+								"6"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Eliminar Categoria",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/categoria/delete",
+							"raw": "http://localhost:8080/api/v1/categoria/delete/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -539,7 +675,8 @@
 								"api",
 								"v1",
 								"categoria",
-								"delete"
+								"delete",
+								"5"
 							]
 						}
 					},
@@ -567,6 +704,29 @@
 								"v1",
 								"tipoProducto",
 								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un TipoProducto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/tipoProducto/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tipoProducto",
+								"getOne",
+								"6"
 							]
 						}
 					},
@@ -610,7 +770,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipo_id\": 7,\r\n    \"nombre\": \"Viedeojuegos halo\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Viedeojuegos halo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -618,7 +778,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tipoProducto/update",
+							"raw": "http://localhost:8080/api/v1/tipoProducto/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -628,7 +788,8 @@
 								"api",
 								"v1",
 								"tipoProducto",
-								"update"
+								"update",
+								"6"
 							]
 						}
 					},
@@ -640,7 +801,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/tipoProducto/delete",
+							"raw": "http://localhost:8080/api/v1/tipoProducto/delete/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -650,7 +811,8 @@
 								"api",
 								"v1",
 								"tipoProducto",
-								"delete"
+								"delete",
+								"6"
 							]
 						}
 					},
@@ -684,10 +846,19 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Crear Pedido",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha_pedido\": \"2023-10-11 18:45:48\",\r\n    \"tienda_id\": 5,\r\n    \"usuario_id\": 1,\r\n    \"venta_id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8080/api/v1/pedido/create",
 							"protocol": "http",
@@ -704,6 +875,84 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Listar un Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/pedido/getOne/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"pedido",
+								"getOne",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Pedido",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/pedido/delete/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"pedido",
+								"delete",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Pedido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha_pedido\": \"2023-10-11 18:45:48\",\r\n    \"tienda_id\": 2,\r\n    \"usuario_id\": 1,\r\n    \"venta_id\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/pedido/update/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"pedido",
+								"update",
+								"5"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -716,7 +965,127 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:8080/api/v1/ventaDetalle/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ventaDetalle",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un Venta Detalle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ventaDetalle/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ventaDetalle",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Venta Detalle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venta_id\": 4,\r\n    \"producto_id\": 4,\r\n    \"cantidad\": 420,\r\n    \"precio\": 666,\r\n    \"sub_total\": 69420\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ventaDetalle/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ventaDetalle",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Venta Detalle",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venta_id\": 5,\r\n    \"producto_id\": 5,\r\n    \"cantidad\": 666,\r\n    \"precio\": 616,\r\n    \"sub_total\": 666666\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ventaDetalle/update/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ventaDetalle",
+								"update",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Venta Detalle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/ventaDetalle/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ventaDetalle",
+								"delete",
+								"6"
+							]
 						}
 					},
 					"response": []
@@ -732,7 +1101,399 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:8080/api/v1/estadoPedido/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"estadoPedido",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un Estado Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/estadoPedido/getOne/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"estadoPedido",
+								"getOne",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Estado Pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/estadoPedido/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"estadoPedido",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Estado Pedido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"prueba_2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/estadoPedido/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"estadoPedido",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Estado Pedido",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/estadoPedido/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"estadoPedido",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Listar producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/getOne/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"getOne",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 1\",\r\n    \"descripcion\": \"Descripción del Producto 1\",\r\n    \"photo\": \"imagen1.jpg\",\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 48\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producto_id\": 6,\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 6\",\r\n    \"descripcion\": \"Descripción del Producto 6\",\r\n    \"photo\": \"imagen6.jpg\",\r\n    \"precio\": 106.0,\r\n    \"cantidad\": 48\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reseña",
+			"item": [
+				{
+					"name": "Listar reseña",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/resena/getOne/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"resena",
+								"getOne",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear reseña",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 1\",\r\n    \"descripcion\": \"Descripción del Producto 1\",\r\n    \"photo\": \"imagen1.jpg\",\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 48\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/resena/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"resena",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar resena",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producto_id\": 6,\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 6\",\r\n    \"descripcion\": \"Descripción del Producto 6\",\r\n    \"photo\": \"imagen6.jpg\",\r\n    \"precio\": 106.0,\r\n    \"cantidad\": 48\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/resena/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"resena",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar resena",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"delete",
+								"6"
+							]
 						}
 					},
 					"response": []
