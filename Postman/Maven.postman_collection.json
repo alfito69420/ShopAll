@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c63d9223-f67a-4a02-8f58-11f58fa123a8",
+		"_postman_id": "b78873aa-21aa-4c6e-83e3-7b364a103ea8",
 		"name": "Maven",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26596078"
+		"_exporter_id": "27314880"
 	},
 	"item": [
 		{
@@ -1219,6 +1219,278 @@
 								"api",
 								"v1",
 								"estadoPedido",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Listar producto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/getOne/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"getOne",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 1\",\r\n    \"descripcion\": \"Descripción del Producto 1\",\r\n    \"photo\": \"imagen1.jpg\",\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 48\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producto_id\": 6,\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 6\",\r\n    \"descripcion\": \"Descripción del Producto 6\",\r\n    \"photo\": \"imagen6.jpg\",\r\n    \"precio\": 106.0,\r\n    \"cantidad\": 48\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reseña",
+			"item": [
+				{
+					"name": "Listar reseña",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/resena/getOne/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"resena",
+								"getOne",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear reseña",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 1\",\r\n    \"descripcion\": \"Descripción del Producto 1\",\r\n    \"photo\": \"imagen1.jpg\",\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 48\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/resena/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"resena",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar resena",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producto_id\": 6,\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 6\",\r\n    \"descripcion\": \"Descripción del Producto 6\",\r\n    \"photo\": \"imagen6.jpg\",\r\n    \"precio\": 106.0,\r\n    \"cantidad\": 48\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/resena/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"resena",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar resena",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/producto/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"producto",
 								"delete",
 								"6"
 							]

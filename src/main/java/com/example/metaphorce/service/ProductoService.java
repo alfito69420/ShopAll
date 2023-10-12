@@ -48,7 +48,7 @@ public class ProductoService   {
             existingProduct.setPrecio(producto.getPrecio());
             existingProduct.setCantidad(producto.getCantidad());
             existingProduct.setPhoto(producto.getPhoto());
-            existingProduct.setCategory_id(producto.getCategory_id());
+            existingProduct.setCategoria_id(producto.getCategoria_id());
             existingProduct.setTipo_id(producto.getTipo_id());
             existingProduct.setTienda_id(producto.getTienda_id());
             productoRepository.save(existingProduct);
