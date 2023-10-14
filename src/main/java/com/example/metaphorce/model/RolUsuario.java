@@ -1,8 +1,6 @@
 package com.example.metaphorce.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -10,10 +8,17 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@Entity
+@Table
 public class RolUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rol_usuario;
-    private int rol_id;
-    private int usuario_id;
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private User user;
 } //close class
