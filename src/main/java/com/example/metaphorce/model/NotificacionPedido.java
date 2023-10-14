@@ -18,8 +18,16 @@ public class NotificacionPedido {
     private Long notificacion_pedido_id;
     private String mensaje;
     private Date fecha_hora_creacion;
-    private Long pedido_id;
-    private Long estado_pedido_id;
-    private Long usuario_id;
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "estado_pedido_id")
+    private EstadoPedido estadoPedido;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private User user;
 } //close class
 
