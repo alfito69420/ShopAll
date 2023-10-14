@@ -41,7 +41,7 @@ public class PedidoService {
             return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.OK);
         } else {
             pedidoResponse = new PedidoResponse("No se encontraron registros del pedido", 400, false);
-            return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.OK);
+            return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.BAD_REQUEST);
         }
     } //close method
 
@@ -63,15 +63,19 @@ public class PedidoService {
             return new ResponseEntity<>(pedidoResponse, HttpStatus.CREATED);
         } else {
             if (!usuarioOptional.isPresent()) {
-                return new ResponseEntity<>("No existe el Usuario con el ID: " + pedido.getUser().getUsuario_id(), HttpStatus.BAD_REQUEST);
+                pedidoResponse = new PedidoResponse("No existe el Usuario con el ID: " + pedido.getUser().getUsuario_id(), 400, false);
+                return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.BAD_REQUEST);
             } else {
                 if (!tiendaOptional.isPresent()) {
-                    return new ResponseEntity<>("No existe la Tienda con el ID: " + pedido.getTienda().getTienda_id(), HttpStatus.BAD_REQUEST);
+                    pedidoResponse = new PedidoResponse("No existe la Tienda con el ID: " + pedido.getTienda().getTienda_id(), 400, false);
+                    return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.BAD_REQUEST);
                 } else {
                     if(!ventaOptional.isPresent()){
-                        return new ResponseEntity<>("No existe la ventacon el ID: " + pedido.getVenta().getVenta_id(),HttpStatus.BAD_REQUEST);
+                        pedidoResponse = new PedidoResponse("No existe la ventacon el ID: " + pedido.getVenta().getVenta_id(), 400, false);
+                        return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.BAD_REQUEST);
                     }else {
-                        return new ResponseEntity<>("ERROR al crear el Pedido", HttpStatus.INTERNAL_SERVER_ERROR);
+                        pedidoResponse = new PedidoResponse("ERROR al crear el Pedido", 400, false);
+                        return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.INTERNAL_SERVER_ERROR);
                     }
                 }
             }
@@ -89,7 +93,7 @@ public class PedidoService {
             return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.OK);
         } else {
             pedidoResponse = new PedidoResponse("No existe el registro con el ID: " + id, 400, false);
-            return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.OK);
+            return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.BAD_REQUEST);
         }
     } //close method
 
@@ -101,7 +105,7 @@ public class PedidoService {
             return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.OK);
         } else {
             pedidoResponse = new PedidoResponse("No existe el detalle de la venta con el ID: " + id, 400, false);
-            return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.OK);
+            return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.BAD_REQUEST);
         }
     } //close method
 
@@ -115,7 +119,8 @@ public class PedidoService {
                 if (usuarioOptional.isPresent()) {
                     existingPedido.setUser(pedido.getUser());
                 } else {
-                    return new ResponseEntity<>("No existe el Usuario con el ID: " + pedido.getUser().getUsuario_id(), HttpStatus.BAD_REQUEST);
+                    pedidoResponse = new PedidoResponse("No existe el Usuario con el ID: " + pedido.getUser().getUsuario_id(), 400, false);
+                    return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.BAD_REQUEST);
                 }
             }
 
@@ -124,7 +129,8 @@ public class PedidoService {
                 if (tiendaOptional.isPresent()) {
                     existingPedido.setTienda(pedido.getTienda());
                 } else {
-                    return new ResponseEntity<>("No existe la Tienda con el ID: " + pedido.getTienda().getTienda_id(), HttpStatus.BAD_REQUEST);
+                    pedidoResponse = new PedidoResponse("No existe la Tienda con el ID: " + pedido.getTienda().getTienda_id(), 400, false);
+                    return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.BAD_REQUEST);
                 }
             }
 
@@ -133,7 +139,8 @@ public class PedidoService {
                 if (ventaOptional.isPresent()) {
                     existingPedido.setVenta(pedido.getVenta());
                 } else {
-                    return new ResponseEntity<>("No existe la Venta con el ID: " + pedido.getVenta().getVenta_id(), HttpStatus.BAD_REQUEST);
+                    pedidoResponse = new PedidoResponse("No existe la Venta con el ID: " + pedido.getVenta().getVenta_id() ,400, false);
+                    return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.BAD_REQUEST);
                 }
             }
 
