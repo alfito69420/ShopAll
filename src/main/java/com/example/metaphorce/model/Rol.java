@@ -1,5 +1,6 @@
 package com.example.metaphorce.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -7,7 +8,11 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@Entity
+@Table
 public class Rol {
-    private int rol_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long rol_id;
     private String rol;
 } //close class

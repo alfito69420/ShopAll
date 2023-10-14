@@ -24,7 +24,7 @@ public class ResenaController {
     }
 
     @GetMapping("/getOne/{id}")
-    public ResponseEntity<Object> getResena(@PathVariable Integer id){
+    public ResponseEntity<Object> getResena(@PathVariable Long id){
         return this.resenaService.getOne(id);
     }
 
@@ -34,12 +34,12 @@ public class ResenaController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> actualizarResena(@PathVariable Integer id,@RequestBody Resena resena){
+    public ResponseEntity<Object> actualizarResena(@PathVariable Long id,@RequestBody Resena resena){
         return this.resenaService.updateResena(id,resena);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Object> eliminarResena(@PathVariable Integer id) {
+    public ResponseEntity<Object> eliminarResena(@PathVariable Long id) {
         return this.resenaService.eliminarResena(id);
 
     }

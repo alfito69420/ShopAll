@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "b78873aa-21aa-4c6e-83e3-7b364a103ea8",
+		"_postman_id": "123600b9-7814-4fd3-8fbf-be8a2cc97722",
 		"name": "Maven",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27314880"
+		"_exporter_id": "26596078"
 	},
 	"item": [
 		{
@@ -173,7 +173,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/venta/getOne/4",
+							"raw": "http://localhost:8080/api/v1/venta/getOne/8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -184,7 +184,7 @@
 								"v1",
 								"venta",
 								"getOne",
-								"4"
+								"8"
 							]
 						}
 					},
@@ -197,7 +197,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuario_id\": 1,\r\n    \"tipo_pago_id\": 1\r\n}",
+							"raw": "{\r\n    \"user\": {\r\n        \"usuario_id\": 1\r\n    },\r\n    \"tipoPago\": {\r\n        \"tipo_pago_id\": 2\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -228,7 +228,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n}",
+							"raw": "{\r\n    \"user\": {\r\n        \"usuario_id\": 3\r\n    },\r\n    \"tipoPago\": {\r\n        \"tipo_pago_id\": 4\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -236,7 +236,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/venta/update",
+							"raw": "http://localhost:8080/api/v1/venta/update/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -246,7 +246,8 @@
 								"api",
 								"v1",
 								"venta",
-								"update"
+								"update",
+								"5"
 							]
 						}
 					},
@@ -258,7 +259,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/venta/delete",
+							"raw": "http://localhost:8080/api/v1/venta/delete/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -268,7 +269,8 @@
 								"api",
 								"v1",
 								"venta",
-								"delete"
+								"delete",
+								"5"
 							]
 						}
 					},
@@ -852,7 +854,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fecha_pedido\": \"2023-10-11 18:45:48\",\r\n    \"tienda_id\": 5,\r\n    \"usuario_id\": 1,\r\n    \"venta_id\": 5\r\n}",
+							"raw": "{\r\n    \"fecha_pedido\": \"2023-10-11 18:45:48\",\r\n    \"tienda\":{\r\n        \"tienda_id\": 5\r\n    },\r\n    \"user\":{\r\n        \"usuario_id\": 1\r\n    },\r\n    \"venta\":{\r\n        \"venta_id\": 4\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -882,7 +884,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/pedido/getOne/4",
+							"raw": "http://localhost:8080/api/v1/pedido/getOne/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -893,7 +895,7 @@
 								"v1",
 								"pedido",
 								"getOne",
-								"4"
+								"6"
 							]
 						}
 					},
@@ -929,7 +931,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fecha_pedido\": \"2023-10-11 18:45:48\",\r\n    \"tienda_id\": 2,\r\n    \"usuario_id\": 1,\r\n    \"venta_id\": 3\r\n}",
+							"raw": "{\r\n    \"fecha_pedido\": \"2023-10-11 18:45:48\",\r\n    \"tienda\":{\r\n        \"tienda_id\": 4\r\n    },\r\n    \"user\":{\r\n        \"usuario_id\": 1\r\n    },\r\n    \"venta\":{\r\n        \"venta_id\": 4\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -937,7 +939,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/pedido/update/5",
+							"raw": "http://localhost:8080/api/v1/pedido/update/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -948,7 +950,7 @@
 								"v1",
 								"pedido",
 								"update",
-								"5"
+								"6"
 							]
 						}
 					},
@@ -987,7 +989,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ventaDetalle/getOne/6",
+							"raw": "http://localhost:8080/api/v1/ventaDetalle/getOne/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -998,7 +1000,7 @@
 								"v1",
 								"ventaDetalle",
 								"getOne",
-								"6"
+								"7"
 							]
 						}
 					},
@@ -1011,7 +1013,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"venta_id\": 4,\r\n    \"producto_id\": 4,\r\n    \"cantidad\": 420,\r\n    \"precio\": 666,\r\n    \"sub_total\": 69420\r\n}",
+							"raw": "{\r\n    \"venta\": {\r\n        \"venta_id\": 4\r\n    },\r\n    \"producto\": {\r\n        \"producto_id\": 4\r\n    },\r\n    \"cantidad\": 420,\r\n    \"precio\": 666,\r\n    \"sub_total\": 69420\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1042,7 +1044,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"venta_id\": 5,\r\n    \"producto_id\": 5,\r\n    \"cantidad\": 666,\r\n    \"precio\": 616,\r\n    \"sub_total\": 666666\r\n}",
+							"raw": "{\r\n    \"venta\": {\r\n        \"venta_id\": 2\r\n    },\r\n    \"producto\": {\r\n        \"producto_id\": 4\r\n    },\r\n    \"cantidad\": 420,\r\n    \"precio\": 666,\r\n    \"sub_total\": 69420\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1073,7 +1075,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/ventaDetalle/delete/6",
+							"raw": "http://localhost:8080/api/v1/ventaDetalle/delete/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1084,7 +1086,7 @@
 								"v1",
 								"ventaDetalle",
 								"delete",
-								"6"
+								"7"
 							]
 						}
 					},
@@ -1259,7 +1261,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/producto/getOne/1",
+							"raw": "http://localhost:8080/api/v1/producto/getOne/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1270,7 +1272,7 @@
 								"v1",
 								"producto",
 								"getOne",
-								"1"
+								"6"
 							]
 						}
 					},
@@ -1283,7 +1285,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 1\",\r\n    \"descripcion\": \"Descripción del Producto 1\",\r\n    \"photo\": \"imagen1.jpg\",\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 48\r\n}",
+							"raw": "{\r\n    \"categoria\": {\r\n        \"categoria_id\": 1\r\n    },\r\n    \"tipoProducto\": {\r\n        \"tipo_id\": 1\r\n    },\r\n    \"tienda\": {\r\n        \"tienda_id\": 4\r\n    },\r\n    \"nombre\": \"Producto 1\",\r\n    \"descripcion\": \"Descripción del Producto 1\",\r\n    \"photo\": \"imagen1.jpg\",\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 48\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1314,7 +1316,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"producto_id\": 6,\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 6\",\r\n    \"descripcion\": \"Descripción del Producto 6\",\r\n    \"photo\": \"imagen6.jpg\",\r\n    \"precio\": 106.0,\r\n    \"cantidad\": 48\r\n}",
+							"raw": "{\r\n    \"categoria\": {\r\n        \"categoria_id\": 2\r\n    },\r\n    \"tipoProducto\": {\r\n        \"tipo_id\": 1\r\n    },\r\n    \"tienda\": {\r\n        \"tienda_id\": 4\r\n    },\r\n    \"nombre\": \"Producto 1\",\r\n    \"descripcion\": \"Descripción del Producto 1\",\r\n    \"photo\": \"imagen1.jpg\",\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 48\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1395,7 +1397,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/resena/getOne/1",
+							"raw": "http://localhost:8080/api/v1/resena/getOne/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1406,7 +1408,7 @@
 								"v1",
 								"resena",
 								"getOne",
-								"1"
+								"6"
 							]
 						}
 					},
@@ -1419,7 +1421,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 1\",\r\n    \"descripcion\": \"Descripción del Producto 1\",\r\n    \"photo\": \"imagen1.jpg\",\r\n    \"precio\": 100.0,\r\n    \"cantidad\": 48\r\n}",
+							"raw": "{\r\n    \"producto\": {\r\n        \"producto_id\": 3\r\n    },\r\n    \"user\": {\r\n        \"usuario_id\": 1\r\n    },\r\n    \"resena\": \"Esta muy chido\",\r\n    \"calificacion\": 10\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1450,7 +1452,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"producto_id\": 6,\r\n    \"categoria_id\": 1,\r\n    \"tipo_id\": 1,\r\n    \"tienda_id\": 1,\r\n    \"nombre\": \"Producto 6\",\r\n    \"descripcion\": \"Descripción del Producto 6\",\r\n    \"photo\": \"imagen6.jpg\",\r\n    \"precio\": 106.0,\r\n    \"cantidad\": 48\r\n}",
+							"raw": "{\r\n    \"producto\": {\r\n        \"producto_id\": 4\r\n    },\r\n    \"user\": {\r\n        \"usuario_id\": 1\r\n    },\r\n    \"resena\": \"Esta muy chido\",\r\n    \"calificacion\": 10\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1491,6 +1493,414 @@
 								"api",
 								"v1",
 								"producto",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rol",
+			"item": [
+				{
+					"name": "Listar roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rol/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rol",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear rol",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rol\": \"Nuevo rol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rol/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rol",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un rol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rol/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rol",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar rol",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rol\": \"Rol actualizado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rol/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rol",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Rol",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rol/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rol",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rol Usuario",
+			"item": [
+				{
+					"name": "Listar roles Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rolUsuario/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rolUsuario",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rol\": {\r\n        \"rol_id\": 1\r\n    },\r\n    \"user\":{\r\n        \"usuario_id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rolUsuario/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rolUsuario",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un rol usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rolUsuario/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rolUsuario",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar rol usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rol\": {\r\n        \"rol_id\": 2\r\n    },\r\n    \"user\":{\r\n        \"usuario_id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rolUsuario/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rolUsuario",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Rol Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/rolUsuario/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"rolUsuario",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notificacion de pedido",
+			"item": [
+				{
+					"name": "Listar Notificaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notificacionPedido/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notificacionPedido",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Notificaciones",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mensaje\": \"Sigue en camino\",\r\n    \"fecha_hora_creacion\": \"2023-10-14\",\r\n    \"pedido\": {\r\n        \"pedido_id\": 3\r\n    },\r\n    \"estadoPedido\":{\r\n        \"estado_pedido_id\": 2\r\n    },\r\n    \"user\":{\r\n        \"usuario_id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notificacionPedido/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notificacionPedido",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Notificaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notificacionPedido/getOne/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notificacionPedido",
+								"getOne",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar notificaiones",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mensaje\": \"Sigue en camino\",\r\n    \"fecha_hora_creacion\": \"2023-10-14\",\r\n    \"pedido\": {\r\n        \"pedido_id\": 3\r\n    },\r\n    \"estadoPedido\":{\r\n        \"estado_pedido_id\": 3\r\n    },\r\n    \"user\":{\r\n        \"usuario_id\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notificacionPedido/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notificacionPedido",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Notificaciones",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/notificacionPedido/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"notificacionPedido",
 								"delete",
 								"6"
 							]
