@@ -1,5 +1,8 @@
 package com.example.metaphorce.model;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.util.Date;
@@ -10,6 +13,8 @@ import java.util.Date;
 @Setter
 @ToString
 public class NotificacionPedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long notificacion_pedido_id;
     private String mensaje;
     private Date fecha_hora_creacion;
