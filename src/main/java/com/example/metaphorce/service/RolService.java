@@ -14,7 +14,6 @@ package com.example.metaphorce.service;
 public class RolService {
     private final RolRepository rolRepository;
     RolResponse response;
-
     public RolService(RolRepository rolRepository){
         this.rolRepository = rolRepository;
     }
@@ -36,7 +35,7 @@ public class RolService {
         return new ResponseEntity<>(response.response(), HttpStatus.OK);
     };
 
-    public ResponseEntity<Object> updateRol(int id, Rol rol) {
+    public ResponseEntity<Object> updateRol(Long id, Rol rol) {
         if (rolRepository.findById(id).isPresent()) {
             Rol existingRol = rolRepository.findById(id).get();
             existingRol.setRol(rol.getRol());
@@ -49,7 +48,7 @@ public class RolService {
         }
     };
 
-    public ResponseEntity<Object> eliminar(int id){
+    public ResponseEntity<Object> eliminar(Long id){
         if(!this.rolRepository.findById(id).isEmpty()){
             this.rolRepository.deleteById(id);
             response = new RolResponse("Si se pudo eliminar el ID :"+id,200,true );
@@ -61,7 +60,7 @@ public class RolService {
         }
     };
 
-    public ResponseEntity<Object> getOne(int id){
+    public ResponseEntity<Object> getOne(Long id){
         if (rolRepository.findById(id).isPresent()) {
             Rol rol = rolRepository.findById(id).get();
             response = new RolResponse(rol, "Si encontró el ID: " + id, 200, true);

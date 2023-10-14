@@ -47,30 +47,30 @@ public class NotificacionPedidoService {
             response = new NotificacionPedidoResponse(existingNotificacionPedido, "Se pudo actualizar", 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
-            response = new NotizacionPedidocacionResponse("No existe el ID: " + id, 400, false);
+            response = new NotificacionPedidoResponse("No existe el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
     };
 
     public ResponseEntity<Object> eliminar(Long id){
-        if(!this.notizacionPedidocacionRepository.findById(id).isEmpty()){
-            this.notizacionPedidocacionRepository.deleteById(id);
-            response = new NotizacionPedidocacionResponse("Si se pudo eliminar el ID :"+id,200,true );
+        if(!this.notificacionPedidoRepository.findById(id).isEmpty()){
+            this.notificacionPedidoRepository.deleteById(id);
+            response = new NotificacionPedidoResponse("Si se pudo eliminar el ID :"+id,200,true );
             return new ResponseEntity<>(response.response(),HttpStatus.OK);
         }else{
-            response = new NotizacionPedidocacionResponse("No existe el ID: "+id,400,false );
+            response = new NotificacionPedidoResponse("No existe el ID: "+id,400,false );
             return new ResponseEntity<>(response.response(),HttpStatus.OK);
 
         }
     };
 
     public ResponseEntity<Object> getOne(Long id){
-        if (notizacionPedidocacionRepository.findById(id).isPresent()) {
-            NotizacionPedidocacion notizacionPedidocacion = notizacionPedidocacionRepository.findById(id).get();
-            response = new NotizacionPedidocacionResponse(notizacionPedidocacion, "Si encontró el ID: " + id, 200, true);
+        if (notificacionPedidoRepository.findById(id).isPresent()) {
+            NotificacionPedido notizacionPedidocacion = notificacionPedidoRepository.findById(id).get();
+            response = new NotificacionPedidoResponse(notizacionPedidocacion, "Si encontró el ID: " + id, 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
-            response = new NotizacionPedidocacionResponse("No existe la Notificación de Pedido con el ID: " + id, 400, false);
+            response = new NotificacionPedidoResponse("No existe la Notificación de Pedido con el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
     }

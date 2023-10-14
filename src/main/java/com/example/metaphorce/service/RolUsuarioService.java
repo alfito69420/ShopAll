@@ -36,7 +36,7 @@ public class RolUsuarioService {
         return new ResponseEntity<>(response.response(), HttpStatus.OK);
     };
 
-    public ResponseEntity<Object> updateRolUsuario(int id, RolUsuario rolUsuario) {
+    public ResponseEntity<Object> updateRolUsuario(Long id, RolUsuario rolUsuario) {
         if (rolUsuarioRepository.findById(id).isPresent()) {
             RolUsuario existingRolUsuario = rolUsuarioRepository.findById(id).get();
             existingRolUsuario.setRol_id(rolUsuario.getRol_id());
@@ -50,7 +50,7 @@ public class RolUsuarioService {
         }
     };
 
-    public ResponseEntity<Object> eliminar(int id){
+    public ResponseEntity<Object> eliminar(Long id){
         if(!this.rolUsuarioRepository.findById(id).isEmpty()){
             this.rolUsuarioRepository.deleteById(id);
             response = new RolUsuarioResponse("Si se pudo eliminar el ID :"+id,200,true );
@@ -62,7 +62,7 @@ public class RolUsuarioService {
         }
     };
 
-    public ResponseEntity<Object> getOne(int id){
+    public ResponseEntity<Object> getOne(Long id){
         if (rolUsuarioRepository.findById(id).isPresent()) {
             RolUsuario rolUsuario = rolUsuarioRepository.findById(id).get();
             response = new RolUsuarioResponse(rolUsuario, "Si encontró el ID: " + id, 200, true);

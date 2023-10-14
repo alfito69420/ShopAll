@@ -20,7 +20,7 @@ public class RolUsuarioController {
     }
 
     @GetMapping("/getOne/{id}")
-    public ResponseEntity<Object> getRolUsuario(@PathVariable int id){
+    public ResponseEntity<Object> getRolUsuario(@PathVariable Long id){
         return this.rolUsuarioService.getOne(id);
     }
 
@@ -30,12 +30,12 @@ public class RolUsuarioController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> actualizarRolUsuario(@PathVariable int id, @RequestBody RolUsuario rolUsuario){
+    public ResponseEntity<Object> actualizarRolUsuario(@PathVariable Long id, @RequestBody RolUsuario rolUsuario){
         return this.rolUsuarioService.updateRolUsuario(id, rolUsuario);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Object> eliminarRolUsuario(@PathVariable int id) {
+    public ResponseEntity<Object> eliminarRolUsuario(@PathVariable Long id) {
         return this.rolUsuarioService.eliminar(id);
     }
 }
