@@ -18,6 +18,11 @@ public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int venta_id;
-    private int usuario_id;
-    private int tipo_pago_id;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_pago_id")
+    private TipoPago tipoPago;
 }
