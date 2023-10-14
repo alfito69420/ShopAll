@@ -18,7 +18,19 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long producto_id;
-    private Long categoria_id, tipo_id, tienda_id;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
+    private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_id", referencedColumnName = "tipo_id")
+    private TipoProducto tipoProducto;
+
+    @ManyToOne
+    @JoinColumn(name = "tienda_id", referencedColumnName = "tienda_id")
+    private Tienda tienda;
+
     private String nombre, descripcion, photo;
     private Float precio;
     private Integer cantidad;

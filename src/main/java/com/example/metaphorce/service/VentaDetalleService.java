@@ -91,29 +91,29 @@ public class VentaDetalleService {
                 existingVentaDetalle.setProducto(producto);
                 existingVentaDetalle.setCantidad(ventaDetalle.getCantidad());
                 existingVentaDetalle.setPrecio(ventaDetalle.getPrecio());
-                existingVentaDetalle.setSubTotal(ventaDetalle.getSubTotal());
+                existingVentaDetalle.setSub_total(ventaDetalle.getSub_total());
 
                 ventaDetalleRepository.save(existingVentaDetalle);
 
-                response = new VentaDetalleResponse(existingVentaDetalle, "Se pudo actualizar el detalle de venta", 200, true);
-                return new ResponseEntity<>(response.response(), HttpStatus.OK);
+                ventaDetalleResponse = new VentaDetalleResponse(existingVentaDetalle, "Se pudo actualizar el detalle de venta", 200, true);
+                return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
             } else {
                 if (!ventaOptional.isPresent()) {
-                    response = new VentaDetalleResponse("No existe la Venta con el ID: " + ventaDetalle.getVenta().getVenta_id(), 400, false);
-                    return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                    ventaDetalleResponse = new VentaDetalleResponse("No existe la Venta con el ID: " + ventaDetalle.getVenta().getVenta_id(), 400, false);
+                    return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
                 } else {
                     if (!productoOptional.isPresent()) {
-                        response = new VentaDetalleResponse("No existe el Producto con el ID: " + ventaDetalle.getProducto().getProducto_id(), 400, false);
-                        return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                        ventaDetalleResponse = new VentaDetalleResponse("No existe el Producto con el ID: " + ventaDetalle.getProducto().getProducto_id(), 400, false);
+                        return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
                     } else {
-                        response = new VentaDetalleResponse("ERROR al actualizar el detalle de venta", 500, false);
-                        return new ResponseEntity<>(response.response(), HttpStatus.INTERNAL_SERVER_ERROR);
+                        ventaDetalleResponse = new VentaDetalleResponse("ERROR al actualizar el detalle de venta", 500, false);
+                        return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.INTERNAL_SERVER_ERROR);
                     }
                 }
             }
         } else {
-            response = new VentaDetalleResponse("No existe el detalle de venta con el ID: " + id, 400, false);
-            return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+            ventaDetalleResponse = new VentaDetalleResponse("No existe el detalle de venta con el ID: " + id, 400, false);
+            return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
         }
     } //close method
 
