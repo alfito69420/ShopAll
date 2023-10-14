@@ -2,22 +2,35 @@ package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.PedidoResponse;
 import com.example.metaphorce.model.Pedido;
+import com.example.metaphorce.model.Tienda;
+import com.example.metaphorce.model.User;
+import com.example.metaphorce.model.Venta;
 import com.example.metaphorce.repository.PedidoRepository;
+import com.example.metaphorce.repository.TiendaRepository;
+import com.example.metaphorce.repository.UserRepository;
+import com.example.metaphorce.repository.VentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+import java.util.Optional;
 @Service
 public class PedidoService {
     private final PedidoRepository pedidoRepository;
+    private final UserRepository userRepository;
+    private final VentaRepository ventaRepository;
+    private  final TiendaRepository tiendaRepository;
     private PedidoResponse pedidoResponse;
 
     @Autowired
-    public PedidoService(PedidoRepository pedidoRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, UserRepository userRepository, VentaRepository ventaRepository, TiendaRepository tiendaRepository) {
         this.pedidoRepository = pedidoRepository;
+        this.userRepository = userRepository;
+        this.ventaRepository = ventaRepository;
+        this.tiendaRepository = tiendaRepository;
+
     }
 
     //  GET ALL PEDIDO RECORDS
@@ -33,11 +46,40 @@ public class PedidoService {
     } //close method
 
     //  INSERT A NEW PEDIDO RECORD
-    public ResponseEntity<Object> insertPedido(final Pedido pedido) {
-        this.pedidoRepository.save(pedido);
-        pedidoResponse = new PedidoResponse(pedido, "Se pudo crear el pedido", 200, true);
-        return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.OK);
-    } // close method
+    public ResponseEntity<Object> insertPedido(Pedido pedido) {
+        Optional<User> usuarioOptional = userRepository.findById(pedido.getUser().getUsuario_id());
+        Optional<Tienda> tiendaOptional = tiendaRepository.findById(pedido.getTienda().getTienda_id());
+        Optional<Venta> ventaOptional = ventaRepository.findById(pedido.getVenta().getVenta_id());
+        if (usuarioOptional.isPresent() && tiendaOptional.isPresent() && ventaOptional.isPresent()) {
+
+            User usuario = usuarioOptional.get();
+            Tienda tienda = tiendaOptional.get();
+            Venta venta = ventaOptional.get();
+            pedido.setUser(usuario);
+            pedido.setTienda(tienda);
+            pedido.setVenta(venta);
+            Pedido nuevoPedido = pedidoRepository.save(pedido);
+            pedidoResponse = new PedidoResponse(nuevoPedido, "Pedido Creado", 200, true);
+            return new ResponseEntity<>(pedidoResponse, HttpStatus.CREATED);
+        } else {
+            if (!usuarioOptional.isPresent()) {
+                return new ResponseEntity<>("No existe el Usuario con el ID: " + pedido.getUser().getUsuario_id(), HttpStatus.BAD_REQUEST);
+            } else {
+                if (!tiendaOptional.isPresent()) {
+                    return new ResponseEntity<>("No existe la Tienda con el ID: " + pedido.getTienda().getTienda_id(), HttpStatus.BAD_REQUEST);
+                } else {
+                    if(!ventaOptional.isPresent()){
+                        return new ResponseEntity<>("No existe la ventacon el ID: " + pedido.getVenta().getVenta_id(),HttpStatus.BAD_REQUEST);
+                    }else {
+                        return new ResponseEntity<>("ERROR al crear el Pedido", HttpStatus.INTERNAL_SERVER_ERROR);
+                    }
+                }
+            }
+        }
+
+
+
+    }// close method
 
     //  DELETE A SPECIFIC PEDIDO RECORD
     public ResponseEntity<Object> deletePedido(final Long id) {
@@ -64,19 +106,47 @@ public class PedidoService {
     } //close method
 
     //  UPDATE A SPECIFIC PEDIDO RECORD
-    public ResponseEntity<Object> updatePedido(final Long id, final Pedido pedido) {
-        if (pedidoRepository.findById(id).isPresent()) {
-            Pedido existingPedido = pedidoRepository.findById(id).get();
-            existingPedido.setFecha_pedido(pedido.getFecha_pedido());
-            existingPedido.setTienda_id(pedido.getTienda_id());
-            existingPedido.setUsuario_id(pedido.getUsuario_id());
-            existingPedido.setVenta_id(pedido.getVenta_id());
+    public ResponseEntity<Object> updatePedido(Long id, Pedido pedido) {
+        Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
+        if (pedidoOptional.isPresent()) {
+            Pedido existingPedido = pedidoOptional.get();
+            if (pedido.getUser() != null) {
+                Optional<User> usuarioOptional = userRepository.findById(pedido.getUser().getUsuario_id());
+                if (usuarioOptional.isPresent()) {
+                    existingPedido.setUser(pedido.getUser());
+                } else {
+                    return new ResponseEntity<>("No existe el Usuario con el ID: " + pedido.getUser().getUsuario_id(), HttpStatus.BAD_REQUEST);
+                }
+            }
+
+            if (pedido.getTienda() != null) {
+                Optional<Tienda> tiendaOptional = tiendaRepository.findById(pedido.getTienda().getTienda_id());
+                if (tiendaOptional.isPresent()) {
+                    existingPedido.setTienda(pedido.getTienda());
+                } else {
+                    return new ResponseEntity<>("No existe la Tienda con el ID: " + pedido.getTienda().getTienda_id(), HttpStatus.BAD_REQUEST);
+                }
+            }
+
+            if (pedido.getVenta() != null) {
+                Optional<Venta> ventaOptional = ventaRepository.findById(pedido.getVenta().getVenta_id());
+                if (ventaOptional.isPresent()) {
+                    existingPedido.setVenta(pedido.getVenta());
+                } else {
+                    return new ResponseEntity<>("No existe la Venta con el ID: " + pedido.getVenta().getVenta_id(), HttpStatus.BAD_REQUEST);
+                }
+            }
+
+            if (pedido.getFecha_pedido() != null) {
+                existingPedido.setFecha_pedido(pedido.getFecha_pedido());
+            }
             pedidoRepository.save(existingPedido);
             pedidoResponse = new PedidoResponse(existingPedido, "Se pudo actualizar", 200, true);
             return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.OK);
         } else {
-            pedidoResponse = new PedidoResponse("No existe el ID: " + id, 400, false);
-            return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.OK);
+            pedidoResponse = new PedidoResponse("No existe el ID: " + id, 404, false);
+            return new ResponseEntity<>(pedidoResponse.response(), HttpStatus.NOT_FOUND);
         }
-    } //close method
+    }
+
 } //close class
