@@ -14,8 +14,16 @@ public class VentaDetalle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_venta_detalle;
-    private long venta_id;
-    private long producto_id;
+    // Clave foránea hacia la entidad Venta
+    @ManyToOne
+    @JoinColumn(name = "venta_id", referencedColumnName = "venta_id")
+    private Venta venta;
+
+    // Clave foránea hacia la entidad Producto
+    @ManyToOne
+    @JoinColumn(name = "producto_id", referencedColumnName = "producto_id")
+    private Producto producto;
+
     private int cantidad;
     private double precio;
     private double sub_total;

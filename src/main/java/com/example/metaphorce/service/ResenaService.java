@@ -2,9 +2,13 @@ package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.ResenaResponse;
 import com.example.metaphorce.domain.TiendaResponse;
+import com.example.metaphorce.model.Producto;
 import com.example.metaphorce.model.Resena;
 import com.example.metaphorce.model.Tienda;
+import com.example.metaphorce.model.User;
+import com.example.metaphorce.repository.ProductoRepository;
 import com.example.metaphorce.repository.ResenaRepository;
+import com.example.metaphorce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,13 +16,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 @Service
 public class ResenaService {
     private final ResenaRepository resenaRepository;
+    private final UserRepository userRepository;
+    private final ProductoRepository productoRepository;
     ResenaResponse response;
     @Autowired
-    public ResenaService(ResenaRepository resenaRepository) {
+    public ResenaService(ResenaRepository resenaRepository, UserRepository userRepository, ProductoRepository productoRepository) {
         this.resenaRepository = resenaRepository;
+        this.userRepository = userRepository;
+        this. productoRepository = productoRepository;
     }
 
     public ResponseEntity<Object> getResena() {
@@ -33,28 +42,68 @@ public class ResenaService {
     }
 
     public ResponseEntity<Object> newResena(Resena resena) {
-        this.resenaRepository.save(resena);
-        response = new ResenaResponse(resena, "Se creo la resena", 200, true);
-        return new ResponseEntity<>(response.response(), HttpStatus.OK);
-    }
+        Optional<Producto> productoOptional = productoRepository.findById(resena.getProducto().getProducto_id());
+        Optional<User> usuarioOptional = userRepository.findById(resena.getUser().getUsuario_id());
 
-    public ResponseEntity<Object> updateResena(Integer id, Resena resena) {
-        if (resenaRepository.findById(Long.valueOf(id)).isPresent()) {
-            Resena existingResena = resenaRepository.findById(Long.valueOf(id)).get();
-            existingResena.setResena(resena.getResena());
-            existingResena.setCalificacion(resena.getCalificacion());
-            existingResena.setProducto_id(resena.getProducto_id());
-            existingResena.setUsuario_id(resena.getUsuario_id());
-            resenaRepository.save(existingResena);
-            response = new ResenaResponse(existingResena, "Se pudo actualizar", 200, true);
+        if (productoOptional.isPresent() && usuarioOptional.isPresent()) {
+            Producto producto = productoOptional.get();
+            User usuario = usuarioOptional.get();
+
+            resena.setProducto(producto);
+            resena.setUser(usuario);
+
+            resenaRepository.save(resena);
+
+            response = new ResenaResponse(resena, "Se creó la reseña", 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
-            response = new ResenaResponse("No existe el ID: " + id, 400, false);
-            return new ResponseEntity<>(response.response(), HttpStatus.OK);
+            if (!productoOptional.isPresent()) {
+                response = new ResenaResponse("No existe el Producto con el ID: " + resena.getProducto().getProducto_id(), 400, false);
+                return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+            } else {
+                response = new ResenaResponse("No existe el Usuario con el ID: " + resena.getUser().getUsuario_id(), 400, false);
+                return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+            }
         }
     }
 
-    public ResponseEntity<Object> eliminarResena(Integer id) {
+    public ResponseEntity<Object> updateResena(long id, Resena updatedResena) {
+        Optional<Resena> existingResenaOptional = resenaRepository.findById(id);
+
+        if (existingResenaOptional.isPresent()) {
+            Resena existingResena = existingResenaOptional.get();
+            Optional<Producto> productoOptional = productoRepository.findById(updatedResena.getProducto().getProducto_id());
+            Optional<User> usuarioOptional = userRepository.findById(updatedResena.getUser().getUsuario_id());
+
+            if (productoOptional.isPresent() && usuarioOptional.isPresent()) {
+                Producto producto = productoOptional.get();
+                User usuario = usuarioOptional.get();
+
+                existingResena.setProducto(producto);
+                existingResena.setUser(usuario);
+                existingResena.setResena(updatedResena.getResena());
+                existingResena.setCalificacion(updatedResena.getCalificacion());
+
+                resenaRepository.save(existingResena);
+
+                response = new ResenaResponse(existingResena, "Se actualizó la reseña con éxito", 200, true);
+                return new ResponseEntity<>(response.response(), HttpStatus.OK);
+            } else {
+                if (!productoOptional.isPresent()) {
+                    response = new ResenaResponse("No existe el Producto con el ID: " + updatedResena.getProducto().getProducto_id(), 400, false);
+                    return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                } else {
+                    response = new ResenaResponse("No existe el Usuario con el ID: " + updatedResena.getUser().getUsuario_id(), 400, false);
+                    return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                }
+            }
+        } else {
+            response = new ResenaResponse("No existe la Reseña con el ID: " + id, 400, false);
+            return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<Object> eliminarResena(Long id) {
         //Verificar si esta vacio
         if (!this.resenaRepository.findById(Long.valueOf(id)).isEmpty()) {
             this.resenaRepository.deleteById(Long.valueOf(id));
@@ -66,7 +115,7 @@ public class ResenaService {
         }
     }
 
-    public ResponseEntity<Object> getOne(Integer id) {
+    public ResponseEntity<Object> getOne(Long id) {
         if (resenaRepository.findById(Long.valueOf(id)).isPresent()) {
             Resena resena = resenaRepository.findById(Long.valueOf(id)).get();
             response = new ResenaResponse(resena, "Si encontró el ID: " + id, 200, true);

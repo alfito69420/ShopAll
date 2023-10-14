@@ -14,9 +14,17 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long pedido_id;
-    private long usuario_id;
-    private long tienda_id;
     private String fecha_pedido;
-    private long venta_id;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "tienda_id", referencedColumnName = "tienda_id")
+    private Tienda tienda;
+
+    @ManyToOne
+    @JoinColumn(name = "venta_id", referencedColumnName = "venta_id")
+    private Venta venta;
 } //close class
 
