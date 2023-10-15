@@ -1,6 +1,7 @@
 package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.PedidoResponse;
+import com.example.metaphorce.exceptions.DataException;
 import com.example.metaphorce.model.Pedido;
 import com.example.metaphorce.model.Tienda;
 import com.example.metaphorce.model.User;
@@ -34,12 +35,16 @@ public class PedidoService {
     }
 
     //  GET ALL PEDIDO RECORDS
-    public ResponseEntity<Object> getPedido() {
+
+    public ResponseEntity<Object> getPedido(){
+
         List<Pedido> pedidoList = pedidoRepository.findAll();
         if (!pedidoList.isEmpty()) {
             pedidoResponse = new PedidoResponse(pedidoList, "Obtención de todos los pedidos", 200, true);
             return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.OK);
         } else {
+            System.out.println(new DataException("No se encontraron registros del pedido"));
+            //throw new DataException(""); para crear excepciones
             pedidoResponse = new PedidoResponse("No se encontraron registros del pedido", 400, false);
             return new ResponseEntity<>(pedidoResponse.response2(), HttpStatus.BAD_REQUEST);
         }
