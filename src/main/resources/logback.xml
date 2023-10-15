@@ -2,7 +2,7 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <property name="LOGS" value="C:\Users\panch\IdeaProjects\Metaphorce\LOGS" />
+    <property name="LOGS" value="C:\Metaphorce\LOGS" />
     <appender name="Console"
               class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">

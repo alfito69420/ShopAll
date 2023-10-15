@@ -1,0 +1,207 @@
+[INFO ] [restartedMain] [13102023 10:24:09] [com.example.metaphorce.MetaphorceApplication[51]] Starting MetaphorceApplication using Java 20.0.2 with PID 18020 (C:\Users\panch\IdeaProjects\Metaphorce\target\classes started by panch in C:\Users\panch\IdeaProjects\Metaphorce) 
+[DEBUG] [restartedMain] [13102023 10:24:09] [com.example.metaphorce.MetaphorceApplication[52]] Running with Spring Boot v3.1.4, Spring v6.0.12 
+[INFO ] [restartedMain] [13102023 10:24:09] [com.example.metaphorce.MetaphorceApplication[637]] No active profile set, falling back to 1 default profile: "default" 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[968]] Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@f48d0db 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1100]] HikariPool-1 - configuration: 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] allowPoolSuspension.............false 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] autoCommit......................true 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] catalog.........................none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] connectionInitSql...............none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] connectionTestQuery.............none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] connectionTimeout...............30000 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] dataSource......................none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] dataSourceClassName.............none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] dataSourceJNDI..................none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] dataSourceProperties............{password=<masked>} 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] driverClassName................."com.mysql.cj.jdbc.Driver" 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] exceptionOverrideClassName......none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] healthCheckProperties...........{} 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] healthCheckRegistry.............none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] idleTimeout.....................600000 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] initializationFailTimeout.......1 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] isolateInternalQueries..........false 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] jdbcUrl.........................jdbc:mysql://localhost/maven 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] keepaliveTime...................0 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] leakDetectionThreshold..........0 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] maxLifetime.....................1800000 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] maximumPoolSize.................10 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] metricRegistry..................none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] metricsTrackerFactory...........none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] minimumIdle.....................10 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] password........................<masked> 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] poolName........................"HikariPool-1" 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] readOnly........................false 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] registerMbeans..................false 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] scheduledExecutor...............none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] schema..........................none 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] threadFactory...................internal 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] transactionIsolation............default 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] username........................"maven" 
+[DEBUG] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariConfig[1132]] validationTimeout...............5000 
+[INFO ] [restartedMain] [13102023 10:24:11] [com.zaxxer.hikari.HikariDataSource[110]] HikariPool-1 - Starting... 
+[INFO ] [restartedMain] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[565]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@648c71dc 
+[INFO ] [restartedMain] [13102023 10:24:12] [com.zaxxer.hikari.HikariDataSource[123]] HikariPool-1 - Start completed. 
+[DEBUG] [HikariPool-1 housekeeper] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[414]] HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0) 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2682ac74 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@67bfa64f 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56128153 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7905900 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3de2221 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@11fde06d 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7c41fbdd 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@67bd7d0c 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[738]] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a3b3f51 
+[DEBUG] [HikariPool-1 connection adder] [13102023 10:24:12] [com.zaxxer.hikari.pool.HikariPool[414]] HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0) 
+[WARN ] [restartedMain] [13102023 10:24:14] [org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration[231]] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[WARN ] [restartedMain] [13102023 10:24:14] [org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration[231]] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.MetaphorceApplication:
+	{GET [/hola]}: hello_word() 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.CategoriaController:
+	{GET [/api/v1/categoria/getOne/{id}]}: getCategoria(Long)
+	{GET [/api/v1/categoria/all]}: getCategoria()
+	{POST [/api/v1/categoria/create]}: registrarCategoria(Categoria)
+	{DELETE [/api/v1/categoria/delete/{id}]}: eliminarUsuario(Long)
+	{PUT [/api/v1/categoria/update/{id}]}: actualizarCategoria(Long,Categoria) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.EstadoPedidoController:
+	{GET [/api/v1/estadoPedido/all]}: getEstadoPedido()
+	{POST [/api/v1/estadoPedido/create]}: insertEstadoPedido(EstadoPedido)
+	{GET [/api/v1/estadoPedido/getOne/{id}]}: getOneEstadoPedido(Long)
+	{PUT [/api/v1/estadoPedido/update/{id}]}: updateEstadoPedido(Long,EstadoPedido)
+	{DELETE [/api/v1/estadoPedido/delete/{id}]}: deleteEstadoPedido(Long) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.PedidoController:
+	{GET [/api/v1/pedido/getOne/{id}]}: getOnePedido(Long)
+	{POST [/api/v1/pedido/create]}: insertPedido(Pedido)
+	{GET [/api/v1/pedido/all]}: getAllPedido()
+	{DELETE [/api/v1/pedido/delete/{id}]}: deletePedido(Long)
+	{PUT [/api/v1/pedido/update/{id}]}: updatePedido(Long,Pedido) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.ProductoController:
+	{POST [/api/v1/producto/create]}: registrarProducto(Producto)
+	{GET [/api/v1/producto/getOne/{id}]}: getProducto(Integer)
+	{GET [/api/v1/producto/all]}: getProducto()
+	{PUT [/api/v1/producto/update/{id}]}: actualizarProducto(Integer,Producto)
+	{DELETE [/api/v1/producto/delete/{id}]}: elimirProducto(Integer) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.ResenaController:
+	{GET [/api/v1/resena/getOne/{id}]}: getResena(Integer)
+	{GET [/api/v1/resena/all]}: getResena()
+	{PUT [/api/v1/resena/update/{id}]}: actualizarResena(Integer,Resena)
+	{DELETE [/api/v1/resena/delete/{id}]}: eliminarResena(Integer)
+	{POST [/api/v1/resena/create]}: registrarResena(Resena) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.TiendaController:
+	{DELETE [/api/v1/tienda/delete/{id}]}: eliminarUsuario(Integer)
+	{PUT [/api/v1/tienda/update/{id}]}: actualizarTienda(Integer,Tienda)
+	{POST [/api/v1/tienda/create]}: registrarTienda(Tienda)
+	{GET [/api/v1/tienda/all]}: getTienda()
+	{GET [/api/v1/tienda/getOne/{id}]}: getTienda(Integer) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.TipoPagoController:
+	{DELETE [/api/v1/tipoPago/delete/{id}]}: eliminarUsuario(Long)
+	{GET [/api/v1/tipoPago/getOne/{id}]}: getTipoPago(Long)
+	{GET [/api/v1/tipoPago/all]}: getTipoPago()
+	{POST [/api/v1/tipoPago/create]}: registrarTipoPago(TipoPago)
+	{PUT [/api/v1/tipoPago/update/{id}]}: actualizarTipoPago(Long,TipoPago) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.TipoProductoController:
+	{DELETE [/api/v1/tipoProducto/delete/{id}]}: eliminarUsuario(Long)
+	{GET [/api/v1/tipoProducto/getOne/{id}]}: getTipoProducto(Long)
+	{GET [/api/v1/tipoProducto/all]}: getTipoProducto()
+	{POST [/api/v1/tipoProducto/create]}: registrarTipoProducto(TipoProducto)
+	{PUT [/api/v1/tipoProducto/update/{id}]}: actualizarTipoProducto(Long,TipoProducto) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.UserController:
+	{DELETE [/api/v1/user/delete/{id}]}: eliminarUsuario(Long)
+	{GET [/api/v1/user/getOne/{id}]}: getUser(Long)
+	{GET [/api/v1/user/all]}: getUser()
+	{POST [/api/v1/user/create]}: registrarUser(User)
+	{PUT [/api/v1/user/update/{id}]}: actualizarUser(Long,User) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.VentaController:
+	{DELETE [/api/v1/venta/delete/{id}]}: eliminarUsuario(Long)
+	{PUT [/api/v1/venta/update/{id}]}: actualizarVenta(Long,Venta)
+	{POST [/api/v1/venta/create]}: registrarVenta(Venta)
+	{GET [/api/v1/venta/all]}: getVenta()
+	{GET [/api/v1/venta/getOne/{id}]}: getVenta(Long) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	c.e.m.c.VentaDetalleController:
+	{GET [/api/v1/ventaDetalle/all]}: getAllVentaDetalle()
+	{PUT [/api/v1/ventaDetalle/update/{id}]}: updateVentaDetalle(Long,VentaDetalle)
+	{GET [/api/v1/ventaDetalle/getOne/{id}]}: getOneVentaDetalle(Long)
+	{DELETE [/api/v1/ventaDetalle/delete/{id}]}: deleteVentaDetalle(Long)
+	{POST [/api/v1/ventaDetalle/create]}: insertVentaDetalle(VentaDetalle) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[86]] 'beanNameHandlerMapping' {} 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[176]] 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]} 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	o.s.d.r.w.RepositoryController:
+	{HEAD [/ || ], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headForRepositories()
+	{OPTIONS [/ || ], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForRepositories()
+	{GET [/ || ], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: listRepositories() 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	o.s.d.r.w.RepositoryEntityController:
+	{GET [/{repository}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: getCollectionResource(RootResourceInformation,DefaultedPageable,Sort,RepresentationModelAssemblers)
+	{HEAD [/{repository}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headCollectionResource(RootResourceInformation,DefaultedPageable)
+	{HEAD [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headForItemResource(RootResourceInformation,Serializable,PersistentEntityResourceAssembler)
+	{OPTIONS [/{repository}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForCollectionResource(RootResourceInformation)
+	{GET [/{repository}], produces [application/x-spring-data-compact+json || text/uri-list]}: getCollectionResourceCompact(RootResourceInformation,DefaultedPageable,Sort,RepresentationModelAssemblers)
+	{POST [/{repository}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: postCollectionResource(RootResourceInformation,PersistentEntityResource,PersistentEntityResourceAssembler,String)
+	{OPTIONS [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForItemResource(RootResourceInformation)
+	{GET [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: getItemResource(RootResourceInformation,Serializable,PersistentEntityResourceAssembler,HttpHeaders)
+	{PATCH [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: patchItemResource(RootResourceInformation,PersistentEntityResource,Serializable,PersistentEntityResourceAssembler,ETag,String)
+	{PUT [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: putItemResource(RootResourceInformation,PersistentEntityResource,Serializable,PersistentEntityResourceAssembler,ETag,String)
+	{DELETE [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: deleteItemResource(RootResourceInformation,Serializable,ETag,PersistentEntityResourceAssembler,String) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	o.s.d.r.w.RepositoryPropertyReferenceController:
+	{DELETE [/{repository}/{id}/{property}/{propertyId}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: deletePropertyReferenceId(RootResourceInformation,Serializable,String,String)
+	{GET [/{repository}/{id}/{property}/{propertyId}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: followPropertyReference(RootResourceInformation,Serializable,String,String,RepresentationModelAssemblers)
+	{GET [/{repository}/{id}/{property}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: followPropertyReference(RootResourceInformation,Serializable,String,RepresentationModelAssemblers)
+	{GET [/{repository}/{id}/{property}], produces [text/uri-list]}: followPropertyReferenceCompact(RootResourceInformation,Serializable,String,HttpHeaders,RepresentationModelAssemblers)
+	{[PATCH, PUT, POST] [/{repository}/{id}/{property}], consumes [application/json || application/x-spring-data-compact+json || text/uri-list], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: createPropertyReference(RootResourceInformation,HttpMethod,CollectionModel,Serializable,String)
+	{DELETE [/{repository}/{id}/{property}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: deletePropertyReference(RootResourceInformation,Serializable,String) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	o.s.d.r.w.RepositorySearchController:
+	{GET [/{repository}/search/{search}], produces [application/x-spring-data-compact+json]}: executeSearchCompact(RootResourceInformation,HttpHeaders,MultiValueMap,String,String,DefaultedPageable,Sort,RepresentationModelAssemblers)
+	{GET [/{repository}/search/{search}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: executeSearch(RootResourceInformation,MultiValueMap,String,DefaultedPageable,Sort,HttpHeaders,RepresentationModelAssemblers)
+	{OPTIONS [/{repository}/search], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForSearches(RootResourceInformation)
+	{GET [/{repository}/search], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: listSearches(RootResourceInformation)
+	{HEAD [/{repository}/search], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headForSearches(RootResourceInformation)
+	{OPTIONS [/{repository}/search/{search}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForSearch(RootResourceInformation,String)
+	{HEAD [/{repository}/search/{search}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headForSearch(RootResourceInformation,String) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	o.s.d.r.w.RepositorySchemaController:
+	{GET [/profile/{repository}], produces [application/schema+json]}: schema(RootResourceInformation) 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	o.s.d.r.w.a.AlpsController:
+	{GET [/profile/{repository}], produces [application/alps+json || */*]}: descriptor(RootResourceInformation)
+	{OPTIONS [/profile/{repository}], produces [application/alps+json]}: alpsOptions() 
+[DEBUG] [restartedMain] [13102023 10:24:15] [_org.springframework.web.servlet.HandlerMapping.Mappings[294]] 
+	o.s.d.r.w.ProfileController:
+	{GET [/profile]}: listAllFormsOfMetadata()
+	{OPTIONS [/profile]}: profileOptions() 
+[INFO ] [restartedMain] [13102023 10:24:15] [com.example.metaphorce.MetaphorceApplication[57]] Started MetaphorceApplication in 6.922 seconds (process running for 8.554) 
+[DEBUG] [HikariPool-1 housekeeper] [13102023 10:24:42] [com.zaxxer.hikari.pool.HikariPool[414]] HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0) 
+[DEBUG] [HikariPool-1 housekeeper] [13102023 10:24:42] [com.zaxxer.hikari.pool.HikariPool[521]] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0). 
+[DEBUG] [HikariPool-1 housekeeper] [13102023 10:25:12] [com.zaxxer.hikari.pool.HikariPool[414]] HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0) 
+[DEBUG] [HikariPool-1 housekeeper] [13102023 10:25:12] [com.zaxxer.hikari.pool.HikariPool[521]] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled (queueDepth=0). 
+[INFO ] [Thread-5] [13102023 10:25:35] [com.zaxxer.hikari.HikariDataSource[350]] HikariPool-1 - Shutdown initiated... 
+[DEBUG] [Thread-5] [13102023 10:25:35] [com.zaxxer.hikari.pool.HikariPool[414]] HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@648c71dc: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@2682ac74: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@67bfa64f: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@56128153: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@7905900: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@3de2221: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@11fde06d: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@7c41fbdd: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@67bd7d0c: (connection evicted) 
+[DEBUG] [HikariPool-1 connection closer] [13102023 10:25:35] [com.zaxxer.hikari.pool.PoolBase[132]] HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@7a3b3f51: (connection evicted) 
+[DEBUG] [Thread-5] [13102023 10:25:35] [com.zaxxer.hikari.pool.HikariPool[414]] HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0) 
+[INFO ] [Thread-5] [13102023 10:25:35] [com.zaxxer.hikari.HikariDataSource[352]] HikariPool-1 - Shutdown completed. 
