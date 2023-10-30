@@ -78,6 +78,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+    <!-- LOGBACK -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
 		<!-- SPRING SECURITY -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
