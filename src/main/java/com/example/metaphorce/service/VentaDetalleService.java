@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +21,9 @@ public class VentaDetalleService {
 
     private final VentaDetalleRepository ventaDetalleRepository;
     private VentaDetalleResponse ventaDetalleResponse;
+
+    private static final Logger logger = LoggerFactory.getLogger(VentaDetalleService.class);
+
     private  final VentaRepository ventaRepository;
     private final ProductoRepository productoRepository;
 
@@ -33,7 +38,8 @@ public class VentaDetalleService {
     public ResponseEntity<Object> getVentaDetalle() {
         List<VentaDetalle> ventaDetalleList = ventaDetalleRepository.findAll();
         if (!ventaDetalleList.isEmpty()) {
-            ventaDetalleResponse = new VentaDetalleResponse(ventaDetalleList, "Obtención de todas los registros del detalle de la venta", 200, true);
+            ventaDetalleResponse = new VentaDetalleResponse(ventaDetalleList,
+                    "Obtención de todas los registros del detalle de la venta", 200, true);
             return new ResponseEntity<>(ventaDetalleResponse.response2(), HttpStatus.OK);
         } else {
             ventaDetalleResponse = new VentaDetalleResponse("No se encontraron registros del detalle de todas las ventas", 400, false);
