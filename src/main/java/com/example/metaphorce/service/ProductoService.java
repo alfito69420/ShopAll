@@ -2,9 +2,14 @@ package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.ProductoResponse;
 import com.example.metaphorce.domain.TiendaResponse;
+import com.example.metaphorce.model.Categoria;
 import com.example.metaphorce.model.Producto;
 import com.example.metaphorce.model.Tienda;
+import com.example.metaphorce.model.TipoProducto;
+import com.example.metaphorce.repository.CategoriaRepository;
 import com.example.metaphorce.repository.ProductoRepository;
+import com.example.metaphorce.repository.TiendaRepository;
+import com.example.metaphorce.repository.TipoProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +17,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 @Service
 public class ProductoService   {
 
     private final ProductoRepository productoRepository;
+    private final CategoriaRepository categoriaRepository;
+    private  final TiendaRepository tiendaRepository;
+    private  final TipoProductoRepository tipoProductoRepository;
     ProductoResponse response;
 
     @Autowired
-    public ProductoService(ProductoRepository productoRepository) {
+    public ProductoService(ProductoRepository productoRepository, CategoriaRepository categoriaRepository, TipoProductoRepository tipoProductoRepository, TiendaRepository tiendaRepository) {
         this.productoRepository = productoRepository;
+        this.categoriaRepository= categoriaRepository;
+        this.tiendaRepository = tiendaRepository;
+        this.tipoProductoRepository = tipoProductoRepository;
     }
 
     public ResponseEntity<Object> getProducto() {
@@ -35,28 +47,79 @@ public class ProductoService   {
     }
 
     public ResponseEntity<Object> newProducto(Producto producto) {
-        this.productoRepository.save(producto);
-        response = new ProductoResponse(producto, "Se creo con exito", 200, true);
-        return new ResponseEntity<>(response.response(), HttpStatus.OK);
-    }
+        Optional<Categoria> categoriaOptional = categoriaRepository.findById(producto.getCategoria().getCategoria_id());
+        Optional<TipoProducto> tipoOptional = tipoProductoRepository.findById(producto.getTipoProducto().getTipo_id());
+        Optional<Tienda> tiendaOptional = tiendaRepository.findById(producto.getTienda().getTienda_id());
 
-    public ResponseEntity<Object> updateProducto(Integer id, Producto producto) {
-        if (productoRepository.findById(Long.valueOf(id)).isPresent()) {
-            Producto existingProduct = productoRepository.findById(Long.valueOf(id)).get();
-            existingProduct.setNombre(producto.getNombre());
-            existingProduct.setDescripcion(producto.getDescripcion());
-            existingProduct.setPrecio(producto.getPrecio());
-            existingProduct.setCantidad(producto.getCantidad());
-            existingProduct.setPhoto(producto.getPhoto());
-            existingProduct.setCategoria_id(producto.getCategoria_id());
-            existingProduct.setTipo_id(producto.getTipo_id());
-            existingProduct.setTienda_id(producto.getTienda_id());
-            productoRepository.save(existingProduct);
-            response = new ProductoResponse(existingProduct, "Se pudo actualizar", 200, true);
+        if (categoriaOptional.isPresent() && tipoOptional.isPresent() && tiendaOptional.isPresent()) {
+            Categoria categoria = categoriaOptional.get();
+            TipoProducto tipo = tipoOptional.get();
+            Tienda tienda = tiendaOptional.get();
+
+            producto.setCategoria(categoria);
+            producto.setTipoProducto(tipo);
+            producto.setTienda(tienda);
+
+            productoRepository.save(producto);
+
+            response = new ProductoResponse(producto, "Se creó con éxito", 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
-            response = new ProductoResponse("No existe el ID: " + id, 400, false);
-            return new ResponseEntity<>(response.response(), HttpStatus.OK);
+            if (!categoriaOptional.isPresent()) {
+                response = new ProductoResponse("No existe la Categoría con el ID: " + producto.getCategoria().getCategoria_id(), 400, false);
+                return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+            } else if (!tipoOptional.isPresent()) {
+                response = new ProductoResponse("No existe el Tipo con el ID: " + producto.getTipoProducto().getTipo_id(), 400, false);
+                return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+            } else {
+                response = new ProductoResponse("No existe la Tienda con el ID: " + producto.getTienda().getTienda_id(), 400, false);
+                return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+            }
+        }
+    }
+
+    public ResponseEntity<Object> updateProducto( Long id,  Producto updatedProducto) {
+        Optional<Producto> existingProductoOptional = productoRepository.findById(id);
+
+        if (existingProductoOptional.isPresent()) {
+            Producto existingProducto = existingProductoOptional.get();
+            Optional<Categoria> categoriaOptional = categoriaRepository.findById(updatedProducto.getCategoria().getCategoria_id());
+            Optional<TipoProducto> tipoOptional = tipoProductoRepository.findById(updatedProducto.getTipoProducto().getTipo_id());
+            Optional<Tienda> tiendaOptional = tiendaRepository.findById(updatedProducto.getTienda().getTienda_id());
+
+            if (categoriaOptional.isPresent() && tipoOptional.isPresent() && tiendaOptional.isPresent()) {
+                Categoria categoria = categoriaOptional.get();
+                TipoProducto tipo = tipoOptional.get();
+                Tienda tienda = tiendaOptional.get();
+
+                existingProducto.setCategoria(categoria);
+                existingProducto.setTipoProducto(tipo);
+                existingProducto.setTienda(tienda);
+                existingProducto.setNombre(updatedProducto.getNombre());
+                existingProducto.setDescripcion(updatedProducto.getDescripcion());
+                existingProducto.setPhoto(updatedProducto.getPhoto());
+                existingProducto.setPrecio(updatedProducto.getPrecio());
+                existingProducto.setCantidad(updatedProducto.getCantidad());
+
+                productoRepository.save(existingProducto);
+
+                response = new ProductoResponse(existingProducto, "Se actualizó con éxito", 200, true);
+                return new ResponseEntity<>(response.response(), HttpStatus.OK);
+            } else {
+                if (!categoriaOptional.isPresent()) {
+                    response = new ProductoResponse("No existe la Categoría con el ID: " + updatedProducto.getCategoria().getCategoria_id(), 400, false);
+                    return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                } else if (!tipoOptional.isPresent()) {
+                    response = new ProductoResponse("No existe el Tipo con el ID: " + updatedProducto.getTipoProducto().getTipo_id(), 400, false);
+                    return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                } else {
+                    response = new ProductoResponse("No existe la Tienda con el ID: " + updatedProducto.getTienda().getTienda_id(), 400, false);
+                    return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                }
+            }
+        } else {
+            response = new ProductoResponse("No existe el Producto con el ID: " + id, 400, false);
+            return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
         }
     }
 

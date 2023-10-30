@@ -1,8 +1,12 @@
 package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.VentaDetalleResponse;
+import com.example.metaphorce.model.Producto;
+import com.example.metaphorce.model.Venta;
 import com.example.metaphorce.model.VentaDetalle;
+import com.example.metaphorce.repository.ProductoRepository;
 import com.example.metaphorce.repository.VentaDetalleRepository;
+import com.example.metaphorce.repository.VentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,18 +15,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-
+import java.util.Optional;
 @Service
 public class VentaDetalleService {
 
     private final VentaDetalleRepository ventaDetalleRepository;
     private VentaDetalleResponse ventaDetalleResponse;
+
     private static final Logger logger = LoggerFactory.getLogger(VentaDetalleService.class);
 
+    private  final VentaRepository ventaRepository;
+    private final ProductoRepository productoRepository;
 
     @Autowired
-    public VentaDetalleService(final VentaDetalleRepository ventaDetalleRepository) {
+    public VentaDetalleService(final VentaDetalleRepository ventaDetalleRepository, VentaRepository ventaRepository, ProductoRepository productoRepository) {
         this.ventaDetalleRepository = ventaDetalleRepository;
+        this.ventaRepository = ventaRepository;
+        this.productoRepository = productoRepository;
     }
 
     //  GET ALL VENTA DETALLE RECORDS
@@ -39,30 +48,78 @@ public class VentaDetalleService {
     } //close method
 
     //  INSERT A NEW VENTA DETALLE RECORD
-    public ResponseEntity<Object> insertVentaDetalle(final VentaDetalle ventaDetalle) {
-        logger.debug("====================="+ventaDetalle.toString());
-        this.ventaDetalleRepository.save(ventaDetalle);
-        ventaDetalleResponse = new VentaDetalleResponse(ventaDetalle,
-                "Se pudo crear el detalle de la venta", 200, true);
-        return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
+    public ResponseEntity<Object> insertVentaDetalle(VentaDetalle ventaDetalle) {
+        Optional<Venta> ventaOptional = ventaRepository.findById(ventaDetalle.getVenta().getVenta_id());
+        Optional<Producto> productoOptional = productoRepository.findById(ventaDetalle.getProducto().getProducto_id());
+
+        if (ventaOptional.isPresent() && productoOptional.isPresent()) {
+            Venta venta = ventaOptional.get();
+            Producto producto = productoOptional.get();
+            ventaDetalle.setVenta(venta);
+            ventaDetalle.setProducto(producto);
+            ventaDetalleRepository.save(ventaDetalle);
+
+            ventaDetalleResponse = new VentaDetalleResponse(ventaDetalle, "Se pudo crear el detalle de venta", 200, true);
+            return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
+        } else {
+            if (!ventaOptional.isPresent()) {
+                ventaDetalleResponse = new VentaDetalleResponse("No existe la Venta con el ID: " + ventaDetalle.getVenta().getVenta_id() , 400, false);
+                return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
+            } else {
+                if (!productoOptional.isPresent()) {
+                    ventaDetalleResponse = new VentaDetalleResponse("No existe el Producto con el ID: " + ventaDetalle.getProducto().getProducto_id(), 400, false);
+                    return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
+                } else {
+                    ventaDetalleResponse = new VentaDetalleResponse("ERROR al crear el detalle de venta", 500, false);
+                    return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+        }
     } // close method
 
     //  UPDATE A SPECIFIC VENTA DETALLE RECORD
-    public ResponseEntity<Object> updateVentaDetalle(final Long id, final VentaDetalle ventaDetalle) {
-        if (ventaDetalleRepository.findById(id).isPresent()) {
-            VentaDetalle existingVentaDetalle = ventaDetalleRepository.findById(id).get();
-            existingVentaDetalle.setVenta_id(ventaDetalle.getVenta_id());
-            existingVentaDetalle.setProducto_id(ventaDetalle.getProducto_id());
-            existingVentaDetalle.setCantidad(ventaDetalle.getCantidad());
-            existingVentaDetalle.setPrecio(ventaDetalle.getPrecio());
-            existingVentaDetalle.setSub_total(ventaDetalle.getSub_total());
-            ventaDetalleRepository.save(existingVentaDetalle);
-            ventaDetalleResponse = new VentaDetalleResponse(existingVentaDetalle,
-                    "Se pudo actualizar", 200, true);
-            return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
+    public ResponseEntity<Object> updateVentaDetalle( Long id, VentaDetalle ventaDetalle) {
+        Optional<VentaDetalle> existingVentaDetalleOptional = ventaDetalleRepository.findById(id);
+
+        if (existingVentaDetalleOptional.isPresent()) {
+            VentaDetalle existingVentaDetalle = existingVentaDetalleOptional.get();
+
+            // Verificar si la venta y el producto existen antes de actualizar
+            Optional<Venta> ventaOptional = ventaRepository.findById(ventaDetalle.getVenta().getVenta_id());
+            Optional<Producto> productoOptional = productoRepository.findById(ventaDetalle.getProducto().getProducto_id());
+
+            if (ventaOptional.isPresent() && productoOptional.isPresent()) {
+                Venta venta = ventaOptional.get();
+                Producto producto = productoOptional.get();
+
+                // Actualizar las relaciones y otros campos en el registro existente
+                existingVentaDetalle.setVenta(venta);
+                existingVentaDetalle.setProducto(producto);
+                existingVentaDetalle.setCantidad(ventaDetalle.getCantidad());
+                existingVentaDetalle.setPrecio(ventaDetalle.getPrecio());
+                existingVentaDetalle.setSub_total(ventaDetalle.getSub_total());
+
+                ventaDetalleRepository.save(existingVentaDetalle);
+
+                ventaDetalleResponse = new VentaDetalleResponse(existingVentaDetalle, "Se pudo actualizar el detalle de venta", 200, true);
+                return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
+            } else {
+                if (!ventaOptional.isPresent()) {
+                    ventaDetalleResponse = new VentaDetalleResponse("No existe la Venta con el ID: " + ventaDetalle.getVenta().getVenta_id(), 400, false);
+                    return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
+                } else {
+                    if (!productoOptional.isPresent()) {
+                        ventaDetalleResponse = new VentaDetalleResponse("No existe el Producto con el ID: " + ventaDetalle.getProducto().getProducto_id(), 400, false);
+                        return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
+                    } else {
+                        ventaDetalleResponse = new VentaDetalleResponse("ERROR al actualizar el detalle de venta", 500, false);
+                        return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.INTERNAL_SERVER_ERROR);
+                    }
+                }
+            }
         } else {
-            ventaDetalleResponse = new VentaDetalleResponse("No existe el ID: " + id, 400, false);
-            return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
+            ventaDetalleResponse = new VentaDetalleResponse("No existe el detalle de venta con el ID: " + id, 400, false);
+            return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
         }
     } //close method
 

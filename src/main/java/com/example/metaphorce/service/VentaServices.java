@@ -1,20 +1,30 @@
 package com.example.metaphorce.service;
 import com.example.metaphorce.domain.VentaResponse;
+import com.example.metaphorce.model.TipoPago;
+import com.example.metaphorce.model.User;
 import com.example.metaphorce.model.Venta;
+import com.example.metaphorce.repository.TipoPagoRepository;
+import com.example.metaphorce.repository.UserRepository;
 import com.example.metaphorce.repository.VentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
 public class VentaServices {
     private final VentaRepository ventaRepository;
+    private final UserRepository userRepository;
+    private final TipoPagoRepository tipoPagoRepository;
     VentaResponse response;
     @Autowired
-    public VentaServices(VentaRepository ventaRepository){
+    public VentaServices(VentaRepository ventaRepository, UserRepository userRepository, TipoPagoRepository tipoPagoRepository){
         this.ventaRepository = ventaRepository;
+        this.userRepository=userRepository;
+        this.tipoPagoRepository = tipoPagoRepository;
     }
 
     public ResponseEntity<Object> getVenta(){
@@ -39,29 +49,68 @@ public class VentaServices {
         }
     }
 
-    public  ResponseEntity<Object> newVenta(Venta venta) {
-        this.ventaRepository.save(venta);
-        response = new VentaResponse(venta, "Se pudo crear la venta",200,true );
-        return new ResponseEntity<>(response.response(), HttpStatus.OK);
+    public ResponseEntity<Object> newVenta(Venta venta) {
+        Optional<User> usuarioOptional = userRepository.findById(venta.getUser().getUsuario_id());
+        Optional<TipoPago> tipoPagoOptional = tipoPagoRepository.findById(venta.getTipoPago().getTipo_pago_id());
 
+        if (usuarioOptional.isPresent() && tipoPagoOptional.isPresent()) {
+            User usuario = usuarioOptional.get();
+            TipoPago tipoPago = tipoPagoOptional.get();
+            venta.setUser(usuario);
+            venta.setTipoPago(tipoPago);
+            ventaRepository.save(venta);
 
-    };
-
-    
-
-    public  ResponseEntity<Object> updateVenta(Long id, Venta venta) {
-        if (ventaRepository.findById(id).isPresent()) {
-            Venta existingVenta = ventaRepository.findById(id).get();
-            existingVenta.setTipo_pago_id(venta.getTipo_pago_id());
-            existingVenta.setUsuario_id(venta.getUsuario_id());
-            ventaRepository.save(existingVenta);
-            response = new VentaResponse(existingVenta, "Se pudo actualizar", 200, true);
+            response = new VentaResponse(venta, "Se pudo crear la venta", 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
-            response = new VentaResponse("No existe el ID: " + id, 400, false);
-            return new ResponseEntity<>(response.response(), HttpStatus.OK);
+            if (!usuarioOptional.isPresent()) {
+                response = new VentaResponse("No existe el Usuario con el ID: "+venta.getUser().getUsuario_id(), 400, false);
+                return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+            } else {
+                if (!tipoPagoOptional.isPresent()) {
+                    response = new VentaResponse("No existe el Tipo Pago con el ID: "+venta.getTipoPago().getTipo_pago_id(), 400, false);
+                    return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                } else {
+                    response = new VentaResponse("ERROR al crear la venta", 500, false);
+                    return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
+                }
+            }
         }
-    };
+    }
+
+
+
+
+    public ResponseEntity<Object> updateVenta(Long id, Venta venta) {
+        Optional<Venta> ventaOptional = ventaRepository.findById(id);
+
+        if (ventaOptional.isPresent()) {
+            Venta existingVenta = ventaOptional.get();
+
+            if (venta.getTipoPago() != null) {
+                existingVenta.setTipoPago(venta.getTipoPago());
+            }
+            if (venta.getUser() != null) {
+                existingVenta.setUser(venta.getUser());
+            }
+
+            ventaRepository.save(existingVenta);
+
+            Venta updatedVenta = ventaRepository.findById(id).orElse(null);
+
+            if (updatedVenta != null) {
+                response = new VentaResponse( "Se pudo actualizar", 200, true);
+                return new ResponseEntity<>(response.response(), HttpStatus.OK);
+            } else {
+                response = new VentaResponse("No se pudo obtener la venta actualizada", 500, false);
+                return new ResponseEntity<>(response.response(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            response = new VentaResponse("No existe el ID: " + id, 404, false);
+            return new ResponseEntity<>(response.response(), HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     public ResponseEntity<Object>  eliminar(Long id){
         //Verificar si esta vacio
