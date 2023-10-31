@@ -4,7 +4,7 @@ import com.example.metaphorce.domain.PedidoResponse;
 import com.example.metaphorce.exceptions.DataException;
 import com.example.metaphorce.model.Pedido;
 import com.example.metaphorce.model.Tienda;
-import com.example.metaphorce.model.User;
+import com.example.metaphorce.model.UserImpl;
 import com.example.metaphorce.model.Venta;
 import com.example.metaphorce.repository.PedidoRepository;
 import com.example.metaphorce.repository.TiendaRepository;
@@ -52,12 +52,12 @@ public class PedidoService {
 
     //  INSERT A NEW PEDIDO RECORD
     public ResponseEntity<Object> insertPedido(Pedido pedido) {
-        Optional<User> usuarioOptional = userRepository.findById(pedido.getUser().getUsuario_id());
+        Optional<UserImpl> usuarioOptional = userRepository.findById(pedido.getUser().getUsuario_id());
         Optional<Tienda> tiendaOptional = tiendaRepository.findById(pedido.getTienda().getTienda_id());
         Optional<Venta> ventaOptional = ventaRepository.findById(pedido.getVenta().getVenta_id());
         if (usuarioOptional.isPresent() && tiendaOptional.isPresent() && ventaOptional.isPresent()) {
 
-            User usuario = usuarioOptional.get();
+            UserImpl usuario = usuarioOptional.get();
             Tienda tienda = tiendaOptional.get();
             Venta venta = ventaOptional.get();
             pedido.setUser(usuario);
@@ -120,7 +120,7 @@ public class PedidoService {
         if (pedidoOptional.isPresent()) {
             Pedido existingPedido = pedidoOptional.get();
             if (pedido.getUser() != null) {
-                Optional<User> usuarioOptional = userRepository.findById(pedido.getUser().getUsuario_id());
+                Optional<UserImpl> usuarioOptional = userRepository.findById(pedido.getUser().getUsuario_id());
                 if (usuarioOptional.isPresent()) {
                     existingPedido.setUser(pedido.getUser());
                 } else {

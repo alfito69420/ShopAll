@@ -17,7 +17,7 @@ public class Pedido {
     private String fecha_pedido;
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
-    private User user;
+    private UserImpl user;
 
     @ManyToOne
     @JoinColumn(name = "tienda_id", referencedColumnName = "tienda_id")

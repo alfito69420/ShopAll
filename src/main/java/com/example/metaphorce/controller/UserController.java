@@ -1,13 +1,9 @@
 package com.example.metaphorce.controller;
 
-import com.example.metaphorce.model.Tienda;
-import com.example.metaphorce.model.User;
-import com.example.metaphorce.model.User;
+import com.example.metaphorce.model.UserImpl;
 import com.example.metaphorce.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/user")
@@ -27,11 +23,11 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> registrarUser(@RequestBody User user){
+    public ResponseEntity<Object> registrarUser(@RequestBody UserImpl user){
         return this.userService.newUser(user);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> actualizarUser(@PathVariable Long id,@RequestBody User user){
+    public ResponseEntity<Object> actualizarUser(@PathVariable Long id,@RequestBody UserImpl user){
         return this.userService.updateUser(id,user);
     }
     @DeleteMapping("/delete/{id}")

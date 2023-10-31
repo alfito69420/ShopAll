@@ -1,7 +1,10 @@
 package com.example.metaphorce.repository;
 
-import com.example.metaphorce.model.User;
+import com.example.metaphorce.model.UserImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User,Long> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<UserImpl,Long> {
+    Optional<UserImpl> findOneByEmail(String email);
 }

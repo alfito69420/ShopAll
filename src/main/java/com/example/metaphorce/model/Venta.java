@@ -20,7 +20,7 @@ public class Venta {
     private Long venta_id;
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private User user;
+    private UserImpl user;
 
     @ManyToOne
     @JoinColumn(name = "tipo_pago_id")
