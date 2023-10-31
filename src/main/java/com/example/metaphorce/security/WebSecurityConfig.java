@@ -17,11 +17,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
-
-
-
-
-
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -33,9 +28,7 @@ public class WebSecurityConfig {
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
     @Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
-    private static final String[] AUTH_WHITELIST = {
-            "/v2/api-docs", "/swagger-resources", "/swagger-resources/**",
-    };
+
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity,
@@ -52,6 +45,7 @@ public class WebSecurityConfig {
                 //Los que si van hacer autorizados sin autentificacion
                 .requestMatchers("/api/v1/producto/all").permitAll()
                 .requestMatchers("api/v1/producto/getOne/**").permitAll()
+                .requestMatchers("api/v1/user/create").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
