@@ -30,6 +30,9 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
+        /*
+        *Aqui se podra autentificar
+         */
         return httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
@@ -86,7 +89,7 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     } //close method
 
-/*    public static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("pass: " + new BCryptPasswordEncoder().encode("contrasena1"));
-    }*/
+    }
 } //close class
