@@ -20,5 +20,5 @@ public class RolUsuario {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private User user;
+    private UserImpl user;
 } //close class

@@ -4,7 +4,7 @@ package com.example.metaphorce.domain;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.metaphorce.model.User;
+import com.example.metaphorce.model.UserImpl;
 
 import lombok.*;
 
@@ -14,11 +14,11 @@ import lombok.*;
 @Setter
 @ToString
 public class UserResponse extends  GenericResponse{
-    private User user;
-    private List<User> listUser;
+    private UserImpl user;
+    private List<UserImpl> listUser;
     HashMap<String,Object> datos = new HashMap<>();
     //GET ONE POST PATCH
-    public UserResponse(User user,String message,int status,boolean flag){
+    public UserResponse(UserImpl user, String message, int status, boolean flag){
         super(flag, message, status);
         this.user=user;
 
@@ -30,7 +30,7 @@ public class UserResponse extends  GenericResponse{
     }
 
     //GET All
-    public UserResponse(List<User> listUser,String message, int status, boolean flag){
+    public UserResponse(List<UserImpl> listUser, String message, int status, boolean flag){
         super(flag, message, status);
         this.listUser=listUser;
 
