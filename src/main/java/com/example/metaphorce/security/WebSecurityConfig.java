@@ -17,14 +17,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 
 
@@ -39,6 +33,9 @@ public class WebSecurityConfig {
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
     @Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
+    private static final String[] AUTH_WHITELIST = {
+            "/v2/api-docs", "/swagger-resources", "/swagger-resources/**",
+    };
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity,
@@ -48,13 +45,15 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
+
         return httpSecurity
-                .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler)
-                .and()
                 .csrf().disable()
                 .authorizeRequests()
-
+                //Los que si van hacer autorizados sin autentificacion
+                .requestMatchers("/api/v1/producto/all").permitAll()
+                .requestMatchers("api/v1/producto/getOne/**").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .httpBasic()
                 .and()
@@ -63,7 +62,6 @@ public class WebSecurityConfig {
                 .and()
                 .addFilter(jwtAuthenticationFilter)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-                .and()
                 .build();
 
     } //close method
