@@ -1,5 +1,7 @@
 package com.example.metaphorce.security;
 
+import com.example.metaphorce.domain.AuthResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +30,7 @@ public class WebSecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
+
     @Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
 
@@ -61,10 +64,11 @@ public class WebSecurityConfig {
                 // Agregar manejo de excepciones
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
-                .authenticationEntryPoint((request, response, authException) -> { // Personalizar la respuesta en caso de autenticación fallida
-                    ResponseEntity<String> responseEntity = new ResponseEntity<>("Autenticacion fallida", HttpStatus.UNAUTHORIZED);
-                    response.getWriter().write(responseEntity.toString());
+                .authenticationEntryPoint((request, response, authException) -> {
+                    AuthResponse authResponse = new AuthResponse("Autenticación fallida: NO TIENES AXCESO", HttpStatus.UNAUTHORIZED.value(), false);
+                    response.setContentType("application/json");
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                    response.getWriter().write(new ObjectMapper().writeValueAsString(authResponse));
                 })
                 .and()
                 .build();
