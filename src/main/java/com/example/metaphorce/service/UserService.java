@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 
@@ -31,14 +32,14 @@ public class UserService {
             return new ResponseEntity<>(response.response2(), HttpStatus.OK);
         }
     }
-    public  ResponseEntity<Object> newUser(UserImpl user) {
+    public ResponseEntity<Object> newUser(UserImpl user) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String contrasenaEncriptada = passwordEncoder.encode(user.getContrasena());
+        user.setContrasena(contrasenaEncriptada);
         this.userRepository.save(user);
-        response = new UserResponse(user, "Se pudo crear la User",200,true );
+        response = new UserResponse(user, "Se pudo crear la User", 200, true);
         return new ResponseEntity<>(response.response(), HttpStatus.OK);
-
-
-    };
-
+    }
     public  ResponseEntity<Object> updateUser(Long id, UserImpl user) {
         if (userRepository.findById(id).isPresent()) {
             UserImpl existingUser = userRepository.findById(id).get();
