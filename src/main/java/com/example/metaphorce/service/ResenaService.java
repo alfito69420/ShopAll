@@ -1,11 +1,9 @@
 package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.ResenaResponse;
-import com.example.metaphorce.domain.TiendaResponse;
 import com.example.metaphorce.model.Producto;
 import com.example.metaphorce.model.Resena;
-import com.example.metaphorce.model.Tienda;
-import com.example.metaphorce.model.User;
+import com.example.metaphorce.model.UserImpl;
 import com.example.metaphorce.repository.ProductoRepository;
 import com.example.metaphorce.repository.ResenaRepository;
 import com.example.metaphorce.repository.UserRepository;
@@ -14,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -43,11 +40,11 @@ public class ResenaService {
 
     public ResponseEntity<Object> newResena(Resena resena) {
         Optional<Producto> productoOptional = productoRepository.findById(resena.getProducto().getProducto_id());
-        Optional<User> usuarioOptional = userRepository.findById(resena.getUser().getUsuario_id());
+        Optional<UserImpl> usuarioOptional = userRepository.findById(resena.getUser().getUsuario_id());
 
         if (productoOptional.isPresent() && usuarioOptional.isPresent()) {
             Producto producto = productoOptional.get();
-            User usuario = usuarioOptional.get();
+            UserImpl usuario = usuarioOptional.get();
 
             resena.setProducto(producto);
             resena.setUser(usuario);
@@ -73,11 +70,11 @@ public class ResenaService {
         if (existingResenaOptional.isPresent()) {
             Resena existingResena = existingResenaOptional.get();
             Optional<Producto> productoOptional = productoRepository.findById(updatedResena.getProducto().getProducto_id());
-            Optional<User> usuarioOptional = userRepository.findById(updatedResena.getUser().getUsuario_id());
+            Optional<UserImpl> usuarioOptional = userRepository.findById(updatedResena.getUser().getUsuario_id());
 
             if (productoOptional.isPresent() && usuarioOptional.isPresent()) {
                 Producto producto = productoOptional.get();
-                User usuario = usuarioOptional.get();
+                UserImpl usuario = usuarioOptional.get();
 
                 existingResena.setProducto(producto);
                 existingResena.setUser(usuario);
