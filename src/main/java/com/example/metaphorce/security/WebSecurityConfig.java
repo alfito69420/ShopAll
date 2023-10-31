@@ -1,9 +1,13 @@
 package com.example.metaphorce.security;
 
+import com.example.metaphorce.domain.AuthResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,6 +30,7 @@ public class WebSecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
+
     @Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
 
@@ -56,6 +61,16 @@ public class WebSecurityConfig {
                 .and()
                 .addFilter(jwtAuthenticationFilter)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                // Agregar manejo de excepciones
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler)
+                .authenticationEntryPoint((request, response, authException) -> {
+                    AuthResponse authResponse = new AuthResponse("Autenticación fallida: NO TIENES AXCESO", HttpStatus.UNAUTHORIZED.value(), false);
+                    response.setContentType("application/json");
+                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                    response.getWriter().write(new ObjectMapper().writeValueAsString(authResponse));
+                })
+                .and()
                 .build();
 
     } //close method

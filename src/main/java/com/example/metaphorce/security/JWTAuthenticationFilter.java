@@ -1,10 +1,12 @@
 package com.example.metaphorce.security;
 
+import com.example.metaphorce.domain.AuthResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -71,9 +73,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         //  Se crea un nuevo token para usarlo en autorizaciones al consultar endpoints
         String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername());
 
+        AuthResponse authResponse = new AuthResponse("Autorizado, Con el token: "+token, HttpStatus.UNAUTHORIZED.value(), true);
+        response.setContentType("application/json");
         response.addHeader("Authorization", "Bearer " + token);
-        response.getWriter().flush();
+        //response.getWriter().flush();
 
-        super.successfulAuthentication(request, response, chain, authResult);
+
+        response.setStatus(HttpStatus.OK.value());
+        response.getWriter().write(new ObjectMapper().writeValueAsString(authResponse));
+
+
+        //super.successfulAuthentication(request, response, chain, authResult);
     } //close method
 } //close class
