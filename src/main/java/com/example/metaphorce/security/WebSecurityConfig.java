@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -56,6 +58,15 @@ public class WebSecurityConfig {
                 .and()
                 .addFilter(jwtAuthenticationFilter)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                // Agregar manejo de excepciones
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler)
+                .authenticationEntryPoint((request, response, authException) -> { // Personalizar la respuesta en caso de autenticación fallida
+                    ResponseEntity<String> responseEntity = new ResponseEntity<>("Autenticacion fallida", HttpStatus.UNAUTHORIZED);
+                    response.getWriter().write(responseEntity.toString());
+                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                })
+                .and()
                 .build();
 
     } //close method
