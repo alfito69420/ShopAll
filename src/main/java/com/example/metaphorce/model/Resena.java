@@ -24,7 +24,7 @@ public class Resena{
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
-    private UserImpl user;
+    private UserEntity user;
     private String resena;
     private Integer calificacion;
 }

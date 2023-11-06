@@ -1,7 +1,7 @@
 package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.UserResponse;
-import com.example.metaphorce.model.UserImpl;
+import com.example.metaphorce.model.UserEntity;
 import com.example.metaphorce.repository.UserRepository;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class UserService {
     }
 
    public ResponseEntity<Object> getUser(){
-        List<UserImpl> users = userRepository.findAll();
+        List<UserEntity> users = userRepository.findAll();
         if (!users.isEmpty()) {
             response = new UserResponse(users, "Obtención de todas los Users", 200, true);
             return new ResponseEntity<>(response.response2(), HttpStatus.OK);
@@ -32,7 +32,7 @@ public class UserService {
             return new ResponseEntity<>(response.response2(), HttpStatus.OK);
         }
     }
-    public ResponseEntity<Object> newUser(UserImpl user) {
+    public ResponseEntity<Object> newUser(UserEntity user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String contrasenaEncriptada = passwordEncoder.encode(user.getContrasena());
         user.setContrasena(contrasenaEncriptada);
@@ -40,9 +40,9 @@ public class UserService {
         response = new UserResponse(user, "Se pudo crear la User", 200, true);
         return new ResponseEntity<>(response.response(), HttpStatus.OK);
     }
-    public  ResponseEntity<Object> updateUser(Long id, UserImpl user) {
+    public  ResponseEntity<Object> updateUser(Long id, UserEntity user) {
         if (userRepository.findById(id).isPresent()) {
-            UserImpl existingUser = userRepository.findById(id).get();
+            UserEntity existingUser = userRepository.findById(id).get();
             existingUser.setNombre(user.getNombre());
             //existingUser.setDescripcion(user.getDescripcion());
             userRepository.save(existingUser);
@@ -69,7 +69,7 @@ public class UserService {
 
     public ResponseEntity<Object> getOne(Long id){
         if (userRepository.findById(id).isPresent()) {
-            UserImpl User = userRepository.findById(id).get();
+            UserEntity User = userRepository.findById(id).get();
             response = new UserResponse(User, "Si encontró el ID: " + id, 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {

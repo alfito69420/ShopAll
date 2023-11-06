@@ -3,7 +3,7 @@ package com.example.metaphorce.service;
         import com.example.metaphorce.domain.RolUsuarioResponse;
         import com.example.metaphorce.model.Rol;
         import com.example.metaphorce.model.RolUsuario;
-        import com.example.metaphorce.model.UserImpl;
+        import com.example.metaphorce.model.UserEntity;
         import com.example.metaphorce.repository.RolRepository;
         import com.example.metaphorce.repository.RolUsuarioRepository;
 
@@ -42,11 +42,11 @@ public class RolUsuarioService {
 
     public ResponseEntity<Object> newRolUsuario(RolUsuario rolUsuario) {
         Optional<Rol> optionalRol = rolRepository.findById(rolUsuario.getRol().getRol_id());
-        Optional<UserImpl> optionalUsuario = userRepository.findById(rolUsuario.getUser().getUsuario_id());
+        Optional<UserEntity> optionalUsuario = userRepository.findById(rolUsuario.getUser().getUsuario_id());
 
         if (optionalRol.isPresent() && optionalUsuario.isPresent()) {
             Rol rol = optionalRol.get();
-            UserImpl usuario = optionalUsuario.get();
+            UserEntity usuario = optionalUsuario.get();
             rolUsuario.setRol(rol);
             rolUsuario.setUser(usuario);
             this.rolUsuarioRepository.save(rolUsuario);

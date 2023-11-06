@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name ="usuario")
-public class UserImpl {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long usuario_id;

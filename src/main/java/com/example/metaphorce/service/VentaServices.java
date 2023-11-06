@@ -1,7 +1,7 @@
 package com.example.metaphorce.service;
 import com.example.metaphorce.domain.VentaResponse;
 import com.example.metaphorce.model.TipoPago;
-import com.example.metaphorce.model.UserImpl;
+import com.example.metaphorce.model.UserEntity;
 import com.example.metaphorce.model.Venta;
 import com.example.metaphorce.repository.TipoPagoRepository;
 import com.example.metaphorce.repository.UserRepository;
@@ -50,11 +50,11 @@ public class VentaServices {
     }
 
     public ResponseEntity<Object> newVenta(Venta venta) {
-        Optional<UserImpl> usuarioOptional = userRepository.findById(venta.getUser().getUsuario_id());
+        Optional<UserEntity> usuarioOptional = userRepository.findById(venta.getUser().getUsuario_id());
         Optional<TipoPago> tipoPagoOptional = tipoPagoRepository.findById(venta.getTipoPago().getTipo_pago_id());
 
         if (usuarioOptional.isPresent() && tipoPagoOptional.isPresent()) {
-            UserImpl usuario = usuarioOptional.get();
+            UserEntity usuario = usuarioOptional.get();
             TipoPago tipoPago = tipoPagoOptional.get();
             venta.setUser(usuario);
             venta.setTipoPago(tipoPago);

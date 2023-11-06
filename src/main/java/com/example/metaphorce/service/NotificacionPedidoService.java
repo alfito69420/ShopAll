@@ -4,7 +4,7 @@ package com.example.metaphorce.service;
         import com.example.metaphorce.model.EstadoPedido;
         import com.example.metaphorce.model.NotificacionPedido;
         import com.example.metaphorce.model.Pedido;
-        import com.example.metaphorce.model.UserImpl;
+        import com.example.metaphorce.model.UserEntity;
         import com.example.metaphorce.repository.EstadoPedidoRepository;
         import com.example.metaphorce.repository.NotificacionPedidoRepository;
 
@@ -45,7 +45,7 @@ public class NotificacionPedidoService {
     public ResponseEntity<Object> newNotificacionPedido(NotificacionPedido notificacionPedido) {
         Optional<Pedido> optionalPedido = pedidoRepository.findById(notificacionPedido.getPedido().getPedido_id());
         Optional<EstadoPedido> optionalEstadoPedido = estadoPedidoRepository.findById(notificacionPedido.getEstadoPedido().getEstado_pedido_id());
-        Optional<UserImpl> optionalUsuario = userRepository.findById(notificacionPedido.getUser().getUsuario_id());
+        Optional<UserEntity> optionalUsuario = userRepository.findById(notificacionPedido.getUser().getUsuario_id());
 
         if (optionalPedido.isPresent() && optionalEstadoPedido.isPresent() && optionalUsuario.isPresent()) {
             notificacionPedido.setPedido(optionalPedido.get());
