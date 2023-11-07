@@ -4,8 +4,11 @@ import com.example.metaphorce.domain.AuthResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.*;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +25,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -43,16 +49,15 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
-
         return httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
-                //Los que si van hacer autorizados sin autentificacion
                 .requestMatchers("/api/v1/producto/all").permitAll()
                 .requestMatchers("api/v1/producto/getOne/**").permitAll()
                 .requestMatchers("api/v1/user/create").permitAll()
-                .anyRequest()
-                .authenticated()
+                //.requestMatchers("/login").permitAll()
+                //.requestMatchers("api/v1/roles/accessAdmin").hasRole("Admin")
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()
@@ -74,7 +79,6 @@ public class WebSecurityConfig {
                 .build();
 
     } //close method
-//close method
 
     /**
      * Metodo que hardcodea las credenciales de usuario
@@ -98,7 +102,7 @@ public class WebSecurityConfig {
      *
      * @param httpSecurity
      * @param passwordEncoder
-     * @return
+     * @return httpSecurity
      * @throws Exception
      */
     @Bean

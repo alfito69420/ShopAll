@@ -7,13 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name ="usuario")
+@Table(name = "usuario")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +28,11 @@ public class UserEntity {
     private String telefono;
     private String token;
     private String ciudad;
+
+    //  Descomentar
+    /*@ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_rol",
+            joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "rol_id"))
+    private List<Rol> roles;*/
 }
