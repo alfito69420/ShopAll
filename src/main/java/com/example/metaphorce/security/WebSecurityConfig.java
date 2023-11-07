@@ -55,7 +55,6 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/v1/producto/all").permitAll()
                 .requestMatchers("api/v1/producto/getOne/**").permitAll()
                 .requestMatchers("api/v1/user/create").permitAll()
-                //.requestMatchers("/login").permitAll()
                 .requestMatchers("api/v1/roles/accessAdmin").hasRole("Admin")
                 .anyRequest().authenticated()
                 .and()
@@ -70,7 +69,8 @@ public class WebSecurityConfig {
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
                 .authenticationEntryPoint((request, response, authException) -> {
-                    AuthResponse authResponse = new AuthResponse("Autenticación fallida: NO TIENES AXCESO", HttpStatus.UNAUTHORIZED.value(), false);
+                    AuthResponse authResponse = new AuthResponse("Autenticación fallida: NO TIENES AXCESO",
+                            HttpStatus.UNAUTHORIZED.value(), false);
                     response.setContentType("application/json");
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
                     response.getWriter().write(new ObjectMapper().writeValueAsString(authResponse));
