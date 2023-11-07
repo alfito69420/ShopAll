@@ -30,9 +30,9 @@ public class UserEntity {
     private String ciudad;
 
     //  Descomentar
-    /*@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuario_rol",
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "rol_usuario",
             joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "rol_id"))
-    private List<Rol> roles;*/
+    private List<Rol> roles;
 }

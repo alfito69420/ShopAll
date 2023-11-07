@@ -56,7 +56,7 @@ public class WebSecurityConfig {
                 .requestMatchers("api/v1/producto/getOne/**").permitAll()
                 .requestMatchers("api/v1/user/create").permitAll()
                 //.requestMatchers("/login").permitAll()
-                //.requestMatchers("api/v1/roles/accessAdmin").hasRole("Admin")
+                .requestMatchers("api/v1/roles/accessAdmin").hasRole("Admin")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
