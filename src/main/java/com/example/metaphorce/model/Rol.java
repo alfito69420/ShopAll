@@ -1,18 +1,21 @@
 package com.example.metaphorce.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Builder
+@Data
 @ToString
-@Entity
+@Entity(name = "rol")
 @Table
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rol_id;
-    private String rol;
+
+    @Enumerated(EnumType.STRING)
+    private ERoles rol;
 } //close class
