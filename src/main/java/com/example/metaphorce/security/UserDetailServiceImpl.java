@@ -35,12 +35,5 @@ public class UserDetailServiceImpl implements UserDetailsService {
                         + email + " no existe."));
 
         return new UserDetailsImpl(user);
-        //return new User(user.getNombre(), user.getContrasena(), getAuthorities(user.getRoles()));
     } //close method
-
-/*    private Collection<? extends GrantedAuthority> getAuthorities(List<Rol> roles) {
-        return roles.stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getRol()))
-                .collect(Collectors.toList());
-    }*/
 } //close class
