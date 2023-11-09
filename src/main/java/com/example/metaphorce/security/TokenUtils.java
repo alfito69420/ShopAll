@@ -1,15 +1,17 @@
 package com.example.metaphorce.security;
 
+import com.example.metaphorce.model.Rol;
+import com.example.metaphorce.model.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.sql.Date;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Representa el manejo de token
@@ -30,17 +32,27 @@ public class TokenUtils {
      *
      * @param nombre
      * @param email
+     * @param authorities
      * @return
      */
-    public static String createToken(String nombre, String email) {
+    public static String createToken(String nombre, String email, Collection<? extends GrantedAuthority> authorities) {
         long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
         Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 
+
+        UserEntity userEntity = null;
+        //List<Rol> rol = userEntity.getRoles().stream().collect(Collectors.toList());
+
+        //String rol = authorities.toString();
+
         Map<String, Object> extra = new HashMap<>();
         extra.put("nombre", nombre);
+        extra.put("roles", authorities);
+
 
         return Jwts.builder()
                 .setSubject(email)
+                //.setSubject(String.valueOf(rol))
                 .setExpiration(expirationDate)
                 .addClaims(extra)
                 .signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes()))
@@ -66,7 +78,10 @@ public class TokenUtils {
 
             String email = claims.getSubject();
 
+            //List<? extends GrantedAuthority> tokenList = claims.getSubject();
+
             return new UsernamePasswordAuthenticationToken(email, null, Collections.emptyList());
+            //return new UsernamePasswordAuthenticationToken(email, null, tokenList);
         } catch (JwtException e) {
             return null;
         }

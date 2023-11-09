@@ -17,7 +17,6 @@ import java.util.Collections;
 
 /**
  *
- *
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -53,8 +52,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     } //close method
 
     /**
-     *
-     *
      * @param request
      * @param response
      * @param chain
@@ -72,9 +69,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
 
         //  Se crea un nuevo token para usarlo en autorizaciones al consultar endpoints
-        String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername());
+        //String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername());
+        String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername(), userDetails.getAuthorities());
 
-        AuthResponse authResponse = new AuthResponse("Autorizado, Con el token: "+token, HttpStatus.UNAUTHORIZED.value(), true);
+        AuthResponse authResponse = new AuthResponse("Autorizado, Con el token: " + token, HttpStatus.UNAUTHORIZED.value(), true);
         response.setContentType("application/json");
         response.addHeader("Authorization", "Bearer " + token);
         //response.getWriter().flush();

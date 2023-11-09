@@ -1,7 +1,6 @@
 package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.UserResponse;
-import com.example.metaphorce.model.ERoles;
 import com.example.metaphorce.model.Rol;
 import com.example.metaphorce.model.UserEntity;
 import com.example.metaphorce.repository.RolRepository;
@@ -9,11 +8,7 @@ import com.example.metaphorce.repository.UserRepository;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import com.example.metaphorce.request.CreateUserDTO;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
