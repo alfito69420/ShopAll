@@ -28,7 +28,8 @@ public class VentaDetalleService {
     private final ProductoRepository productoRepository;
 
     @Autowired
-    public VentaDetalleService(final VentaDetalleRepository ventaDetalleRepository, VentaRepository ventaRepository, ProductoRepository productoRepository) {
+    public VentaDetalleService(final VentaDetalleRepository ventaDetalleRepository, VentaRepository ventaRepository,
+                               ProductoRepository productoRepository) {
         this.ventaDetalleRepository = ventaDetalleRepository;
         this.ventaRepository = ventaRepository;
         this.productoRepository = productoRepository;
@@ -37,12 +38,18 @@ public class VentaDetalleService {
     //  GET ALL VENTA DETALLE RECORDS
     public ResponseEntity<Object> getVentaDetalle() {
         List<VentaDetalle> ventaDetalleList = ventaDetalleRepository.findAll();
+
+        //
+        logger.info(String.valueOf(ventaDetalleList));
+
+
         if (!ventaDetalleList.isEmpty()) {
             ventaDetalleResponse = new VentaDetalleResponse(ventaDetalleList,
                     "Obtención de todas los registros del detalle de la venta", 200, true);
             return new ResponseEntity<>(ventaDetalleResponse.response2(), HttpStatus.OK);
         } else {
-            ventaDetalleResponse = new VentaDetalleResponse("No se encontraron registros del detalle de todas las ventas", 400, false);
+            ventaDetalleResponse = new VentaDetalleResponse("No se encontraron registros del detalle de todas las ventas",
+                    400, false);
             return new ResponseEntity<>(ventaDetalleResponse.response2(), HttpStatus.OK);
         }
     } //close method
