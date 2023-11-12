@@ -31,7 +31,6 @@ public class WebSecurityConfig {
     @Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
 
-
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity,
                                     AuthenticationManager authenticationManager) throws Exception {

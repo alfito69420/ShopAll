@@ -1,7 +1,6 @@
 package com.example.metaphorce.security;
 
 import com.example.metaphorce.domain.AuthResponse;
-import com.example.metaphorce.service.VentaDetalleService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -43,7 +42,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             //  Se instancia para leer la informacion desde un JSON
             authCredentials = new ObjectMapper().readValue(request.getReader(), AuthCredentials.class);
         } catch (IOException e) {
-
+            logger.error("ERROR: ".concat(e.getMessage()));
         }
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
@@ -82,10 +81,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.addHeader("Authorization", "Bearer " + token);
         //response.getWriter().flush();
 
-
         response.setStatus(HttpStatus.OK.value());
         response.getWriter().write(new ObjectMapper().writeValueAsString(authResponse));
-
 
         //super.successfulAuthentication(request, response, chain, authResult);
     } //close method

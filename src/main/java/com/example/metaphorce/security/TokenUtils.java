@@ -4,6 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,6 +28,9 @@ public class TokenUtils {
     //  Constantes
     private final static String ACCESS_TOKEN_SECRET = "4qhq8LrEBfYcaRHxhdb9zURb2rf8e7Ud";
     private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;   //  Valido por 30 dias
+
+    //  Log
+    private static final Logger logger = LoggerFactory.getLogger(TokenUtils.class);
 
     /**
      * Metodo para la generacion de tokens
@@ -79,6 +84,7 @@ public class TokenUtils {
                     .collect(Collectors.toList());
             return new UsernamePasswordAuthenticationToken(email, null, authorities);
         } catch (JwtException e) {
+            logger.error("ERROR: ".concat(e.getMessage()));
             return null;
         }
     } //close method
