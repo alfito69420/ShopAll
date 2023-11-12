@@ -14,17 +14,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class ResenaService {
     private final ResenaRepository resenaRepository;
     private final UserRepository userRepository;
     private final ProductoRepository productoRepository;
-    ResenaResponse response;
+    private ResenaResponse response;
+
     @Autowired
     public ResenaService(ResenaRepository resenaRepository, UserRepository userRepository, ProductoRepository productoRepository) {
         this.resenaRepository = resenaRepository;
         this.userRepository = userRepository;
-        this. productoRepository = productoRepository;
+        this.productoRepository = productoRepository;
     }
 
     public ResponseEntity<Object> getResena() {
@@ -36,7 +38,7 @@ public class ResenaService {
             response = new ResenaResponse("No se encontraron reseñas", 400, false);
             return new ResponseEntity<>(response.response2(), HttpStatus.OK);
         }
-    }
+    } //close method
 
     public ResponseEntity<Object> newResena(Resena resena) {
         Optional<Producto> productoOptional = productoRepository.findById(resena.getProducto().getProducto_id());
@@ -55,14 +57,16 @@ public class ResenaService {
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
             if (!productoOptional.isPresent()) {
-                response = new ResenaResponse("No existe el Producto con el ID: " + resena.getProducto().getProducto_id(), 400, false);
+                response = new ResenaResponse("No existe el Producto con el ID: "
+                        + resena.getProducto().getProducto_id(), 400, false);
                 return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
             } else {
-                response = new ResenaResponse("No existe el Usuario con el ID: " + resena.getUser().getUsuario_id(), 400, false);
+                response = new ResenaResponse("No existe el Usuario con el ID: "
+                        + resena.getUser().getUsuario_id(), 400, false);
                 return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
             }
         }
-    }
+    } //close method
 
     public ResponseEntity<Object> updateResena(long id, Resena updatedResena) {
         Optional<Resena> existingResenaOptional = resenaRepository.findById(id);
@@ -87,10 +91,12 @@ public class ResenaService {
                 return new ResponseEntity<>(response.response(), HttpStatus.OK);
             } else {
                 if (!productoOptional.isPresent()) {
-                    response = new ResenaResponse("No existe el Producto con el ID: " + updatedResena.getProducto().getProducto_id(), 400, false);
+                    response = new ResenaResponse("No existe el Producto con el ID: "
+                            + updatedResena.getProducto().getProducto_id(), 400, false);
                     return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
                 } else {
-                    response = new ResenaResponse("No existe el Usuario con el ID: " + updatedResena.getUser().getUsuario_id(), 400, false);
+                    response = new ResenaResponse("No existe el Usuario con el ID: "
+                            + updatedResena.getUser().getUsuario_id(), 400, false);
                     return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
                 }
             }
@@ -98,7 +104,7 @@ public class ResenaService {
             response = new ResenaResponse("No existe la Reseña con el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.BAD_REQUEST);
         }
-    }
+    } //close method
 
     public ResponseEntity<Object> eliminarResena(Long id) {
         //Verificar si esta vacio
@@ -110,7 +116,7 @@ public class ResenaService {
             response = new ResenaResponse("No existe el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
-    }
+    } //close method
 
     public ResponseEntity<Object> getOne(Long id) {
         if (resenaRepository.findById(Long.valueOf(id)).isPresent()) {
@@ -121,5 +127,5 @@ public class ResenaService {
             response = new ResenaResponse("No existe la tienda con el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
-    }
-}
+    } //close method
+} //close class

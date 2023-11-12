@@ -7,15 +7,16 @@ import com.example.metaphorce.model.VentaDetalle;
 import com.example.metaphorce.repository.ProductoRepository;
 import com.example.metaphorce.repository.VentaDetalleRepository;
 import com.example.metaphorce.repository.VentaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class VentaDetalleService {
 
@@ -24,7 +25,7 @@ public class VentaDetalleService {
 
     private static final Logger logger = LoggerFactory.getLogger(VentaDetalleService.class);
 
-    private  final VentaRepository ventaRepository;
+    private final VentaRepository ventaRepository;
     private final ProductoRepository productoRepository;
 
     @Autowired
@@ -42,14 +43,13 @@ public class VentaDetalleService {
         //
         logger.info(String.valueOf(ventaDetalleList));
 
-
         if (!ventaDetalleList.isEmpty()) {
             ventaDetalleResponse = new VentaDetalleResponse(ventaDetalleList,
                     "Obtención de todas los registros del detalle de la venta", 200, true);
             return new ResponseEntity<>(ventaDetalleResponse.response2(), HttpStatus.OK);
         } else {
-            ventaDetalleResponse = new VentaDetalleResponse("No se encontraron registros del detalle de todas las ventas",
-                    400, false);
+            ventaDetalleResponse = new VentaDetalleResponse(
+                    "No se encontraron registros del detalle de todas las ventas", 400, false);
             return new ResponseEntity<>(ventaDetalleResponse.response2(), HttpStatus.OK);
         }
     } //close method
@@ -66,18 +66,22 @@ public class VentaDetalleService {
             ventaDetalle.setProducto(producto);
             ventaDetalleRepository.save(ventaDetalle);
 
-            ventaDetalleResponse = new VentaDetalleResponse(ventaDetalle, "Se pudo crear el detalle de venta", 200, true);
+            ventaDetalleResponse = new VentaDetalleResponse(ventaDetalle, "Se pudo crear el detalle de venta",
+                    200, true);
             return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
         } else {
             if (!ventaOptional.isPresent()) {
-                ventaDetalleResponse = new VentaDetalleResponse("No existe la Venta con el ID: " + ventaDetalle.getVenta().getVenta_id() , 400, false);
+                ventaDetalleResponse = new VentaDetalleResponse("No existe la Venta con el ID: "
+                        + ventaDetalle.getVenta().getVenta_id(), 400, false);
                 return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
             } else {
                 if (!productoOptional.isPresent()) {
-                    ventaDetalleResponse = new VentaDetalleResponse("No existe el Producto con el ID: " + ventaDetalle.getProducto().getProducto_id(), 400, false);
+                    ventaDetalleResponse = new VentaDetalleResponse("No existe el Producto con el ID: "
+                            + ventaDetalle.getProducto().getProducto_id(), 400, false);
                     return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
                 } else {
-                    ventaDetalleResponse = new VentaDetalleResponse("ERROR al crear el detalle de venta", 500, false);
+                    ventaDetalleResponse = new VentaDetalleResponse("ERROR al crear el detalle de venta",
+                            500, false);
                     return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.INTERNAL_SERVER_ERROR);
                 }
             }
@@ -85,7 +89,7 @@ public class VentaDetalleService {
     } // close method
 
     //  UPDATE A SPECIFIC VENTA DETALLE RECORD
-    public ResponseEntity<Object> updateVentaDetalle( Long id, VentaDetalle ventaDetalle) {
+    public ResponseEntity<Object> updateVentaDetalle(Long id, VentaDetalle ventaDetalle) {
         Optional<VentaDetalle> existingVentaDetalleOptional = ventaDetalleRepository.findById(id);
 
         if (existingVentaDetalleOptional.isPresent()) {
@@ -108,24 +112,29 @@ public class VentaDetalleService {
 
                 ventaDetalleRepository.save(existingVentaDetalle);
 
-                ventaDetalleResponse = new VentaDetalleResponse(existingVentaDetalle, "Se pudo actualizar el detalle de venta", 200, true);
+                ventaDetalleResponse = new VentaDetalleResponse(existingVentaDetalle,
+                        "Se pudo actualizar el detalle de venta", 200, true);
                 return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
             } else {
                 if (!ventaOptional.isPresent()) {
-                    ventaDetalleResponse = new VentaDetalleResponse("No existe la Venta con el ID: " + ventaDetalle.getVenta().getVenta_id(), 400, false);
+                    ventaDetalleResponse = new VentaDetalleResponse("No existe la Venta con el ID: "
+                            + ventaDetalle.getVenta().getVenta_id(), 400, false);
                     return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
                 } else {
                     if (!productoOptional.isPresent()) {
-                        ventaDetalleResponse = new VentaDetalleResponse("No existe el Producto con el ID: " + ventaDetalle.getProducto().getProducto_id(), 400, false);
+                        ventaDetalleResponse = new VentaDetalleResponse("No existe el Producto con el ID: "
+                                + ventaDetalle.getProducto().getProducto_id(), 400, false);
                         return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
                     } else {
-                        ventaDetalleResponse = new VentaDetalleResponse("ERROR al actualizar el detalle de venta", 500, false);
+                        ventaDetalleResponse = new VentaDetalleResponse("ERROR al actualizar el detalle de venta",
+                                500, false);
                         return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.INTERNAL_SERVER_ERROR);
                     }
                 }
             }
         } else {
-            ventaDetalleResponse = new VentaDetalleResponse("No existe el detalle de venta con el ID: " + id, 400, false);
+            ventaDetalleResponse = new VentaDetalleResponse("No existe el detalle de venta con el ID: " + id,
+                    400, false);
             return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.BAD_REQUEST);
         }
     } //close method
@@ -134,10 +143,12 @@ public class VentaDetalleService {
     public ResponseEntity<Object> deleteVentaDetalle(final Long id) {
         if (!this.ventaDetalleRepository.findById(id).isEmpty()) {
             this.ventaDetalleRepository.deleteById(id);
-            ventaDetalleResponse = new VentaDetalleResponse("Se ha eliminado el registro con el ID: " + id, 200, true);
+            ventaDetalleResponse = new VentaDetalleResponse("Se ha eliminado el registro con el ID: "
+                    + id, 200, true);
             return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
         } else {
-            ventaDetalleResponse = new VentaDetalleResponse("No existe el registro con el ID: " + id, 400, false);
+            ventaDetalleResponse = new VentaDetalleResponse("No existe el registro con el ID: "
+                    + id, 400, false);
             return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
         }
     } //close method
@@ -146,10 +157,12 @@ public class VentaDetalleService {
     public ResponseEntity<Object> getOneVentaDetalle(final Long id) {
         if (ventaDetalleRepository.findById(id).isPresent()) {
             VentaDetalle ventaDetalle = ventaDetalleRepository.findById(id).get();
-            ventaDetalleResponse = new VentaDetalleResponse(ventaDetalle, "Si encontró el ID: " + id, 200, true);
+            ventaDetalleResponse = new VentaDetalleResponse(ventaDetalle, "Si encontró el ID: " + id,
+                    200, true);
             return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
         } else {
-            ventaDetalleResponse = new VentaDetalleResponse("No existe el detalle de la venta con el ID: " + id, 400, false);
+            ventaDetalleResponse = new VentaDetalleResponse("No existe el detalle de la venta con el ID: " + id,
+                    400, false);
             return new ResponseEntity<>(ventaDetalleResponse.response(), HttpStatus.OK);
         }
     } //close method

@@ -5,17 +5,15 @@ import com.example.metaphorce.model.Rol;
 import com.example.metaphorce.model.UserEntity;
 import com.example.metaphorce.repository.RolRepository;
 import com.example.metaphorce.repository.UserRepository;
-
-import java.util.Collections;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -23,7 +21,7 @@ public class UserService {
 
     @Autowired
     private RolRepository rolRepository;
-    UserResponse response;
+    private UserResponse response;
 
     public UserService(UserRepository userRepository/*, RolRepository rolRepository*/) {
         this.userRepository = userRepository;
@@ -39,7 +37,7 @@ public class UserService {
             response = new UserResponse("No se encontraron Users", 400, false);
             return new ResponseEntity<>(response.response2(), HttpStatus.OK);
         }
-    }
+    } //close method
 
     public ResponseEntity<Object> newUser(@RequestBody UserEntity user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -54,35 +52,7 @@ public class UserService {
         this.userRepository.save(user);
         response = new UserResponse(user, "Se pudo crear la User", 200, true);
         return new ResponseEntity<>(response.response(), HttpStatus.OK);
-    }
-
-    /*public ResponseEntity<Object> newUser2(@RequestBody CreateUserDTO createUserDTO) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String contrasenaEncriptada = passwordEncoder.encode(createUserDTO.getPassword());
-
-        Set<Rol> roles = createUserDTO.getRoles().stream()
-                .map(rol -> Rol.builder()
-                        .rol(ERoles.valueOf(rol))
-                        .build())
-                .collect(Collectors.toSet());
-
-        UserEntity user = UserEntity.builder()
-                .nombre(createUserDTO.getNombre())
-                .contrasena(contrasenaEncriptada)
-                .email(createUserDTO.getEmail())
-                .roles(roles)
-                .email_verificado(createUserDTO.isEmail_verificado())
-                .direccion(createUserDTO.getDireccion())
-                .telefono(createUserDTO.getTelefono())
-                .token(createUserDTO.getToken())
-                .ciudad(createUserDTO.getCiudad())
-                .build();
-
-        this.userRepository.save(user);
-
-        response = new UserResponse(user, "Se pudo crear la User", 200, true);
-        return new ResponseEntity<>(response.response(), HttpStatus.OK);
-    }*/
+    } //close method
 
     public ResponseEntity<Object> updateUser(Long id, UserEntity user) {
         if (userRepository.findById(id).isPresent()) {
@@ -96,9 +66,7 @@ public class UserService {
             response = new UserResponse("No existe el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
-    }
-
-    ;
+    } //close method
 
     public ResponseEntity<Object> eliminar(Long id) {
         //Verificar si esta vacio
@@ -111,9 +79,7 @@ public class UserService {
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
 
         }
-    }
-
-    ;
+    } //close method
 
     public ResponseEntity<Object> getOne(Long id) {
         if (userRepository.findById(id).isPresent()) {
@@ -124,5 +90,5 @@ public class UserService {
             response = new UserResponse("No existe la User con el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
-    }
-}
+    } //close method
+} //close class
