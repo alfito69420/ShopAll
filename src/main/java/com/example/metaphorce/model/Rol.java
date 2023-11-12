@@ -1,7 +1,6 @@
 package com.example.metaphorce.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 
 @NoArgsConstructor
