@@ -62,10 +62,14 @@ public class UserService {
     public ResponseEntity<Object> updateUser(Long id, UserEntity user) {
         if (userRepository.findById(id).isPresent()) {
             UserEntity existingUser = userRepository.findById(id).get();
+
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String contrasenaEncriptada = passwordEncoder.encode(user.getContrasena());
+
             existingUser.setNombre(user.getNombre());
             existingUser.setEmail(user.getEmail());
             existingUser.setEmail_verificado(user.isEmail_verificado());
-            existingUser.setContrasena(user.getContrasena());
+            existingUser.setContrasena(contrasenaEncriptada);
             existingUser.setDireccion(user.getDireccion());
             existingUser.setTelefono(user.getTelefono());
             existingUser.setToken(user.getToken());
