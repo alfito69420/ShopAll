@@ -1,9 +1,7 @@
 package com.example.metaphorce.service;
 
 import com.example.metaphorce.domain.EstadoPedidoResponse;
-import com.example.metaphorce.domain.VentaDetalleResponse;
 import com.example.metaphorce.model.EstadoPedido;
-import com.example.metaphorce.model.VentaDetalle;
 import com.example.metaphorce.repository.EstadoPedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

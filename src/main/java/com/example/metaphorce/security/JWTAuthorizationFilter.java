@@ -17,14 +17,11 @@ import java.io.IOException;
  * y generacion de un nuevo token a partir
  * del anterior para la interaccion con
  * endpoints
- *
  */
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     /**
-     *
-     *
      * @param request
      * @param response
      * @param filterChain

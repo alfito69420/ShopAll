@@ -7,25 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
+@EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
     private final UserDetailsService userDetailsService;
@@ -33,7 +30,6 @@ public class WebSecurityConfig {
 
     @Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
-
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity,
@@ -43,29 +39,28 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
-
         return httpSecurity
-                .csrf().disable()
-                .authorizeRequests()
-                //Los que si van hacer autorizados sin autentificacion
-                .requestMatchers("/api/v1/producto/all").permitAll()
-                .requestMatchers("api/v1/producto/getOne/**").permitAll()
-                .requestMatchers("api/v1/user/create").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .csrf(httpSecurityCsrfConfigurer -> {
+                    httpSecurityCsrfConfigurer.disable();
+                })
+                .authorizeHttpRequests(auth -> {
+                    //auth.requestMatchers("/api/v1/producto/all").hasRole("Admin");
+                    auth.requestMatchers("api/v1/producto/getOne/**").permitAll();
+                    auth.requestMatchers("api/v1/user/create").permitAll();
+
+                    auth.anyRequest().authenticated();
+                })
+                .sessionManagement(httpSecuritySessionManagementConfigurer -> {
+                    httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                })
                 .addFilter(jwtAuthenticationFilter)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 // Agregar manejo de excepciones
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
                 .authenticationEntryPoint((request, response, authException) -> {
-                    AuthResponse authResponse = new AuthResponse("Autenticación fallida: NO TIENES AXCESO", HttpStatus.UNAUTHORIZED.value(), false);
+                    AuthResponse authResponse = new AuthResponse("Autenticación fallida: NO TIENES AXCESO",
+                            HttpStatus.UNAUTHORIZED.value(), false);
                     response.setContentType("application/json");
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
                     response.getWriter().write(new ObjectMapper().writeValueAsString(authResponse));
@@ -74,31 +69,11 @@ public class WebSecurityConfig {
                 .build();
 
     } //close method
-//close method
 
     /**
-     * Metodo que hardcodea las credenciales de usuario
-     * para el login de la api
-     *
-     * @return el manager con las credenciales
-     */
-/*    @Bean
-    UserDetailsService userDetailsService() {
-        //  Carga usuarios en memoria
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles()
-                .build());
-        return manager;
-    } //close method*/
-
-    /**
-     *
-     *
      * @param httpSecurity
      * @param passwordEncoder
-     * @return
+     * @return httpSecurity
      * @throws Exception
      */
     @Bean

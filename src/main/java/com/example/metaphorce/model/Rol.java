@@ -5,14 +5,16 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Builder
+@Data
 @ToString
-@Entity
+@Entity(name = "rol")
 @Table
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rol_id;
+
+    //@Enumerated(EnumType.STRING)
     private String rol;
 } //close class

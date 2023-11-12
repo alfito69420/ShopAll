@@ -1,6 +1,6 @@
 package com.example.metaphorce.security;
 
-import com.example.metaphorce.model.UserImpl;
+import com.example.metaphorce.model.UserEntity;
 import com.example.metaphorce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
  * usuarios hacia la base de datos
  * desde la informacion que se le
  * mande
- *
  */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
@@ -23,7 +22,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
-        UserImpl user = userRepository
+        UserEntity user = userRepository
                 .findOneByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario con el email: "
                         + email + " no existe."));

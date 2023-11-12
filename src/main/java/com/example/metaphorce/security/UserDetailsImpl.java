@@ -1,25 +1,32 @@
 package com.example.metaphorce.security;
 
-import com.example.metaphorce.model.UserImpl;
+import com.example.metaphorce.model.Rol;
+import com.example.metaphorce.model.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- *
  *
  */
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
-    private final UserImpl user;
+    private final UserEntity user;
+    //private List<Rol> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList(); //
+        List<Rol> roles = user.getRoles().stream().toList();
+
+        return roles.stream()
+                .map(rol -> new SimpleGrantedAuthority(rol.getRol()))
+                .collect(Collectors.toList());
     }
 
     @Override
