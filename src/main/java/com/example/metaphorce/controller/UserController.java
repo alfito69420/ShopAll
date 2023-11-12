@@ -10,29 +10,32 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
-    public  UserController(UserService userService){
-        this.userService=userService;
-    }
-    @GetMapping("/all")
-    public ResponseEntity<Object>getUser(){
-        return userService.getUser();
-    }
-    @GetMapping("/getOne/{id}")
-    public ResponseEntity<Object> getUser(@PathVariable Long id){
-        return this.userService.getOne(id);
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<Object> getUser() {
+        return userService.getUser();
+    } //close method
+
+    @GetMapping("/getOne/{id}")
+    public ResponseEntity<Object> getUser(@PathVariable Long id) {
+        return this.userService.getOne(id);
+    } //close method
+
     @PostMapping("/create")
-    public ResponseEntity<Object> registrarUser(@RequestBody UserEntity user){
+    public ResponseEntity<Object> registrarUser(@RequestBody UserEntity user) {
         return this.userService.newUser(user);
-    }
+    } //close method
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> actualizarUser(@PathVariable Long id,@RequestBody UserEntity user){
-        return this.userService.updateUser(id,user);
-    }
+    public ResponseEntity<Object> actualizarUser(@PathVariable Long id, @RequestBody UserEntity user) {
+        return this.userService.updateUser(id, user);
+    } //close method
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> eliminarUsuario(@PathVariable Long id) {
         return this.userService.eliminar(id);
-
-    }
-}
+    } //close method
+} //close class

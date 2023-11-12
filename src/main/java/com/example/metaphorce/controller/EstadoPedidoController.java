@@ -32,9 +32,10 @@ public class EstadoPedidoController {
     } //close method
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateEstadoPedido(@PathVariable final Long id, @RequestBody final EstadoPedido estadoPedido) {
+    public ResponseEntity<Object> updateEstadoPedido(@PathVariable final Long id,
+                                                     @RequestBody final EstadoPedido estadoPedido) {
         return this.estadoPedidoService.updateEstadoPedido(id, estadoPedido);
-    }
+    } //close method
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteEstadoPedido(@PathVariable final Long id) {

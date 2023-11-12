@@ -11,15 +11,15 @@ public class TestRolesController {
     @GetMapping("/accessAdmin")
     public String accessAdmin() {
         return "Has accedido como admin";
-    }
+    } //close method
 
     @GetMapping("/accessUser")
     public String accessUser() {
         return "Has accedido como user";
-    }
+    } //close method
 
     @GetMapping("/accessInvited")
     public String accessInvited() {
         return "Has accedido como invitado";
-    }
-}
+    } //close method
+} //close class

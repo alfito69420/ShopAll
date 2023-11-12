@@ -1,7 +1,5 @@
 package com.example.metaphorce.security;
 
-import com.example.metaphorce.model.Rol;
-import com.example.metaphorce.model.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -11,7 +9,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.sql.Date;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -19,7 +20,6 @@ import java.util.stream.Collectors;
  * desde su creacion hasta su
  * descomposicion para fines de
  * autenticacion
- *
  */
 public class TokenUtils {
 
@@ -81,6 +81,5 @@ public class TokenUtils {
         } catch (JwtException e) {
             return null;
         }
-
     } //close method
 } //close class

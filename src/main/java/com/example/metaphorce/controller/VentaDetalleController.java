@@ -33,9 +33,10 @@ public class VentaDetalleController {
     } //close method
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateVentaDetalle(@PathVariable final Long id, @RequestBody final VentaDetalle ventaDetalle) {
+    public ResponseEntity<Object> updateVentaDetalle(@PathVariable final Long id,
+                                                     @RequestBody final VentaDetalle ventaDetalle) {
         return this.ventaDetalleService.updateVentaDetalle(id, ventaDetalle);
-    }
+    } //close method
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> deleteVentaDetalle(@PathVariable final Long id) {

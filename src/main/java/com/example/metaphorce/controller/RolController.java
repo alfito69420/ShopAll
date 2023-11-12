@@ -19,29 +19,29 @@ public class RolController {
     @PreAuthorize("hasRole('Admin')")
     public ResponseEntity<Object> getRoles() {
         return rolService.getRoles();
-    }
+    } //close method
 
     @GetMapping("/getOne/{id}")
     @PreAuthorize("hasRole('Admin')")
     public ResponseEntity<Object> getRol(@PathVariable Long id) {
         return this.rolService.getOne(id);
-    }
+    } //close method
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('ROLE_Admin')")
     public ResponseEntity<Object> registrarRol(@RequestBody Rol rol) {
         return this.rolService.newRol(rol);
-    }
+    } //close method
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasRole('Admin')")
     public ResponseEntity<Object> actualizarRol(@PathVariable Long id, @RequestBody Rol rol) {
         return this.rolService.updateRol(id, rol);
-    }
+    } //close method
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('Admin')")
     public ResponseEntity<Object> eliminarRol(@PathVariable Long id) {
         return this.rolService.eliminar(id);
-    }
-}
+    } //close method
+} //close class
