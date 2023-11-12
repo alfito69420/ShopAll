@@ -8,6 +8,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.sql.Date;
 import java.util.*;
@@ -39,25 +40,21 @@ public class TokenUtils {
         long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
         Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 
-
-        UserEntity userEntity = null;
-        //List<Rol> rol = userEntity.getRoles().stream().collect(Collectors.toList());
-
-        //String rol = authorities.toString();
+        List<String> roles = authorities.stream()
+                .map(authority -> "ROLE_" + authority.getAuthority())
+                .collect(Collectors.toList());
 
         Map<String, Object> extra = new HashMap<>();
         extra.put("nombre", nombre);
-        extra.put("roles", authorities);
-
+        extra.put("roles", roles);
 
         return Jwts.builder()
                 .setSubject(email)
-                //.setSubject(String.valueOf(rol))
                 .setExpiration(expirationDate)
                 .addClaims(extra)
                 .signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes()))
                 .compact();
-    } //close method
+    }//close method
 
     /**
      * Metodo para que spring security reconozca
@@ -69,7 +66,6 @@ public class TokenUtils {
      */
     public static UsernamePasswordAuthenticationToken getAuth(String token) {
         try {
-            //  Se hace el proceso inverso; se descompone el token
             Claims claims = Jwts.parserBuilder()
                     .setSigningKey(ACCESS_TOKEN_SECRET.getBytes())
                     .build()
@@ -77,13 +73,14 @@ public class TokenUtils {
                     .getBody();
 
             String email = claims.getSubject();
-
-            //List<? extends GrantedAuthority> tokenList = claims.getSubject();
-
-            return new UsernamePasswordAuthenticationToken(email, null, Collections.emptyList());
-            //return new UsernamePasswordAuthenticationToken(email, null, tokenList);
+            List<String> roles = (List<String>) claims.get("roles");
+            List<SimpleGrantedAuthority> authorities = roles.stream()
+                    .map(role -> new SimpleGrantedAuthority(role))
+                    .collect(Collectors.toList());
+            return new UsernamePasswordAuthenticationToken(email, null, authorities);
         } catch (JwtException e) {
             return null;
         }
+
     } //close method
 } //close class
