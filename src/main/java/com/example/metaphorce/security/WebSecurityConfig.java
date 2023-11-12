@@ -9,8 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,7 +23,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
-public class WebSecurityConfig {
+@EnableMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfig  {
 
     private final UserDetailsService userDetailsService;
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
@@ -43,10 +46,10 @@ public class WebSecurityConfig {
                     httpSecurityCsrfConfigurer.disable();
                 })
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/api/v1/producto/all").permitAll();
+                    //auth.requestMatchers("/api/v1/producto/all").hasRole("Admin");
                     auth.requestMatchers("api/v1/producto/getOne/**").permitAll();
                     auth.requestMatchers("api/v1/user/create").permitAll();
-                    auth.requestMatchers("api/v1/roles/accessAdmin").hasRole("ADMIN");
+
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> {

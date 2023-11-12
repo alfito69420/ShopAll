@@ -26,16 +26,11 @@ public class UserDetailsImpl implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<Rol> roles = user.getRoles().stream().toList();
 
-        /*return roles.stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getRol()))
-                .collect(Collectors.toList());*/
-
         return roles.stream()
                 .map(rol -> new SimpleGrantedAuthority(rol.getRol()))
                 .collect(Collectors.toList());
-
-        //return Collections.emptyList();
     }
+
 
     @Override
     public String getPassword() {
