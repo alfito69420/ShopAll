@@ -1,7 +1,6 @@
 package com.example.metaphorce.domain;
 
 import com.example.metaphorce.model.EstadoPedido;
-import com.example.metaphorce.model.VentaDetalle;
 import lombok.*;
 
 import java.util.HashMap;
@@ -12,13 +11,14 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class EstadoPedidoResponse extends GenericResponse{
+public class EstadoPedidoResponse extends GenericResponse {
     private EstadoPedido estadoPedido;
     private List<EstadoPedido> estadoPedidoList;
     private HashMap<String, Object> data = new HashMap<>();
 
     //  GET ONLY ONE RECORD
-    public EstadoPedidoResponse(final EstadoPedido estadoPedido, final String message, final int status, final boolean flag) {
+    public EstadoPedidoResponse(final EstadoPedido estadoPedido, final String message,
+                                final int status, final boolean flag) {
         super(flag, message, status);
         this.estadoPedido = estadoPedido;
     }
@@ -26,13 +26,13 @@ public class EstadoPedidoResponse extends GenericResponse{
     //  DELETE
     public EstadoPedidoResponse(final String message, final int status, final boolean flag) {
         super(flag, message, status);
-    }
+    } //close method
 
     //  GET ALL
     public EstadoPedidoResponse(final List<EstadoPedido> estadoPedidoList, final String message, final int status, final boolean flag) {
         super(flag, message, status);
         this.estadoPedidoList = estadoPedidoList;
-    }
+    } //close method
 
     public Object response() {
         data.put("Flag", isFlag());

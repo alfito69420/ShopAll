@@ -1,11 +1,10 @@
 package com.example.metaphorce.domain;
 
-        import java.util.HashMap;
-        import java.util.List;
+import com.example.metaphorce.model.Rol;
+import lombok.*;
 
-        import com.example.metaphorce.model.Rol;
-
-        import lombok.*;
+import java.util.HashMap;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,24 +14,24 @@ package com.example.metaphorce.domain;
 public class RolResponse extends GenericResponse {
     private Rol rol;
     private List<Rol> listRol;
-    HashMap<String,Object> datos = new HashMap<>();
+    private HashMap<String, Object> datos = new HashMap<>();
 
     //GET ONE POST PATCH
-    public RolResponse(Rol rol, String message, int status, boolean flag){
+    public RolResponse(Rol rol, String message, int status, boolean flag) {
         super(flag, message, status);
         this.rol = rol;
-    }
+    } //close method
 
     //DELETE
-    public RolResponse(String message, int status, boolean flag){
+    public RolResponse(String message, int status, boolean flag) {
         super(flag, message, status);
-    }
+    } //close method
 
     //GET All
-    public RolResponse(List<Rol> listRol, String message, int status, boolean flag){
+    public RolResponse(List<Rol> listRol, String message, int status, boolean flag) {
         super(flag, message, status);
         this.listRol = listRol;
-    }
+    } //close method
 
     public Object response() {
         datos.put("Flag", isFlag());
@@ -40,7 +39,7 @@ public class RolResponse extends GenericResponse {
         datos.put("Status", getStatusCode());
         datos.put("Data", this.rol);
         return datos;
-    }
+    } //close method
 
     public Object response2() {
         datos.put("Flag", isFlag());
@@ -48,5 +47,5 @@ public class RolResponse extends GenericResponse {
         datos.put("Status", getStatusCode());
         datos.put("Data", this.listRol);
         return datos;
-    }
-}
+    } //close method
+} //close class
