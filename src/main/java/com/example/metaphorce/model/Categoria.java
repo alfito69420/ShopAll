@@ -1,11 +1,7 @@
 package com.example.metaphorce.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,6 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
+@Builder
 @Table
 public class Categoria {
     @Id

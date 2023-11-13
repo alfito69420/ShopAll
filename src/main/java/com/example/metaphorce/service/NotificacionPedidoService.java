@@ -96,8 +96,8 @@ public class NotificacionPedidoService {
 
     public ResponseEntity<Object> getOne(Long id) {
         if (notificacionPedidoRepository.findById(id).isPresent()) {
-            NotificacionPedido notizacionPedidocacion = notificacionPedidoRepository.findById(id).get();
-            response = new NotificacionPedidoResponse(notizacionPedidocacion, "Si encontró el ID: " + id, 200, true);
+            NotificacionPedido notificacionPedido = notificacionPedidoRepository.findById(id).get();
+            response = new NotificacionPedidoResponse(notificacionPedido, "Si encontró el ID: " + id, 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
             response = new NotificacionPedidoResponse("No existe la Notificación de Pedido con el ID: " + id, 400, false);

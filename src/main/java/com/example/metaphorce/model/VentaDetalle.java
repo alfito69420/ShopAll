@@ -25,6 +25,6 @@ public class VentaDetalle {
     private Producto producto;
 
     private int cantidad;
-    private double precio;
-    private double sub_total;
+    private float precio;
+    private float sub_total;
 } //close class
