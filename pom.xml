@@ -15,7 +15,6 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>17</java.version>
-        <checkstyle.config.location>config/checkstyle/checkstyle.xml</checkstyle.config.location>
     </properties>
     <dependencies>
         <dependency>
@@ -137,15 +136,6 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.3.1</version>
-                <configuration>
-                    <configLocation>config/checkstyle/checkstyle.xml</configLocation>
                 </configuration>
             </plugin>
         </plugins>
