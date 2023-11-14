@@ -44,7 +44,8 @@ public class WebSecurityConfig {
                     httpSecurityCsrfConfigurer.disable();
                 })
                 .authorizeHttpRequests(auth -> {
-                    //auth.requestMatchers("/api/v1/producto/all").hasRole("Admin");
+                    auth.requestMatchers("/api/v1/producto/all").permitAll();
+                    auth.requestMatchers("/api/v1/categoria/all").permitAll();
                     auth.requestMatchers("api/v1/producto/getOne/**").permitAll();
                     auth.requestMatchers("api/v1/user/create").permitAll();
 

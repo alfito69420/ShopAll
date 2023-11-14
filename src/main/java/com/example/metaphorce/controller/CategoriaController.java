@@ -20,7 +20,6 @@ public class CategoriaController {
 
     //@PreAuthorize("hasRole('Comprador') OR hasRole('Supplier') OR ")
     @GetMapping("/all")
-    @PreAuthorize("hasAnyRole('Comprador','Admin','Supplier')")
     public ResponseEntity<Object> getCategoria() {
         return categoriaServices.getCategoria();
     } //close method

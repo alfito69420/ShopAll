@@ -23,7 +23,6 @@ public class ProductoController {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasAnyRole('Admin','Comprador','Supplier')")
     public ResponseEntity<Object> getProducto() {
         return productoService.getProducto();
     } //close method
