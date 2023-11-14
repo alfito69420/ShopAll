@@ -194,24 +194,22 @@ class NotificacionPedidoServiceTest {
 
         // Verificar el resultado
         assertEquals(200, responseEntity.getStatusCodeValue());
-        // Puedes agregar más aserciones según la estructura de tu respuesta
+        //aserción extra - se pueden agregar las que se necesiten para validar resultados y ejecución.
         assertNotNull(responseEntity.getBody());
     }
 
     @Test
     void getOne() {
-        Long id = 1L;
-
         // Simular el comportamiento del repositorio al devolver un Optional con un valor
         NotificacionPedido notificacionPedido = new NotificacionPedido();
-        notificacionPedido.setNotificacion_pedido_id(id);
+        notificacionPedido.setNotificacion_pedido_id(1L);
         Optional<NotificacionPedido> optionalNotificacionPedido = Optional.of(notificacionPedido);
 
         // Configurar el comportamiento esperado del repositorio
-        when(notificacionPedidoRepository.findById(id)).thenReturn(optionalNotificacionPedido);
+        when(notificacionPedidoRepository.findById(1L)).thenReturn(optionalNotificacionPedido);
 
         // Llamar a la función del servicio
-        ResponseEntity<Object> responseEntity = notificacionPedidoService.getOne(id);
+        ResponseEntity<Object> responseEntity = notificacionPedidoService.getOne(1L);
 
         // Verificar el resultado
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
