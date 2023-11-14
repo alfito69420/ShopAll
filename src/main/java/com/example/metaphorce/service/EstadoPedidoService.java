@@ -18,8 +18,8 @@ public class EstadoPedidoService {
     private EstadoPedidoResponse estadoPedidoResponse;
 
     @Autowired
-    public EstadoPedidoService(EstadoPedidoRepository estadoPedidoRepository) {
-        this.estadoPedidoRepository = estadoPedidoRepository;
+    public EstadoPedidoService(final EstadoPedidoRepository pEstadoPedidoRepository) {
+        this.estadoPedidoRepository = pEstadoPedidoRepository;
     }
 
     //  GET ALL ESTADO PEDIDO RECORDS

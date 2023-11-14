@@ -13,8 +13,8 @@ public class EstadoPedidoController {
     private final EstadoPedidoService estadoPedidoService;
 
     @Autowired
-    public EstadoPedidoController(EstadoPedidoService estadoPedidoService) {
-        this.estadoPedidoService = estadoPedidoService;
+    public EstadoPedidoController(final EstadoPedidoService pEstadoPedidoService) {
+        this.estadoPedidoService = pEstadoPedidoService;
     }
 
     @GetMapping("/all")

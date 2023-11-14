@@ -15,7 +15,8 @@ import java.io.IOException;
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException)
+    public void handle(final HttpServletRequest request, final HttpServletResponse response,
+                       final AccessDeniedException accessDeniedException)
             throws IOException, ServletException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 

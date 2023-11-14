@@ -22,7 +22,7 @@ import java.util.Collections;
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private static final Logger logger = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
     /**
      * Hace el intento de autenticacion
@@ -33,8 +33,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * @throws AuthenticationException
      */
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request,
-                                                HttpServletResponse response) throws AuthenticationException {
+    public Authentication attemptAuthentication(final HttpServletRequest request,
+                                                final HttpServletResponse response) throws AuthenticationException {
 
         AuthCredentials authCredentials = new AuthCredentials();
 
@@ -42,7 +42,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             //  Se instancia para leer la informacion desde un JSON
             authCredentials = new ObjectMapper().readValue(request.getReader(), AuthCredentials.class);
         } catch (IOException e) {
-            logger.error("ERROR: ".concat(e.getMessage()));
+            LOGGER.error("ERROR: ".concat(e.getMessage()));
         }
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
@@ -64,10 +64,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * @throws ServletException
      */
     @Override
-    protected void successfulAuthentication(HttpServletRequest request,
-                                            HttpServletResponse response,
-                                            FilterChain chain,
-                                            Authentication authResult)
+    protected void successfulAuthentication(final HttpServletRequest request,
+                                            final HttpServletResponse response,
+                                            final FilterChain chain,
+                                            final Authentication authResult)
             throws IOException, ServletException {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();

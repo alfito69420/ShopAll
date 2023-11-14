@@ -14,8 +14,8 @@ public class CategoriaController {
     private final CategoriaServices categoriaServices;
 
     @Autowired
-    public CategoriaController(CategoriaServices categoriaServices) {
-        this.categoriaServices = categoriaServices;
+    public CategoriaController(final CategoriaServices pCategoriaServices) {
+        this.categoriaServices = pCategoriaServices;
     }
 
     //@PreAuthorize("hasRole('Comprador') OR hasRole('Supplier') OR ")
@@ -26,25 +26,25 @@ public class CategoriaController {
 
     @GetMapping("/getOne/{id}")
     @PreAuthorize("hasAnyRole('Comprador','Admin','Supplier')")
-    public ResponseEntity<Object> getCategoria(@PathVariable Long id) {
+    public ResponseEntity<Object> getCategoria(@PathVariable final Long id) {
         return this.categoriaServices.getOne(id);
     } //close method
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('Comprador','Admin','Supplier')")
-    public ResponseEntity<Object> registrarCategoria(@RequestBody Categoria categoria) {
+    public ResponseEntity<Object> registrarCategoria(@RequestBody final Categoria categoria) {
         return this.categoriaServices.newCategoria(categoria);
     }
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasRole('Admin')")
-    public ResponseEntity<Object> actualizarCategoria(@PathVariable Long id, @RequestBody Categoria categoria) {
+    public ResponseEntity<Object> actualizarCategoria(@PathVariable final Long id, @RequestBody final Categoria categoria) {
         return this.categoriaServices.updateCategoria(id, categoria);
     } //close method
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('Admin')")
-    public ResponseEntity<Object> eliminarUsuario(@PathVariable Long id) {
+    public ResponseEntity<Object> eliminarUsuario(@PathVariable final Long id) {
         return this.categoriaServices.eliminar(id);
     } //close method
 } //close class

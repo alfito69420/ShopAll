@@ -6,13 +6,13 @@ public class AuthResponse extends GenericResponse {
     private String token;
     private HashMap<String, Object> datos = new HashMap<>();
 
-    public AuthResponse(String message, int status, boolean flag) {
+    public AuthResponse(final String message, final int status, final boolean flag) {
         super(flag, message, status);
     }
 
-    public AuthResponse(String message, int status, boolean flag, String token) {
+    public AuthResponse(final String message, final int status, final boolean flag, final String pToken) {
         super(flag, message, status);
-        this.token = token;
+        this.token = pToken;
     } //close method
 
     public Object response() {

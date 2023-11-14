@@ -24,10 +24,10 @@ public class VentaServices {
     private VentaResponse response;
 
     @Autowired
-    public VentaServices(VentaRepository ventaRepository, UserRepository userRepository, TipoPagoRepository tipoPagoRepository) {
-        this.ventaRepository = ventaRepository;
-        this.userRepository = userRepository;
-        this.tipoPagoRepository = tipoPagoRepository;
+    public VentaServices(final VentaRepository pVentaRepository, final UserRepository pUserRepository, final TipoPagoRepository pTipoPagoRepository) {
+        this.ventaRepository = pVentaRepository;
+        this.userRepository = pUserRepository;
+        this.tipoPagoRepository = pTipoPagoRepository;
     }
 
     public ResponseEntity<Object> getVenta() {
@@ -41,7 +41,7 @@ public class VentaServices {
         }
     } //close method
 
-    public ResponseEntity<Object> getOne(Long id) {
+    public ResponseEntity<Object> getOne(final Long id) {
         if (ventaRepository.findById(id).isPresent()) {
             Venta venta = ventaRepository.findById(id).get();
             response = new VentaResponse(venta, "Si encontró el ID: " + id, 200, true);
@@ -52,7 +52,7 @@ public class VentaServices {
         }
     } //close method
 
-    public ResponseEntity<Object> newVenta(Venta venta) {
+    public ResponseEntity<Object> newVenta(final Venta venta) {
         Optional<UserEntity> usuarioOptional = userRepository.findById(venta.getUser().getUsuario_id());
         Optional<TipoPago> tipoPagoOptional = tipoPagoRepository.findById(venta.getTipoPago().getTipo_pago_id());
 
@@ -81,7 +81,7 @@ public class VentaServices {
         }
     } //close method
 
-    public ResponseEntity<Object> updateVenta(Long id, Venta venta) {
+    public ResponseEntity<Object> updateVenta(final Long id, final Venta venta) {
         Optional<Venta> ventaOptional = ventaRepository.findById(id);
 
         if (ventaOptional.isPresent()) {
@@ -111,7 +111,7 @@ public class VentaServices {
         }
     } //close method
 
-    public ResponseEntity<Object> eliminar(Long id) {
+    public ResponseEntity<Object> eliminar(final Long id) {
         //Verificar si esta vacio
         if (!this.ventaRepository.findById(id).isEmpty()) {
             this.ventaRepository.deleteById(id);

@@ -23,17 +23,17 @@ public class VentaDetalleService {
     private final VentaDetalleRepository ventaDetalleRepository;
     private VentaDetalleResponse ventaDetalleResponse;
 
-    private static final Logger logger = LoggerFactory.getLogger(VentaDetalleService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(VentaDetalleService.class);
 
     private final VentaRepository ventaRepository;
     private final ProductoRepository productoRepository;
 
     @Autowired
-    public VentaDetalleService(final VentaDetalleRepository ventaDetalleRepository, VentaRepository ventaRepository,
-                               ProductoRepository productoRepository) {
-        this.ventaDetalleRepository = ventaDetalleRepository;
-        this.ventaRepository = ventaRepository;
-        this.productoRepository = productoRepository;
+    public VentaDetalleService(final VentaDetalleRepository pVentaDetalleRepository, final VentaRepository pVentaRepository,
+                               final ProductoRepository pProductoRepository) {
+        this.ventaDetalleRepository = pVentaDetalleRepository;
+        this.ventaRepository = pVentaRepository;
+        this.productoRepository = pProductoRepository;
     }
 
     //  GET ALL VENTA DETALLE RECORDS
@@ -41,7 +41,7 @@ public class VentaDetalleService {
         List<VentaDetalle> ventaDetalleList = ventaDetalleRepository.findAll();
 
         //
-        logger.info(String.valueOf(ventaDetalleList));
+        LOGGER.info(String.valueOf(ventaDetalleList));
 
         if (!ventaDetalleList.isEmpty()) {
             ventaDetalleResponse = new VentaDetalleResponse(ventaDetalleList,
@@ -55,7 +55,7 @@ public class VentaDetalleService {
     } //close method
 
     //  INSERT A NEW VENTA DETALLE RECORD
-    public ResponseEntity<Object> insertVentaDetalle(VentaDetalle ventaDetalle) {
+    public ResponseEntity<Object> insertVentaDetalle(final VentaDetalle ventaDetalle) {
         Optional<Venta> ventaOptional = ventaRepository.findById(ventaDetalle.getVenta().getVenta_id());
         Optional<Producto> productoOptional = productoRepository.findById(ventaDetalle.getProducto().getProducto_id());
 
@@ -89,7 +89,7 @@ public class VentaDetalleService {
     } // close method
 
     //  UPDATE A SPECIFIC VENTA DETALLE RECORD
-    public ResponseEntity<Object> updateVentaDetalle(Long id, VentaDetalle ventaDetalle) {
+    public ResponseEntity<Object> updateVentaDetalle(final Long id, final VentaDetalle ventaDetalle) {
         Optional<VentaDetalle> existingVentaDetalleOptional = ventaDetalleRepository.findById(id);
 
         if (existingVentaDetalleOptional.isPresent()) {

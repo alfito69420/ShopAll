@@ -17,20 +17,20 @@ public class CategoriaResponse extends GenericResponse {
     private HashMap<String, Object> datos = new HashMap<>();
 
     //GET ONE POST PATCH
-    public CategoriaResponse(Categoria categoria, String message, int status, boolean flag) {
+    public CategoriaResponse(final Categoria pCategoria, final String message, final int status, final boolean flag) {
         super(flag, message, status);
-        this.categoria = categoria;
+        this.categoria = pCategoria;
     } //close method
 
     //DELETE
-    public CategoriaResponse(String message, int status, boolean flag) {
+    public CategoriaResponse(final String message, final int status, final boolean flag) {
         super(flag, message, status);
     } //close method
 
     //GET All
-    public CategoriaResponse(List<Categoria> listCategoria, String message, int status, boolean flag) {
+    public CategoriaResponse(final List<Categoria> pListCategoria, final String message, final int status, final boolean flag) {
         super(flag, message, status);
-        this.listCategoria = listCategoria;
+        this.listCategoria = pListCategoria;
     } //close method
 
     public Object response() {

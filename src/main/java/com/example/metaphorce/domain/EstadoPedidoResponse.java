@@ -17,10 +17,10 @@ public class EstadoPedidoResponse extends GenericResponse {
     private HashMap<String, Object> data = new HashMap<>();
 
     //  GET ONLY ONE RECORD
-    public EstadoPedidoResponse(final EstadoPedido estadoPedido, final String message,
+    public EstadoPedidoResponse(final EstadoPedido pEstadoPedido, final String message,
                                 final int status, final boolean flag) {
         super(flag, message, status);
-        this.estadoPedido = estadoPedido;
+        this.estadoPedido = pEstadoPedido;
     }
 
     //  DELETE
@@ -29,9 +29,9 @@ public class EstadoPedidoResponse extends GenericResponse {
     } //close method
 
     //  GET ALL
-    public EstadoPedidoResponse(final List<EstadoPedido> estadoPedidoList, final String message, final int status, final boolean flag) {
+    public EstadoPedidoResponse(final List<EstadoPedido> pEstadoPedidoList, final String message, final int status, final boolean flag) {
         super(flag, message, status);
-        this.estadoPedidoList = estadoPedidoList;
+        this.estadoPedidoList = pEstadoPedidoList;
     } //close method
 
     public Object response() {

@@ -32,8 +32,8 @@ public class WebSecurityConfig {
     private CustomAccessDeniedHandler accessDeniedHandler;
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity httpSecurity,
-                                    AuthenticationManager authenticationManager) throws Exception {
+    SecurityFilterChain filterChain(final HttpSecurity httpSecurity,
+                                    final AuthenticationManager authenticationManager) throws Exception {
 
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
@@ -80,8 +80,8 @@ public class WebSecurityConfig {
      * @throws Exception
      */
     @Bean
-    AuthenticationManager authenticationManager(HttpSecurity httpSecurity,
-                                                PasswordEncoder passwordEncoder) throws Exception {
+    AuthenticationManager authenticationManager(final HttpSecurity httpSecurity,
+                                                final PasswordEncoder passwordEncoder) throws Exception {
         return httpSecurity.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder())
@@ -94,7 +94,7 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     } //close method
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         System.out.println("pass: " + new BCryptPasswordEncoder().encode("contrasena1"));
     }
 } //close class

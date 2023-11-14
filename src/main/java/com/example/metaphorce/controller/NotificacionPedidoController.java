@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class NotificacionPedidoController {
     private final NotificacionPedidoService notificacionPedidoService;
 
-    public NotificacionPedidoController(NotificacionPedidoService notificacionPedidoService) {
-        this.notificacionPedidoService = notificacionPedidoService;
+    public NotificacionPedidoController(final NotificacionPedidoService pNotificacionPedidoService) {
+        this.notificacionPedidoService = pNotificacionPedidoService;
     }
 
     @GetMapping("/all")

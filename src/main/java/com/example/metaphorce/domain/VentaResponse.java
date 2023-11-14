@@ -17,20 +17,20 @@ public class VentaResponse extends GenericResponse {
     private HashMap<String, Object> datos = new HashMap<>();
 
     //GET ONE POST PATCH
-    public VentaResponse(Venta venta, String message, int status, boolean flag) {
+    public VentaResponse(final Venta pVenta, final String message, final int status, final boolean flag) {
         super(flag, message, status);
-        this.venta = venta;
+        this.venta = pVenta;
     } //close method
 
     //DELETE
-    public VentaResponse(String message, int status, boolean flag) {
+    public VentaResponse(final String message, final int status, final boolean flag) {
         super(flag, message, status);
     } //close method
 
     //GET All
-    public VentaResponse(List<Venta> listVenta, String message, int status, boolean flag) {
+    public VentaResponse(final List<Venta> pListVenta, final String message, final int status, final boolean flag) {
         super(flag, message, status);
-        this.listVenta = listVenta;
+        this.listVenta = pListVenta;
     } //close method
 
     public Object response() {

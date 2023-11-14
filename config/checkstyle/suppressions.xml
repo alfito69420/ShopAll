@@ -10,4 +10,5 @@
     <suppress checks="Javadoc" files="."/>
     <suppress checks="ParameterName" files="."/>
     <suppress checks="MemberName" files="."/>
+    <suppress checks="AvoidStarImport" files="."/>
 </suppressions>
