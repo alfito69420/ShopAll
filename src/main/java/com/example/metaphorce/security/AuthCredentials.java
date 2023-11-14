@@ -6,7 +6,6 @@ import lombok.Data;
  * Modelo que representa las
  * credenciales del usuario a
  * autenticar
- *
  */
 @Data
 public class AuthCredentials {

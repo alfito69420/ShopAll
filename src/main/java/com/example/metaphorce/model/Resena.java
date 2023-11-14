@@ -1,11 +1,7 @@
 package com.example.metaphorce.model;
 
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +10,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table
-public class Resena{
+public class Resena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long resena_id;
@@ -24,7 +20,7 @@ public class Resena{
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
-    private UserImpl user;
+    private UserEntity user;
     private String resena;
     private Integer calificacion;
 }

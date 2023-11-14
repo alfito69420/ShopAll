@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class TiendaServices {
     private final TiendaRepository tiendaRepository;
-    TiendaResponse response;
+    private TiendaResponse response;
 
     @Autowired
     public TiendaServices(TiendaRepository tiendaRepository) {
@@ -29,13 +29,13 @@ public class TiendaServices {
             response = new TiendaResponse("No se encontraron tiendas", 400, false);
             return new ResponseEntity<>(response.response2(), HttpStatus.OK);
         }
-    }
+    } //close method
 
     public ResponseEntity<Object> newTienda(Tienda tienda) {
         this.tiendaRepository.save(tienda);
         response = new TiendaResponse(tienda, "Se pudo crear la tienda", 200, true);
         return new ResponseEntity<>(response.response(), HttpStatus.OK);
-    }
+    } //close method
 
     public ResponseEntity<Object> updateTienda(Integer id, Tienda tienda) {
         if (tiendaRepository.findById(id).isPresent()) {
@@ -49,7 +49,7 @@ public class TiendaServices {
             response = new TiendaResponse("No existe el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
-    }
+    } //close method
 
     public ResponseEntity<Object> eliminar(Integer id) {
         //Verificar si esta vacio
@@ -61,7 +61,7 @@ public class TiendaServices {
             response = new TiendaResponse("No existe el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
-    }
+    } //close method
 
     public ResponseEntity<Object> getOne(Integer id) {
         if (tiendaRepository.findById(id).isPresent()) {
@@ -72,5 +72,5 @@ public class TiendaServices {
             response = new TiendaResponse("No existe la tienda con el ID: " + id, 400, false);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         }
-    }
-}
+    } //close method
+} //close class

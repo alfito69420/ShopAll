@@ -17,21 +17,23 @@ public class VentaDetalleResponse extends GenericResponse {
     private HashMap<String, Object> data = new HashMap<>();
 
     //  GET ONLY ONE RECORD
-    public VentaDetalleResponse(final VentaDetalle ventaDetalle, final String message, final int status, final boolean flag) {
+    public VentaDetalleResponse(final VentaDetalle ventaDetalle, final String message,
+                                final int status, final boolean flag) {
         super(flag, message, status);
         this.ventaDetalle = ventaDetalle;
-    }
+    } //close method
 
     //  DELETE
     public VentaDetalleResponse(final String message, final int status, final boolean flag) {
         super(flag, message, status);
-    }
+    } //close method
 
     //  GET ALL
-    public VentaDetalleResponse(final List<VentaDetalle> ventaDetalleList, final String message, final int status, final boolean flag) {
+    public VentaDetalleResponse(final List<VentaDetalle> ventaDetalleList, final String message,
+                                final int status, final boolean flag) {
         super(flag, message, status);
         this.ventaDetalleList = ventaDetalleList;
-    }
+    } //close method
 
     public Object response() {
         data.put("Flag", isFlag());

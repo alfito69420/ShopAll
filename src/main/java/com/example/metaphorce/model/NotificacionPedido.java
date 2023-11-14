@@ -28,6 +28,6 @@ public class NotificacionPedido {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private UserImpl user;
+    private UserEntity user;
 } //close class
 

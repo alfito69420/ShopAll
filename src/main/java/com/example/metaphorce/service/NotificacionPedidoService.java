@@ -1,37 +1,37 @@
 package com.example.metaphorce.service;
 
-        import com.example.metaphorce.domain.NotificacionPedidoResponse;
-        import com.example.metaphorce.model.EstadoPedido;
-        import com.example.metaphorce.model.NotificacionPedido;
-        import com.example.metaphorce.model.Pedido;
-        import com.example.metaphorce.model.UserImpl;
-        import com.example.metaphorce.repository.EstadoPedidoRepository;
-        import com.example.metaphorce.repository.NotificacionPedidoRepository;
+import com.example.metaphorce.domain.NotificacionPedidoResponse;
+import com.example.metaphorce.model.EstadoPedido;
+import com.example.metaphorce.model.NotificacionPedido;
+import com.example.metaphorce.model.Pedido;
+import com.example.metaphorce.model.UserEntity;
+import com.example.metaphorce.repository.EstadoPedidoRepository;
+import com.example.metaphorce.repository.NotificacionPedidoRepository;
+import com.example.metaphorce.repository.PedidoRepository;
+import com.example.metaphorce.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
-        import com.example.metaphorce.repository.PedidoRepository;
-        import com.example.metaphorce.repository.UserRepository;
-        import org.springframework.http.HttpStatus;
-        import org.springframework.http.ResponseEntity;
-        import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
-        import java.util.List;
-        import java.util.Optional;
 @Service
 public class NotificacionPedidoService {
     private final NotificacionPedidoRepository notificacionPedidoRepository;
     private final PedidoRepository pedidoRepository;
-    private  final EstadoPedidoRepository estadoPedidoRepository;
+    private final EstadoPedidoRepository estadoPedidoRepository;
     private final UserRepository userRepository;
-    NotificacionPedidoResponse response;
+    private NotificacionPedidoResponse response;
 
-    public NotificacionPedidoService(NotificacionPedidoRepository notificacionPedidoRepository, PedidoRepository pedidoRepository, EstadoPedidoRepository estadoPedidoRepository, UserRepository userRepository){
+    public NotificacionPedidoService(NotificacionPedidoRepository notificacionPedidoRepository, PedidoRepository pedidoRepository, EstadoPedidoRepository estadoPedidoRepository, UserRepository userRepository) {
         this.notificacionPedidoRepository = notificacionPedidoRepository;
         this.pedidoRepository = pedidoRepository;
         this.estadoPedidoRepository = estadoPedidoRepository;
         this.userRepository = userRepository;
     }
 
-    public ResponseEntity<Object> getNotificacionesPedidos(){
+    public ResponseEntity<Object> getNotificacionesPedidos() {
         List<NotificacionPedido> notificacionesPedidos = notificacionPedidoRepository.findAll();
         if (!notificacionesPedidos.isEmpty()) {
             response = new NotificacionPedidoResponse(notificacionesPedidos, "Obtención de todas las NotificacionesPedidos", 200, true);
@@ -45,7 +45,7 @@ public class NotificacionPedidoService {
     public ResponseEntity<Object> newNotificacionPedido(NotificacionPedido notificacionPedido) {
         Optional<Pedido> optionalPedido = pedidoRepository.findById(notificacionPedido.getPedido().getPedido_id());
         Optional<EstadoPedido> optionalEstadoPedido = estadoPedidoRepository.findById(notificacionPedido.getEstadoPedido().getEstado_pedido_id());
-        Optional<UserImpl> optionalUsuario = userRepository.findById(notificacionPedido.getUser().getUsuario_id());
+        Optional<UserEntity> optionalUsuario = userRepository.findById(notificacionPedido.getUser().getUsuario_id());
 
         if (optionalPedido.isPresent() && optionalEstadoPedido.isPresent() && optionalUsuario.isPresent()) {
             notificacionPedido.setPedido(optionalPedido.get());
@@ -80,22 +80,24 @@ public class NotificacionPedidoService {
     }
 
 
-    public ResponseEntity<Object> eliminar(Long id){
-        if(!this.notificacionPedidoRepository.findById(id).isEmpty()){
+    public ResponseEntity<Object> eliminar(Long id) {
+        if (!this.notificacionPedidoRepository.findById(id).isEmpty()) {
             this.notificacionPedidoRepository.deleteById(id);
-            response = new NotificacionPedidoResponse("Si se pudo eliminar el ID :"+id,200,true );
-            return new ResponseEntity<>(response.response(),HttpStatus.OK);
-        }else{
-            response = new NotificacionPedidoResponse("No existe el ID: "+id,400,false );
-            return new ResponseEntity<>(response.response(),HttpStatus.OK);
+            response = new NotificacionPedidoResponse("Si se pudo eliminar el ID :" + id, 200, true);
+            return new ResponseEntity<>(response.response(), HttpStatus.OK);
+        } else {
+            response = new NotificacionPedidoResponse("No existe el ID: " + id, 400, false);
+            return new ResponseEntity<>(response.response(), HttpStatus.OK);
 
         }
-    };
+    }
 
-    public ResponseEntity<Object> getOne(Long id){
+    ;
+
+    public ResponseEntity<Object> getOne(Long id) {
         if (notificacionPedidoRepository.findById(id).isPresent()) {
-            NotificacionPedido notizacionPedidocacion = notificacionPedidoRepository.findById(id).get();
-            response = new NotificacionPedidoResponse(notizacionPedidocacion, "Si encontró el ID: " + id, 200, true);
+            NotificacionPedido notificacionPedido = notificacionPedidoRepository.findById(id).get();
+            response = new NotificacionPedidoResponse(notificacionPedido, "Si encontró el ID: " + id, 200, true);
             return new ResponseEntity<>(response.response(), HttpStatus.OK);
         } else {
             response = new NotificacionPedidoResponse("No existe la Notificación de Pedido con el ID: " + id, 400, false);

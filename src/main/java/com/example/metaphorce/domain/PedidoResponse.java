@@ -20,18 +20,19 @@ public class PedidoResponse extends GenericResponse {
     public PedidoResponse(final Pedido pedido, final String message, final int status, final boolean flag) {
         super(flag, message, status);
         this.pedido = pedido;
-    }
+    } //close method
 
     //  DELETE
     public PedidoResponse(final String message, final int status, final boolean flag) {
         super(flag, message, status);
-    }
+    } //close method
 
     //  GET ALL
-    public PedidoResponse(final List<Pedido> pedidoList, final String message, final int status, final boolean flag) {
+    public PedidoResponse(final List<Pedido> pedidoList, final String message,
+                          final int status, final boolean flag) {
         super(flag, message, status);
         this.pedidoList = pedidoList;
-    }
+    } //close method
 
     public Object response() {
         data.put("Flag", isFlag());

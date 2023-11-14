@@ -6,6 +6,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,9 +19,10 @@ import java.util.Collections;
 
 /**
  *
- *
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+    private static final Logger logger = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
     /**
      * Hace el intento de autenticacion
@@ -39,12 +42,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             //  Se instancia para leer la informacion desde un JSON
             authCredentials = new ObjectMapper().readValue(request.getReader(), AuthCredentials.class);
         } catch (IOException e) {
-
+            logger.error("ERROR: ".concat(e.getMessage()));
         }
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 authCredentials.getEmail(),
                 authCredentials.getPassword(),
+                // Puede que el error este aquiu??
                 Collections.emptyList()
         );
 
@@ -52,8 +56,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     } //close method
 
     /**
-     *
-     *
      * @param request
      * @param response
      * @param chain
@@ -71,17 +73,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
 
         //  Se crea un nuevo token para usarlo en autorizaciones al consultar endpoints
-        String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername());
+        //String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername());
+        String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername(), userDetails.getAuthorities());
 
-        AuthResponse authResponse = new AuthResponse("Autorizado, Con el token: "+token, HttpStatus.UNAUTHORIZED.value(), true);
+        AuthResponse authResponse = new AuthResponse("Autorizado, Con el token: " + token, HttpStatus.UNAUTHORIZED.value(), true);
         response.setContentType("application/json");
         response.addHeader("Authorization", "Bearer " + token);
         //response.getWriter().flush();
 
-
         response.setStatus(HttpStatus.OK.value());
         response.getWriter().write(new ObjectMapper().writeValueAsString(authResponse));
-
 
         //super.successfulAuthentication(request, response, chain, authResult);
     } //close method
