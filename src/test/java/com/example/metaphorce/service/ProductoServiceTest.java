@@ -24,9 +24,6 @@ class ProductoServiceTest {
     private ProductoRepository productoRepository;
 
     @Mock
-    private VentaRepository ventaRepository;
-
-    @Mock
     private TiendaRepository tiendaRepository;
 
     @Mock
