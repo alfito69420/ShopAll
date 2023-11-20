@@ -50,7 +50,7 @@ public class WebSecurityConfig {
                     auth.requestMatchers("/api/v1/categoria/all").permitAll();
                     auth.requestMatchers("api/v1/producto/getOne/**").permitAll();
                     auth.requestMatchers("api/v1/user/create").permitAll();
-
+                    auth.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> {
@@ -94,7 +94,9 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     } //close method
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         System.out.println("pass: " + new BCryptPasswordEncoder().encode("contrasena1"));
-    }
+    }*/
 } //close class
+
+
