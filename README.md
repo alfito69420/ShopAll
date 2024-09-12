@@ -132,5 +132,4 @@ http://localhost:8080/api/v1/tienda/all
 - Sandra Paola Gutiérrez Marcial
 - Alfredo Alejandro Aramburo Carreño
 - José Manuel Cerritos González  
-- Braulio Baltazar Andrade Medina
 - Luis Gerardo López Ruiz
